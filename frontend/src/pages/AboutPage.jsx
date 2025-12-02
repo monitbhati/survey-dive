@@ -255,7 +255,7 @@ export const AboutPage = () => {
           </div>
 
           {/* Visual Representation */}
-          <div className="bg-gradient-to-br from-slate-50 to-blue-50 p-8 rounded-2xl border-2 border-gray-100 mb-8">
+          <div className="bg-gradient-to-br from-orange-50 to-red-50 p-8 rounded-2xl border-2 border-gray-100 mb-8">
             <div className="text-center mb-6">
               <h3 className="text-2xl font-bold text-gray-900 mb-2">Truly Global Presence</h3>
               <p className="text-gray-600">Our panelists span across continents, industries, and demographics</p>
