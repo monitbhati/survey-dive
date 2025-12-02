@@ -71,13 +71,23 @@ export const ServicesPage = () => {
       <Header />
 
       {/* Page Header */}
-      <section className="pt-32 pb-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-yellow-50 to-white">
-        <div className="container mx-auto">
+      <section className="relative pt-32 pb-16 px-4 sm:px-6 lg:px-8 min-h-[450px] flex items-center">
+        {/* Background Image with Overlay */}
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="https://images.unsplash.com/photo-1587440871875-191322ee64b0?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzB8MHwxfHNlYXJjaHwxfHxidXNpbmVzcyUyMHJlc2VhcmNofGVufDB8fHx8MTc2NDcxNzE3MXww&ixlib=rb-4.1.0&q=85" 
+            alt="Business Research"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-pink-900/85 via-purple-900/80 to-yellow-900/75"></div>
+        </div>
+        
+        <div className="container mx-auto relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
               Our Services
             </h1>
-            <p className="text-lg sm:text-xl text-gray-600 leading-relaxed">
+            <p className="text-lg sm:text-xl text-gray-100 leading-relaxed drop-shadow-md">
               Comprehensive research solutions tailored to deliver facts that matter and insights that count
             </p>
           </div>
