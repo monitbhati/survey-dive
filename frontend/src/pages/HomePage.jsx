@@ -88,7 +88,7 @@ export const HomePage = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 to-slate-100">
+      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-orange-50 to-red-50">
         <div className="container mx-auto">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6">
@@ -99,12 +99,12 @@ export const HomePage = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/contact">
-                <Button size="lg" className="bg-slate-800 hover:bg-slate-900 text-lg px-8 h-14">
+                <Button size="lg" className="bg-gradient-to-r from-orange-600 to-red-500 hover:from-orange-700 hover:to-red-600 text-lg px-8 h-14">
                   Initiate Consultation <ArrowRight className="ml-2" size={20} />
                 </Button>
               </Link>
               <Link to="/services">
-                <Button size="lg" variant="outline" className="text-lg px-8 h-14 border-2 border-slate-800 text-slate-800 hover:bg-white">
+                <Button size="lg" variant="outline" className="text-lg px-8 h-14 border-2 border-orange-600 text-orange-600 hover:bg-white">
                   Explore Capabilities
                 </Button>
               </Link>
