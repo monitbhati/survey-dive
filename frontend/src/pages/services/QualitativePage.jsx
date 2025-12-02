@@ -17,28 +17,29 @@ import {
 
 export const QualitativePage = () => {
   return (
-    <div className="min-h-screen bg-white">
+    <div 
+      className="min-h-screen relative"
+      style={{
+        backgroundImage: 'linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)), url(https://images.unsplash.com/photo-1573878587306-c6723c815090?w=1920)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed'
+      }}
+    >
       <Header />
 
-      {/* Hero Section with Background Image */}
-      <section 
-        className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 relative"
-        style={{
-          backgroundImage: 'linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url(https://images.unsplash.com/photo-1573878587306-c6723c815090?w=1920)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center'
-        }}
-      >
-        <div className="container mx-auto relative z-10">
-          <div className="max-w-4xl mx-auto text-center text-white">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 leading-tight">
+      {/* Hero Section */}
+      <section className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 relative">
+        <div className="container mx-auto">
+          <div className="max-w-4xl mx-auto text-center">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 leading-tight text-gray-900">
               Qualitative Deep Dives
             </h1>
-            <p className="text-lg sm:text-xl mb-8 leading-relaxed opacity-90">
+            <p className="text-lg sm:text-xl mb-8 leading-relaxed text-gray-700">
               Uncover the "why" behind behaviors through expert-led in-depth interviews, focus groups, and ethnographic research that reveal insights beyond numbers
             </p>
             <Link to="/contact">
-              <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-lg px-8 h-14">
+              <Button size="lg" className="bg-slate-800 hover:bg-slate-900 text-lg px-8 h-14">
                 Request a Quote <ArrowRight className="ml-2" size={20} />
               </Button>
             </Link>
