@@ -91,10 +91,10 @@ export const ServicesPage = () => {
             {services.map((service) => {
               const IconComponent = service.icon;
               return (
-                <Card key={service.id} className="border-2 border-gray-100 hover:shadow-xl transition-all duration-300">
+                <Card key={service.id} className="border-2 border-orange-100 hover:shadow-xl transition-all duration-300">
                   <CardHeader>
-                    <div className="w-16 h-16 bg-gradient-to-br from-slate-100 to-slate-200 rounded-xl flex items-center justify-center mb-6">
-                      <IconComponent className="text-slate-700" size={32} strokeWidth={2} />
+                    <div className="w-16 h-16 bg-gradient-to-br from-orange-100 to-red-100 rounded-xl flex items-center justify-center mb-6">
+                      <IconComponent className="text-orange-600" size={32} strokeWidth={2} />
                     </div>
                     <CardTitle className="text-2xl mb-3">{service.title}</CardTitle>
                     <CardDescription className="text-base leading-relaxed">
@@ -107,14 +107,14 @@ export const ServicesPage = () => {
                       <ul className="space-y-2">
                         {service.highlights.map((highlight, idx) => (
                           <li key={idx} className="flex items-start">
-                            <CheckCircle className="text-green-600 mr-3 flex-shrink-0 mt-0.5" size={18} strokeWidth={2.5} />
+                            <CheckCircle className="text-teal-500 mr-3 flex-shrink-0 mt-0.5" size={18} strokeWidth={2.5} />
                             <span className="text-sm text-gray-700">{highlight}</span>
                           </li>
                         ))}
                       </ul>
                     </div>
                     <Link to={`/services/${service.slug}`}>
-                      <Button className="w-full bg-slate-800 hover:bg-slate-900">
+                      <Button className="w-full bg-gradient-to-r from-orange-600 to-red-500 hover:from-orange-700 hover:to-red-600">
                         Learn More <ArrowRight className="ml-2" size={18} />
                       </Button>
                     </Link>
