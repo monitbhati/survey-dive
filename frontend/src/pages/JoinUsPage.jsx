@@ -407,7 +407,7 @@ export const JoinUsPage = () => {
                       </Button>
 
                       <p className="text-center text-sm text-gray-600">
-                        Forgot your password? <button type="button" className="text-slate-800 font-semibold hover:underline">Reset it here</button>
+                        Forgot your password? <button type="button" className="text-orange-600 font-semibold hover:underline">Reset it here</button>
                       </p>
                     </form>
                   </CardContent>
