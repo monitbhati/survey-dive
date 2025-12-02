@@ -344,12 +344,13 @@ export const AboutPage = () => {
             Let's discuss how we can support your research objectives
           </p>
           <Link to="/contact">
-            <Button size="lg" className="bg-slate-800 hover:bg-slate-900 text-lg px-8 h-14">
+            <Button size="lg" className="bg-gradient-to-r from-yellow-500 to-pink-700 hover:from-yellow-600 hover:to-pink-800 text-lg px-8 h-14 shadow-2xl">
               Contact Us Today
             </Button>
           </Link>
         </div>
-      </section>
+        </section>
+      </div>
 
       <Footer />
     </div>
