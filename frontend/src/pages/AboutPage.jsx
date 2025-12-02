@@ -51,7 +51,7 @@ export const AboutPage = () => {
       <Header />
 
       {/* Page Header */}
-      <section className="pt-32 pb-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-slate-50 to-white">
+      <section className="pt-32 pb-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-orange-50 to-white">
         <div className="container mx-auto">
           <div className="max-w-4xl mx-auto text-center">
             <p className="text-lg sm:text-xl text-gray-600 leading-relaxed">
