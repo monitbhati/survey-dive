@@ -8,6 +8,10 @@ import { mockData } from '../mock';
 import { toast } from 'sonner';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
+import axios from 'axios';
+
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+const API = `${BACKEND_URL}/api`;
 
 export const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -16,6 +20,7 @@ export const ContactPage = () => {
     company: '',
     message: ''
   });
+  const [loading, setLoading] = useState(false);
 
   const handleInputChange = (e) => {
     setFormData({
@@ -24,10 +29,20 @@ export const ContactPage = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    toast.success('Thank you for reaching out. Our team will respond within 24 hours.');
-    setFormData({ name: '', email: '', company: '', message: '' });
+    setLoading(true);
+    
+    try {
+      const response = await axios.post(`${API}/contact/submit`, formData);
+      toast.success(response.data.message);
+      setFormData({ name: '', email: '', company: '', message: '' });
+    } catch (error) {
+      console.error('Contact form error:', error);
+      toast.error('Failed to submit. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -104,8 +119,12 @@ export const ContactPage = () => {
                       required
                     />
                   </div>
-                  <Button type="submit" className="w-full bg-slate-800 hover:bg-slate-900 h-12 text-base">
-                    Submit Inquiry
+                  <Button 
+                    type="submit" 
+                    className="w-full bg-slate-800 hover:bg-slate-900 h-12 text-base"
+                    disabled={loading}
+                  >
+                    {loading ? 'Submitting...' : 'Submit Inquiry'}
                   </Button>
                 </form>
               </CardContent>

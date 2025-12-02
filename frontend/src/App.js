@@ -5,6 +5,8 @@ import { AboutPage } from "./pages/AboutPage";
 import { ServicesPage } from "./pages/ServicesPage";
 import { ContactPage } from "./pages/ContactPage";
 import { JoinUsPage } from "./pages/JoinUsPage";
+import { AdminLoginPage } from "./pages/AdminLoginPage";
+import { AdminDashboardPage } from "./pages/AdminDashboardPage";
 import { Toaster } from "./components/ui/sonner";
 
 function App() {
@@ -17,6 +19,8 @@ function App() {
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/join-us" element={<JoinUsPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/admin/login" element={<AdminLoginPage />} />
+          <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
         </Routes>
       </BrowserRouter>
       <Toaster position="top-right" />
