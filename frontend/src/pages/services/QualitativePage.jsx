@@ -294,6 +294,7 @@ export const QualitativePage = () => {
       </section>
 
       <Footer />
+      </div>
     </div>
   );
 };
