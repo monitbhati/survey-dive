@@ -345,7 +345,7 @@ export const JoinUsPage = () => {
 
                       <Button 
                         type="submit" 
-                        className="w-full bg-slate-800 hover:bg-slate-900 h-12 text-base"
+                        className="w-full bg-gradient-to-r from-orange-600 to-red-500 hover:from-orange-700 hover:to-red-600 h-12 text-base"
                         disabled={loading}
                       >
                         {loading ? 'Creating Account...' : 'Create Account'}
@@ -400,7 +400,7 @@ export const JoinUsPage = () => {
 
                       <Button 
                         type="submit" 
-                        className="w-full bg-slate-800 hover:bg-slate-900 h-12 text-base"
+                        className="w-full bg-gradient-to-r from-orange-600 to-red-500 hover:from-orange-700 hover:to-red-600 h-12 text-base"
                         disabled={loading}
                       >
                         {loading ? 'Logging in...' : 'Login'}
