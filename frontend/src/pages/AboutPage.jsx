@@ -243,7 +243,7 @@ export const AboutPage = () => {
               return (
                 <Card key={index} className="border-2 border-gray-100">
                   <CardContent className="pt-6 pb-6 text-center">
-                    <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+                    <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mx-auto mb-3">
                       <IconComponent className="text-orange-600" size={24} />
                     </div>
                     <div className="text-3xl font-bold text-gray-900 mb-1">{stat.value}</div>
