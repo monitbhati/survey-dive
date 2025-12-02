@@ -73,34 +73,34 @@ export const Header = () => {
             <div className="flex flex-col space-y-3">
               <Link 
                 to="/" 
-                className="text-left text-gray-700 hover:text-orange-600 transition-colors py-2 font-medium"
+                className="text-left text-gray-700 hover:text-pink-700 transition-colors py-2 font-medium"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Home
               </Link>
               <Link 
                 to="/about" 
-                className="text-left text-gray-700 hover:text-orange-600 transition-colors py-2 font-medium"
+                className="text-left text-gray-700 hover:text-pink-700 transition-colors py-2 font-medium"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 About
               </Link>
               <Link 
                 to="/services" 
-                className="text-left text-gray-700 hover:text-orange-600 transition-colors py-2 font-medium"
+                className="text-left text-gray-700 hover:text-pink-700 transition-colors py-2 font-medium"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Services
               </Link>
               <Link 
                 to="/join-us" 
-                className="text-left text-gray-700 hover:text-orange-600 transition-colors py-2 font-medium"
+                className="text-left text-gray-700 hover:text-pink-700 transition-colors py-2 font-medium"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Join Us
               </Link>
               <Link to="/contact" onClick={() => setMobileMenuOpen(false)}>
-                <Button className="bg-gradient-to-r from-orange-600 to-red-500 hover:from-orange-700 hover:to-red-600 w-full">Contact</Button>
+                <Button className="bg-gradient-to-r from-yellow-500 to-pink-700 hover:from-yellow-600 hover:to-pink-800 w-full">Contact</Button>
               </Link>
             </div>
           </nav>
