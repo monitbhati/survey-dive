@@ -41,7 +41,7 @@ export const SurveyDesigningPage = () => {
               Expertly crafted survey instruments that balance respondent experience with data quality, ensuring optimal completion rates and actionable insights
             </p>
             <Link to="/contact">
-              <Button size="lg" className="bg-slate-800 hover:bg-slate-900 text-lg px-8 h-14">
+              <Button size="lg" className="bg-gradient-to-r from-yellow-500 to-pink-700 hover:from-yellow-600 hover:to-pink-800 text-lg px-8 h-14">
                 Request a Quote <ArrowRight className="ml-2" size={20} />
               </Button>
             </Link>
@@ -68,7 +68,7 @@ export const SurveyDesigningPage = () => {
           <div className="grid md:grid-cols-2 gap-8">
             <Card className="border-2 border-gray-100">
               <CardContent className="pt-8 pb-8">
-                <Layout className="text-blue-600 mb-4" size={32} />
+                <Layout className="text-pink-700 mb-4" size={32} />
                 <h3 className="text-2xl font-bold text-gray-900 mb-3">Question Development</h3>
                 <p className="text-gray-600 leading-relaxed mb-4">
                   Crafting clear, unbiased questions that capture accurate data while avoiding common pitfalls like leading questions or double-barreling.
@@ -188,7 +188,7 @@ export const SurveyDesigningPage = () => {
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center">
               <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <Zap className="text-blue-600" size={32} />
+                <Zap className="text-pink-700" size={32} />
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">Respondent-Centric</h3>
               <p className="text-gray-600 leading-relaxed">
@@ -266,27 +266,27 @@ export const SurveyDesigningPage = () => {
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">Question Types We Design</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className=" p-6 rounded-xl border border-slate-200">
+            <div className=" p-6 rounded-xl border border-yellow-200">
               <h4 className="font-bold text-gray-900 mb-2">Multiple Choice</h4>
               <p className="text-gray-600 text-sm">Single or multi-select options for categorical data</p>
             </div>
-            <div className=" p-6 rounded-xl border border-slate-200">
+            <div className=" p-6 rounded-xl border border-yellow-200">
               <h4 className="font-bold text-gray-900 mb-2">Rating Scales</h4>
               <p className="text-gray-600 text-sm">Likert, semantic differential, and numeric scales</p>
             </div>
-            <div className=" p-6 rounded-xl border border-slate-200">
+            <div className=" p-6 rounded-xl border border-yellow-200">
               <h4 className="font-bold text-gray-900 mb-2">Open-Ended</h4>
               <p className="text-gray-600 text-sm">Text responses for qualitative insights</p>
             </div>
-            <div className=" p-6 rounded-xl border border-slate-200">
+            <div className=" p-6 rounded-xl border border-yellow-200">
               <h4 className="font-bold text-gray-900 mb-2">Matrix Questions</h4>
               <p className="text-gray-600 text-sm">Efficient multi-item rating grids</p>
             </div>
-            <div className=" p-6 rounded-xl border border-slate-200">
+            <div className=" p-6 rounded-xl border border-yellow-200">
               <h4 className="font-bold text-gray-900 mb-2">Ranking Questions</h4>
               <p className="text-gray-600 text-sm">Drag-and-drop or numbered preference ranking</p>
             </div>
-            <div className=" p-6 rounded-xl border border-slate-200">
+            <div className=" p-6 rounded-xl border border-yellow-200">
               <h4 className="font-bold text-gray-900 mb-2">MaxDiff & Conjoint</h4>
               <p className="text-gray-600 text-sm">Advanced trade-off analysis designs</p>
             </div>
@@ -305,12 +305,12 @@ export const SurveyDesigningPage = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/contact">
-              <Button size="lg" className="bg-slate-800 hover:bg-slate-900 text-lg px-8 h-14">
+              <Button size="lg" className="bg-gradient-to-r from-yellow-500 to-pink-700 hover:from-yellow-600 hover:to-pink-800 text-lg px-8 h-14">
                 Contact Us
               </Button>
             </Link>
             <Link to="/services">
-              <Button size="lg" variant="outline" className="text-lg px-8 h-14 border-2 border-slate-800 text-slate-800 hover:">
+              <Button size="lg" variant="outline" className="text-lg px-8 h-14 border-2 border-yellow-800 text-slate-800 hover:">
                 View All Services
               </Button>
             </Link>

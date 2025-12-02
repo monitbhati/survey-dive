@@ -40,7 +40,7 @@ export const QualitativePage = () => {
               Uncover the "why" behind behaviors through expert-led in-depth interviews, focus groups, and ethnographic research that reveal insights beyond numbers
             </p>
             <Link to="/contact">
-              <Button size="lg" className="bg-slate-800 hover:bg-slate-900 text-lg px-8 h-14">
+              <Button size="lg" className="bg-gradient-to-r from-yellow-500 to-pink-700 hover:from-yellow-600 hover:to-pink-800 text-lg px-8 h-14">
                 Request a Quote <ArrowRight className="ml-2" size={20} />
               </Button>
             </Link>
@@ -67,7 +67,7 @@ export const QualitativePage = () => {
           <div className="grid md:grid-cols-3 gap-8 mb-12">
             <Card className="border-2 border-gray-100">
               <CardContent className="pt-8 pb-8">
-                <MessageCircle className="text-blue-600 mb-4" size={40} />
+                <MessageCircle className="text-pink-700 mb-4" size={40} />
                 <h3 className="text-2xl font-bold text-gray-900 mb-3">In-Depth Interviews (IDI)</h3>
                 <p className="text-gray-600 leading-relaxed mb-4">
                   One-on-one conversations that dive deep into individual perspectives, experiences, and decision-making processes.
@@ -159,7 +159,7 @@ export const QualitativePage = () => {
           <div className="grid md:grid-cols-2 gap-8">
             <Card className="border-2 border-gray-100">
               <CardContent className="pt-8 pb-8">
-                <Target className="text-blue-600 mb-4" size={32} />
+                <Target className="text-pink-700 mb-4" size={32} />
                 <h3 className="text-2xl font-bold text-gray-900 mb-3">Expert Moderators</h3>
                 <p className="text-gray-600 leading-relaxed">
                   Our moderators bring years of experience, deep listening skills, and the ability to probe beneath surface responses to uncover true insights. They create comfortable environments that encourage candid sharing.
@@ -249,19 +249,19 @@ export const QualitativePage = () => {
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">When to Choose Qualitative Research</h2>
           <div className="grid md:grid-cols-2 gap-6">
-            <div className=" p-6 rounded-xl border border-slate-200">
+            <div className=" p-6 rounded-xl border border-yellow-200">
               <h4 className="font-bold text-gray-900 mb-2">Exploratory Research</h4>
               <p className="text-gray-600 text-sm">Understanding new markets, emerging trends, or unexplored consumer territories</p>
             </div>
-            <div className=" p-6 rounded-xl border border-slate-200">
+            <div className=" p-6 rounded-xl border border-yellow-200">
               <h4 className="font-bold text-gray-900 mb-2">Understanding "Why"</h4>
               <p className="text-gray-600 text-sm">Uncovering motivations, emotions, and decision-making processes behind behaviors</p>
             </div>
-            <div className=" p-6 rounded-xl border border-slate-200">
+            <div className=" p-6 rounded-xl border border-yellow-200">
               <h4 className="font-bold text-gray-900 mb-2">Concept Testing</h4>
               <p className="text-gray-600 text-sm">Evaluating new products, messaging, or ideas with rich feedback and reactions</p>
             </div>
-            <div className=" p-6 rounded-xl border border-slate-200">
+            <div className=" p-6 rounded-xl border border-yellow-200">
               <h4 className="font-bold text-gray-900 mb-2">Complex Topics</h4>
               <p className="text-gray-600 text-sm">Exploring sensitive subjects or complicated issues requiring nuanced discussion</p>
             </div>
@@ -280,12 +280,12 @@ export const QualitativePage = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/contact">
-              <Button size="lg" className="bg-slate-800 hover:bg-slate-900 text-lg px-8 h-14">
+              <Button size="lg" className="bg-gradient-to-r from-yellow-500 to-pink-700 hover:from-yellow-600 hover:to-pink-800 text-lg px-8 h-14">
                 Contact Us
               </Button>
             </Link>
             <Link to="/services">
-              <Button size="lg" variant="outline" className="text-lg px-8 h-14 border-2 border-slate-800 text-slate-800 hover:">
+              <Button size="lg" variant="outline" className="text-lg px-8 h-14 border-2 border-yellow-800 text-slate-800 hover:">
                 View All Services
               </Button>
             </Link>

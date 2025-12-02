@@ -40,7 +40,7 @@ export const OnlineSamplingPage = () => {
               Precision-targeted digital panels delivering authentic respondent engagement across B2B, B2C, and healthcare sectors worldwide
             </p>
             <Link to="/contact">
-              <Button size="lg" className="bg-slate-800 hover:bg-slate-900 text-lg px-8 h-14">
+              <Button size="lg" className="bg-gradient-to-r from-yellow-500 to-pink-700 hover:from-yellow-600 hover:to-pink-800 text-lg px-8 h-14">
                 Request a Quote <ArrowRight className="ml-2" size={20} />
               </Button>
             </Link>
@@ -68,7 +68,7 @@ export const OnlineSamplingPage = () => {
             <Card className="border-2 border-gray-100">
               <CardContent className="pt-8 pb-8">
                 <div className="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mb-4">
-                  <Target className="text-blue-600" size={28} />
+                  <Target className="text-pink-700" size={28} />
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-3">Precise Targeting</h3>
                 <p className="text-gray-600 leading-relaxed mb-4">
@@ -178,7 +178,7 @@ export const OnlineSamplingPage = () => {
           <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">Our Specialty Areas</h2>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-blue-50 p-8 rounded-2xl border-2 border-blue-100">
-              <Users className="text-blue-600 mb-4" size={40} />
+              <Users className="text-pink-700 mb-4" size={40} />
               <h3 className="text-2xl font-bold text-gray-900 mb-3">B2B Sampling</h3>
               <p className="text-gray-600 leading-relaxed mb-4">
                 Access decision-makers, professionals, and business leaders across industries with verified job titles and company profiles.
@@ -277,12 +277,12 @@ export const OnlineSamplingPage = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/contact">
-              <Button size="lg" className="bg-slate-800 hover:bg-slate-900 text-lg px-8 h-14">
+              <Button size="lg" className="bg-gradient-to-r from-yellow-500 to-pink-700 hover:from-yellow-600 hover:to-pink-800 text-lg px-8 h-14">
                 Contact Us
               </Button>
             </Link>
             <Link to="/services">
-              <Button size="lg" variant="outline" className="text-lg px-8 h-14 border-2 border-slate-800 text-slate-800 hover:bg-slate-50">
+              <Button size="lg" variant="outline" className="text-lg px-8 h-14 border-2 border-yellow-800 text-slate-800 hover:bg-slate-50">
                 View All Services
               </Button>
             </Link>

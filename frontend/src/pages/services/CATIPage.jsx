@@ -41,7 +41,7 @@ export const CATIPage = () => {
               Computer Assisted Telephone Interviewing with trained professionals delivering high-quality phone surveys and deep respondent engagement
             </p>
             <Link to="/contact">
-              <Button size="lg" className="bg-slate-800 hover:bg-slate-900 text-lg px-8 h-14">
+              <Button size="lg" className="bg-gradient-to-r from-yellow-500 to-pink-700 hover:from-yellow-600 hover:to-pink-800 text-lg px-8 h-14">
                 Request a Quote <ArrowRight className="ml-2" size={20} />
               </Button>
             </Link>
@@ -68,7 +68,7 @@ export const CATIPage = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             <Card className="border-2 border-gray-100">
               <CardContent className="pt-6 pb-6 text-center">
-                <Users className="text-blue-600 mx-auto mb-3" size={40} />
+                <Users className="text-pink-700 mx-auto mb-3" size={40} />
                 <h3 className="font-bold text-gray-900 mb-2">Personal Touch</h3>
                 <p className="text-sm text-gray-600">Human interaction builds rapport and encourages detailed responses</p>
               </CardContent>
@@ -105,7 +105,7 @@ export const CATIPage = () => {
           <div className="grid md:grid-cols-2 gap-8">
             <Card className="border-2 border-gray-100">
               <CardContent className="pt-8 pb-8">
-                <Headphones className="text-blue-600 mb-4" size={32} />
+                <Headphones className="text-pink-700 mb-4" size={32} />
                 <h3 className="text-2xl font-bold text-gray-900 mb-3">Professional Interviewers</h3>
                 <p className="text-gray-600 leading-relaxed mb-4">
                   Our trained telephone interviewers undergo rigorous screening and continuous training to ensure professional, consistent, and empathetic interview conduct.
@@ -267,19 +267,19 @@ export const CATIPage = () => {
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">Ideal Use Cases for CATI</h2>
           <div className="grid md:grid-cols-2 gap-6">
-            <div className=" p-6 rounded-xl border border-slate-200">
+            <div className=" p-6 rounded-xl border border-yellow-200">
               <h4 className="font-bold text-gray-900 mb-2">B2B Research</h4>
               <p className="text-gray-600 text-sm">Reaching busy professionals and decision-makers who prefer phone communication</p>
             </div>
-            <div className=" p-6 rounded-xl border border-slate-200">
+            <div className=" p-6 rounded-xl border border-yellow-200">
               <h4 className="font-bold text-gray-900 mb-2">Complex Surveys</h4>
               <p className="text-gray-600 text-sm">Technical or detailed questionnaires requiring explanation and probing</p>
             </div>
-            <div className=" p-6 rounded-xl border border-slate-200">
+            <div className=" p-6 rounded-xl border border-yellow-200">
               <h4 className="font-bold text-gray-900 mb-2">Sensitive Topics</h4>
               <p className="text-gray-600 text-sm">Research on personal or confidential subjects benefiting from human rapport</p>
             </div>
-            <div className=" p-6 rounded-xl border border-slate-200">
+            <div className=" p-6 rounded-xl border border-yellow-200">
               <h4 className="font-bold text-gray-900 mb-2">Low Digital Access</h4>
               <p className="text-gray-600 text-sm">Audiences with limited internet access or technology literacy</p>
             </div>
@@ -298,12 +298,12 @@ export const CATIPage = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/contact">
-              <Button size="lg" className="bg-slate-800 hover:bg-slate-900 text-lg px-8 h-14">
+              <Button size="lg" className="bg-gradient-to-r from-yellow-500 to-pink-700 hover:from-yellow-600 hover:to-pink-800 text-lg px-8 h-14">
                 Contact Us
               </Button>
             </Link>
             <Link to="/services">
-              <Button size="lg" variant="outline" className="text-lg px-8 h-14 border-2 border-slate-800 text-slate-800 hover:">
+              <Button size="lg" variant="outline" className="text-lg px-8 h-14 border-2 border-yellow-800 text-slate-800 hover:">
                 View All Services
               </Button>
             </Link>
