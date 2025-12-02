@@ -1,18 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '../components/ui/button';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../components/ui/accordion';
-import { TrendingUp, ShieldCheck, Award, Target } from 'lucide-react';
-import { mockData } from '../mock';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
-
-const iconMap = {
-  TrendingUp,
-  ShieldCheck,
-  Award,
-  Target
-};
 
 export const AboutPage = () => {
   return (
