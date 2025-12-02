@@ -97,7 +97,7 @@ export const ContactPage = () => {
       </section>
 
       {/* Contact Form Section */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white">
+      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-yellow-50/40 to-white">
         <div className="container mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
             {/* Contact Form */}
