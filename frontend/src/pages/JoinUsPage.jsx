@@ -9,11 +9,16 @@ import { toast } from 'sonner';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { UserPlus, LogIn } from 'lucide-react';
+import axios from 'axios';
+
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+const API = `${BACKEND_URL}/api`;
 
 export const JoinUsPage = () => {
   const [signupData, setSignupData] = useState({
     name: '',
     surname: '',
+    email: '',
     age: '',
     country: '',
     profession: '',
@@ -25,6 +30,9 @@ export const JoinUsPage = () => {
     email: '',
     password: ''
   });
+
+  const [loading, setLoading] = useState(false);
+  const [activeTab, setActiveTab] = useState('signup');
 
   const handleSignupChange = (e) => {
     setSignupData({
@@ -42,29 +50,64 @@ export const JoinUsPage = () => {
 
   const handleSignup = async (e) => {
     e.preventDefault();
-    // TODO: Backend integration
-    console.log('Signup data:', signupData);
-    toast.success('Account created successfully! Please login to continue.');
-    setSignupData({
-      name: '',
-      surname: '',
-      age: '',
-      country: '',
-      profession: '',
-      gender: '',
-      password: ''
-    });
+    setLoading(true);
+    
+    try {
+      const response = await axios.post(`${API}/auth/signup`, {
+        ...signupData,
+        age: parseInt(signupData.age)
+      });
+      
+      toast.success(response.data.message || 'Account created successfully! Please login to continue.');
+      
+      // Reset form
+      setSignupData({
+        name: '',
+        surname: '',
+        email: '',
+        age: '',
+        country: '',
+        profession: '',
+        gender: '',
+        password: ''
+      });
+      
+      // Switch to login tab
+      setActiveTab('login');
+    } catch (error) {
+      console.error('Signup error:', error);
+      const errorMessage = error.response?.data?.detail || 'Failed to create account. Please try again.';
+      toast.error(errorMessage);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    // TODO: Backend integration
-    console.log('Login data:', loginData);
-    toast.success('Logged in successfully!');
-    setLoginData({
-      email: '',
-      password: ''
-    });
+    setLoading(true);
+    
+    try {
+      const response = await axios.post(`${API}/auth/login`, loginData);
+      
+      // Store token in localStorage
+      localStorage.setItem('access_token', response.data.access_token);
+      localStorage.setItem('user', JSON.stringify(response.data.user));
+      
+      toast.success(`Welcome back, ${response.data.user.name}!`);
+      
+      // Reset form
+      setLoginData({
+        email: '',
+        password: ''
+      });
+    } catch (error) {
+      console.error('Login error:', error);
+      const errorMessage = error.response?.data?.detail || 'Login failed. Please check your credentials.';
+      toast.error(errorMessage);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -89,7 +132,7 @@ export const JoinUsPage = () => {
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="container mx-auto">
           <div className="max-w-2xl mx-auto">
-            <Tabs defaultValue="signup" className="w-full">
+            <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
               <TabsList className="grid w-full grid-cols-2 mb-8">
                 <TabsTrigger value="signup" className="text-lg py-3">
                   <UserPlus className="mr-2" size={20} />
@@ -135,6 +178,20 @@ export const JoinUsPage = () => {
                             required
                           />
                         </div>
+                      </div>
+
+                      <div>
+                        <Label htmlFor="email" className="text-sm font-semibold text-gray-700 mb-2">Email Address *</Label>
+                        <Input
+                          id="email"
+                          name="email"
+                          type="email"
+                          value={signupData.email}
+                          onChange={handleSignupChange}
+                          placeholder="your@email.com"
+                          className="h-12"
+                          required
+                        />
                       </div>
 
                       <div className="grid md:grid-cols-2 gap-5">
@@ -215,8 +272,12 @@ export const JoinUsPage = () => {
                         <p className="text-xs text-gray-500 mt-1">Minimum 8 characters</p>
                       </div>
 
-                      <Button type="submit" className="w-full bg-slate-800 hover:bg-slate-900 h-12 text-base">
-                        Create Account
+                      <Button 
+                        type="submit" 
+                        className="w-full bg-slate-800 hover:bg-slate-900 h-12 text-base"
+                        disabled={loading}
+                      >
+                        {loading ? 'Creating Account...' : 'Create Account'}
                       </Button>
                     </form>
                   </CardContent>
@@ -233,9 +294,9 @@ export const JoinUsPage = () => {
                   <CardContent>
                     <form onSubmit={handleLogin} className="space-y-5">
                       <div>
-                        <Label htmlFor="email" className="text-sm font-semibold text-gray-700 mb-2">Email Address *</Label>
+                        <Label htmlFor="login-email" className="text-sm font-semibold text-gray-700 mb-2">Email Address *</Label>
                         <Input
-                          id="email"
+                          id="login-email"
                           name="email"
                           type="email"
                           value={loginData.email}
@@ -260,8 +321,12 @@ export const JoinUsPage = () => {
                         />
                       </div>
 
-                      <Button type="submit" className="w-full bg-slate-800 hover:bg-slate-900 h-12 text-base">
-                        Login
+                      <Button 
+                        type="submit" 
+                        className="w-full bg-slate-800 hover:bg-slate-900 h-12 text-base"
+                        disabled={loading}
+                      >
+                        {loading ? 'Logging in...' : 'Login'}
                       </Button>
 
                       <p className="text-center text-sm text-gray-600">
