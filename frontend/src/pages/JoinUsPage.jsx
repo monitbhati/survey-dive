@@ -184,17 +184,17 @@ export const JoinUsPage = () => {
             <div className="grid md:grid-cols-3 gap-6">
               <div className="text-center p-6 bg-gradient-to-br from-green-50 to-green-100 rounded-xl">
                 <div className="text-4xl font-bold text-green-600 mb-2">Earn Money</div>
-                <p className="text-gray-700 font-medium mb-2">Get Paid Per Survey</p>
+                <p className="text-white font-medium drop-shadow-md font-medium mb-2">Get Paid Per Survey</p>
                 <p className="text-sm text-gray-600">Answer simple questions and receive payments directly to your account</p>
               </div>
               <div className="text-center p-6 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl">
                 <div className="text-4xl font-bold text-blue-600 mb-2">Flexibility</div>
-                <p className="text-gray-700 font-medium mb-2">Work Anytime, Anywhere</p>
+                <p className="text-white font-medium drop-shadow-md font-medium mb-2">Work Anytime, Anywhere</p>
                 <p className="text-sm text-gray-600">Complete surveys from your phone, tablet, or computer at your convenience</p>
               </div>
               <div className="text-center p-6 bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl">
                 <div className="text-4xl font-bold text-purple-600 mb-2">Impact</div>
-                <p className="text-gray-700 font-medium mb-2">Shape Products & Services</p>
+                <p className="text-white font-medium drop-shadow-md font-medium mb-2">Shape Products & Services</p>
                 <p className="text-sm text-gray-600">Your opinions help companies improve their offerings and make better decisions</p>
               </div>
             </div>
@@ -236,7 +236,7 @@ export const JoinUsPage = () => {
                     <form onSubmit={handleSignup} className="space-y-5">
                       <div className="grid md:grid-cols-2 gap-5">
                         <div>
-                          <Label htmlFor="name" className="text-sm font-semibold text-gray-700 mb-2">First Name *</Label>
+                          <Label htmlFor="name" className="text-sm font-semibold text-white font-medium drop-shadow-md mb-2">First Name *</Label>
                           <Input
                             id="name"
                             name="name"
@@ -248,7 +248,7 @@ export const JoinUsPage = () => {
                           />
                         </div>
                         <div>
-                          <Label htmlFor="surname" className="text-sm font-semibold text-gray-700 mb-2">Surname *</Label>
+                          <Label htmlFor="surname" className="text-sm font-semibold text-white font-medium drop-shadow-md mb-2">Surname *</Label>
                           <Input
                             id="surname"
                             name="surname"
@@ -262,7 +262,7 @@ export const JoinUsPage = () => {
                       </div>
 
                       <div>
-                        <Label htmlFor="email" className="text-sm font-semibold text-gray-700 mb-2">Email Address *</Label>
+                        <Label htmlFor="email" className="text-sm font-semibold text-white font-medium drop-shadow-md mb-2">Email Address *</Label>
                         <Input
                           id="email"
                           name="email"
@@ -277,7 +277,7 @@ export const JoinUsPage = () => {
 
                       <div className="grid md:grid-cols-2 gap-5">
                         <div>
-                          <Label htmlFor="age" className="text-sm font-semibold text-gray-700 mb-2">Age *</Label>
+                          <Label htmlFor="age" className="text-sm font-semibold text-white font-medium drop-shadow-md mb-2">Age *</Label>
                           <Input
                             id="age"
                             name="age"
@@ -292,7 +292,7 @@ export const JoinUsPage = () => {
                           />
                         </div>
                         <div>
-                          <Label htmlFor="gender" className="text-sm font-semibold text-gray-700 mb-2">Gender *</Label>
+                          <Label htmlFor="gender" className="text-sm font-semibold text-white font-medium drop-shadow-md mb-2">Gender *</Label>
                           <Select 
                             value={signupData.gender} 
                             onValueChange={(value) => setSignupData({...signupData, gender: value})}
@@ -312,7 +312,7 @@ export const JoinUsPage = () => {
                       </div>
 
                       <div>
-                        <Label htmlFor="country" className="text-sm font-semibold text-gray-700 mb-2">Country *</Label>
+                        <Label htmlFor="country" className="text-sm font-semibold text-white font-medium drop-shadow-md mb-2">Country *</Label>
                         <Input
                           id="country"
                           name="country"
@@ -325,7 +325,7 @@ export const JoinUsPage = () => {
                       </div>
 
                       <div>
-                        <Label htmlFor="profession" className="text-sm font-semibold text-gray-700 mb-2">Profession *</Label>
+                        <Label htmlFor="profession" className="text-sm font-semibold text-white font-medium drop-shadow-md mb-2">Profession *</Label>
                         <Input
                           id="profession"
                           name="profession"
@@ -338,7 +338,7 @@ export const JoinUsPage = () => {
                       </div>
 
                       <div>
-                        <Label htmlFor="signup-password" className="text-sm font-semibold text-gray-700 mb-2">Password *</Label>
+                        <Label htmlFor="signup-password" className="text-sm font-semibold text-white font-medium drop-shadow-md mb-2">Password *</Label>
                         <Input
                           id="signup-password"
                           name="password"
@@ -381,7 +381,7 @@ export const JoinUsPage = () => {
                   <CardContent>
                     <form onSubmit={handleLogin} className="space-y-5">
                       <div>
-                        <Label htmlFor="login-email" className="text-sm font-semibold text-gray-700 mb-2">Email Address *</Label>
+                        <Label htmlFor="login-email" className="text-sm font-semibold text-white font-medium drop-shadow-md mb-2">Email Address *</Label>
                         <Input
                           id="login-email"
                           name="email"
@@ -395,7 +395,7 @@ export const JoinUsPage = () => {
                       </div>
 
                       <div>
-                        <Label htmlFor="login-password" className="text-sm font-semibold text-gray-700 mb-2">Password *</Label>
+                        <Label htmlFor="login-password" className="text-sm font-semibold text-white font-medium drop-shadow-md mb-2">Password *</Label>
                         <Input
                           id="login-password"
                           name="password"
