@@ -9,6 +9,8 @@ import { AdminLoginPage } from "./pages/AdminLoginPage";
 import { AdminDashboardPage } from "./pages/AdminDashboardPage";
 import { OnlineSamplingPage } from "./pages/services/OnlineSamplingPage";
 import { CATIPage } from "./pages/services/CATIPage";
+import { QualitativePage } from "./pages/services/QualitativePage";
+import { SurveyDesigningPage } from "./pages/services/SurveyDesigningPage";
 import { Toaster } from "./components/ui/sonner";
 
 function App() {
@@ -21,6 +23,8 @@ function App() {
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/services/online-sampling" element={<OnlineSamplingPage />} />
           <Route path="/services/cati-excellence" element={<CATIPage />} />
+          <Route path="/services/qualitative-deep-dives" element={<QualitativePage />} />
+          <Route path="/services/survey-designing" element={<SurveyDesigningPage />} />
           <Route path="/join-us" element={<JoinUsPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/admin/login" element={<AdminLoginPage />} />
