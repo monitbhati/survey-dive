@@ -73,34 +73,34 @@ export const Header = () => {
             <div className="flex flex-col space-y-3">
               <Link 
                 to="/" 
-                className="text-left text-gray-700 hover:text-slate-900 transition-colors py-2 font-medium"
+                className="text-left text-gray-700 hover:text-orange-600 transition-colors py-2 font-medium"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Home
               </Link>
               <Link 
                 to="/about" 
-                className="text-left text-gray-700 hover:text-slate-900 transition-colors py-2 font-medium"
+                className="text-left text-gray-700 hover:text-orange-600 transition-colors py-2 font-medium"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 About
               </Link>
               <Link 
                 to="/services" 
-                className="text-left text-gray-700 hover:text-slate-900 transition-colors py-2 font-medium"
+                className="text-left text-gray-700 hover:text-orange-600 transition-colors py-2 font-medium"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Services
               </Link>
               <Link 
                 to="/join-us" 
-                className="text-left text-gray-700 hover:text-slate-900 transition-colors py-2 font-medium"
+                className="text-left text-gray-700 hover:text-orange-600 transition-colors py-2 font-medium"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Join Us
               </Link>
               <Link to="/contact" onClick={() => setMobileMenuOpen(false)}>
-                <Button className="bg-slate-800 hover:bg-slate-900 w-full">Contact</Button>
+                <Button className="bg-gradient-to-r from-orange-600 to-red-500 hover:from-orange-700 hover:to-red-600 w-full">Contact</Button>
               </Link>
             </div>
           </nav>
