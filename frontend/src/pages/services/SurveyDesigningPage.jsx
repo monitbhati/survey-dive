@@ -21,12 +21,13 @@ export const SurveyDesigningPage = () => {
     <div 
       className="min-h-screen relative"
       style={{
-        backgroundImage: 'linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)), url(https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?w=1920)',
+        backgroundImage: 'linear-gradient(rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.88)), url(https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?w=1920)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundAttachment: 'fixed'
       }}
     >
+      <div className="relative z-10">
       <Header />
 
       {/* Hero Section */}
