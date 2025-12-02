@@ -1,8 +1,8 @@
 export const mockData = {
   company: {
     name: 'FACTUM RESEARCH',
-    tagline: 'Insight-Driven Decisions Start Here',
-    description: 'Strategic market intelligence powered by precision methodologies. We transform raw data into competitive advantages through advanced survey architecture, CATI excellence, and deep qualitative exploration.',
+    tagline: 'Facts That Matter, Insights That Count',
+    description: 'Strategic market intelligence powered by precision methodologies. We transform raw data into competitive advantages through survey designing, online sampling, CATI excellence, and deep qualitative exploration.',
     email: 'contact@factumresearch.com',
     phone: '+1 (555) 123-4567',
     address: '123 Research Boulevard, Business District, City, State 12345'
@@ -18,7 +18,7 @@ export const mockData = {
   services: [
     {
       id: 1,
-      title: 'Survey Architecture',
+      title: 'Survey Designing',
       description: 'Meticulously engineered survey frameworks that capture nuanced behavioral patterns and market dynamics. Our methodologies blend statistical rigor with psychological insight to extract meaningful intelligence from complex populations.',
       features: [
         'Psychometric questionnaire engineering',
@@ -66,14 +66,14 @@ export const mockData = {
     },
     {
       id: 2,
-      title: 'Quality Infrastructure',
+      title: 'Quality Assurance',
       description: 'Multi-layered validation systems ensure data integrity at every touchpoint—from initial contact through final analysis and strategic recommendations.',
       icon: 'ShieldCheck'
     },
     {
       id: 3,
-      title: 'Domain Intelligence',
-      description: 'Sector-specific expertise across industries enables contextual interpretation that transforms raw findings into actionable business intelligence.',
+      title: 'Cross-Industry Expertise',
+      description: 'With proven experience across 25+ sectors, we deliver research excellence in any industry—from healthcare to technology, retail to finance. Our adaptable methodologies ensure relevant, actionable insights regardless of your market.',
       icon: 'Award'
     },
     {
