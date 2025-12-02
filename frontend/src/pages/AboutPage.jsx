@@ -65,13 +65,13 @@ export const AboutPage = () => {
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="container mx-auto max-w-6xl">
           <div className="grid md:grid-cols-2 gap-12">
-            <div className="bg-slate-50 p-10 rounded-2xl border border-slate-200">
+            <div className="bg-orange-50 p-10 rounded-2xl border border-orange-200">
               <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Mission</h2>
               <p className="text-gray-600 leading-relaxed">
                 To deliver quality data with speed and efficiency, minimizing complexity while maximizing accuracy. We believe in streamlined processes that provide you with reliable insights when you need them most.
               </p>
             </div>
-            <div className="bg-slate-50 p-10 rounded-2xl border border-slate-200">
+            <div className="bg-orange-50 p-10 rounded-2xl border border-orange-200">
               <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Vision</h2>
               <p className="text-gray-600 leading-relaxed">
                 To expand our reach across markets and establish ourselves as the trusted and reliable research partner for life. We envision long-term partnerships built on consistent quality, transparency, and unwavering commitment to your success.
