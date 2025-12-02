@@ -173,7 +173,7 @@ export const OnlineSamplingPage = () => {
       </section>
 
       {/* Specialty Areas */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+      <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">Our Specialty Areas</h2>
           <div className="grid md:grid-cols-3 gap-8">
