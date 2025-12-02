@@ -50,15 +50,38 @@ export const ContactPage = () => {
       <Header />
 
       {/* Page Header */}
-      <section className="pt-32 pb-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-slate-50 to-white">
+      <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-purple-50 to-slate-50">
         <div className="container mx-auto">
           <div className="max-w-4xl mx-auto text-center">
+            <div className="inline-block px-4 py-2 bg-blue-600 text-white rounded-full text-sm font-semibold mb-4">
+              Let's Connect
+            </div>
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-              Get In Touch
+              We'd Love to Hear From You
             </h1>
-            <p className="text-lg sm:text-xl text-gray-600 leading-relaxed">
-              Connect with our research strategists to explore how we can support your intelligence requirements
+            <p className="text-lg sm:text-xl text-gray-700 leading-relaxed mb-8">
+              Have a research project in mind? Our team of experts is ready to help you gather the insights that matter most.
             </p>
+            <div className="flex flex-wrap gap-6 justify-center">
+              <div className="flex items-center gap-2 bg-white px-6 py-3 rounded-lg shadow-sm">
+                <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+                <span className="text-sm font-medium text-gray-700">Quick Response</span>
+              </div>
+              <div className="flex items-center gap-2 bg-white px-6 py-3 rounded-lg shadow-sm">
+                <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span className="text-sm font-medium text-gray-700">24/7 Support</span>
+              </div>
+              <div className="flex items-center gap-2 bg-white px-6 py-3 rounded-lg shadow-sm">
+                <svg className="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                <span className="text-sm font-medium text-gray-700">Free Consultation</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
