@@ -100,17 +100,7 @@ export const HomePage = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="relative py-32 px-4 sm:px-6 lg:px-8 min-h-[500px] flex items-center">
-        {/* Background Image with Overlay */}
-        <div className="absolute inset-0 z-0">
-          <img 
-            src="https://images.unsplash.com/photo-1666875753105-c63a6f3bdc86?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzR8MHwxfHNlYXJjaHwxfHxkYXRhJTIwYW5hbHl0aWNzfGVufDB8fHx8MTc2NDcxNzE2Nnww&ixlib=rb-4.1.0&q=85" 
-            alt="Data Visualization"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-yellow-900/80 via-pink-900/75 to-purple-900/80"></div>
-        </div>
-        
+      <section className="py-32 px-4 sm:px-6 lg:px-8 min-h-[500px] flex items-center">
         <div className="container mx-auto">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6 drop-shadow-lg">
@@ -134,6 +124,7 @@ export const HomePage = () => {
           </div>
         </div>
       </section>
+      </div>
 
       <Footer />
     </div>
