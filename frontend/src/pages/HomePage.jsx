@@ -65,11 +65,11 @@ export const HomePage = () => {
       </section>
 
       {/* Quick Overview Section */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white">
+      <section className="py-24 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">Strategic Advantages</h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4 drop-shadow-lg">Strategic Advantages</h2>
+            <p className="text-lg text-gray-100 max-w-3xl mx-auto drop-shadow-md">
               Differentiated capabilities that transform market research into strategic intelligence
             </p>
           </div>
@@ -78,7 +78,7 @@ export const HomePage = () => {
             {mockData.whyChooseUs.map((item) => {
               const IconComponent = iconMap[item.icon];
               return (
-                <div key={item.id} className="bg-gradient-to-br from-white to-yellow-50 p-8 rounded-2xl shadow-md hover:shadow-xl transition-all border-2 border-yellow-200 hover:border-pink-400">
+                <div key={item.id} className="bg-white/95 backdrop-blur-md p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all border-2 border-yellow-200 hover:border-pink-400 hover:scale-105">
                   <div className="w-16 h-16 bg-gradient-to-br from-yellow-400 to-pink-600 rounded-xl flex items-center justify-center mb-6 shadow-lg">
                     <IconComponent className="text-white" size={28} strokeWidth={2.5} />
                   </div>
@@ -91,7 +91,7 @@ export const HomePage = () => {
 
           <div className="text-center mt-12">
             <Link to="/about">
-              <Button size="lg" variant="outline" className="border-2 border-yellow-600 text-yellow-600 hover:bg-yellow-50">
+              <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white/20 backdrop-blur-sm">
                 Learn More About Us
               </Button>
             </Link>
