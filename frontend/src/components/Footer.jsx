@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Logo } from './Logo';
 import { mockData } from '../mock';
+import { Linkedin } from 'lucide-react';
 
 export const Footer = () => {
   return (
@@ -15,9 +16,19 @@ export const Footer = () => {
               </div>
             </div>
             <p className="text-slate-400 mb-4 leading-relaxed">{mockData.company.tagline}</p>
-            <p className="text-slate-500 text-sm leading-relaxed">
+            <p className="text-slate-500 text-sm leading-relaxed mb-6">
               Transforming market complexity into strategic clarity through precision research methodologies.
             </p>
+            {/* LinkedIn Button */}
+            <a 
+              href="https://www.linkedin.com/company/factum-research" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-lg transition-colors font-medium"
+            >
+              <Linkedin size={20} />
+              Follow us on LinkedIn
+            </a>
           </div>
 
           <div>
@@ -26,6 +37,7 @@ export const Footer = () => {
               <li><Link to="/" className="text-slate-400 hover:text-white transition-colors">Home</Link></li>
               <li><Link to="/about" className="text-slate-400 hover:text-white transition-colors">About</Link></li>
               <li><Link to="/services" className="text-slate-400 hover:text-white transition-colors">Services</Link></li>
+              <li><Link to="/join-us" className="text-slate-400 hover:text-white transition-colors">Join Us</Link></li>
               <li><Link to="/contact" className="text-slate-400 hover:text-white transition-colors">Contact</Link></li>
             </ul>
           </div>

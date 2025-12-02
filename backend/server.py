@@ -10,8 +10,10 @@ from typing import List
 import uuid
 from datetime import datetime
 
-# Import auth routes
-from routes.auth import router as auth_router, set_database
+# Import routes
+from routes.auth import router as auth_router, set_database as set_auth_db
+from routes.contact import router as contact_router, set_database as set_contact_db
+from routes.admin import router as admin_router, set_database as set_admin_db
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
@@ -21,8 +23,10 @@ mongo_url = os.environ['MONGO_URL']
 client = AsyncIOMotorClient(mongo_url)
 db = client[os.environ['DB_NAME']]
 
-# Set database for auth routes
-set_database(db)
+# Set database for all routes
+set_auth_db(db)
+set_contact_db(db)
+set_admin_db(db)
 
 # Create the main app without a prefix
 app = FastAPI()
@@ -57,8 +61,10 @@ async def get_status_checks():
     status_checks = await db.status_checks.find().to_list(1000)
     return [StatusCheck(**status_check) for status_check in status_checks]
 
-# Include auth router
+# Include all routers
 api_router.include_router(auth_router)
+api_router.include_router(contact_router)
+api_router.include_router(admin_router)
 
 # Include the router in the main app
 app.include_router(api_router)
