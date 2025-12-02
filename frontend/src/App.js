@@ -11,6 +11,7 @@ import { OnlineSamplingPage } from "./pages/services/OnlineSamplingPage";
 import { CATIPage } from "./pages/services/CATIPage";
 import { QualitativePage } from "./pages/services/QualitativePage";
 import { SurveyDesigningPage } from "./pages/services/SurveyDesigningPage";
+import LogoShowcase from "./pages/LogoShowcase";
 import { Toaster } from "./components/ui/sonner";
 
 function App() {
