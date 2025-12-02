@@ -32,19 +32,19 @@ export const HomePage = () => {
 
           {/* Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20 max-w-5xl mx-auto">
-            <div className="bg-white p-6 rounded-2xl shadow-sm border border-orange-100 text-center hover:shadow-md transition-shadow">
+            <div className="bg-white p-6 rounded-2xl shadow-sm border border-yellow-100 text-center hover:shadow-md transition-shadow">
               <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-yellow-500 to-pink-700 bg-clip-text text-transparent mb-2">{mockData.stats.projectsCompleted}</div>
               <div className="text-sm text-gray-600 font-medium">Strategic Projects</div>
             </div>
-            <div className="bg-white p-6 rounded-2xl shadow-sm border border-orange-100 text-center hover:shadow-md transition-shadow">
+            <div className="bg-white p-6 rounded-2xl shadow-sm border border-yellow-100 text-center hover:shadow-md transition-shadow">
               <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-yellow-500 to-pink-700 bg-clip-text text-transparent mb-2">{mockData.stats.industriesServed}</div>
               <div className="text-sm text-gray-600 font-medium">Industry Sectors</div>
             </div>
-            <div className="bg-white p-6 rounded-2xl shadow-sm border border-orange-100 text-center hover:shadow-md transition-shadow">
+            <div className="bg-white p-6 rounded-2xl shadow-sm border border-yellow-100 text-center hover:shadow-md transition-shadow">
               <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-yellow-500 to-pink-700 bg-clip-text text-transparent mb-2">{mockData.stats.clientSatisfaction}</div>
               <div className="text-sm text-gray-600 font-medium">Client Retention</div>
             </div>
-            <div className="bg-white p-6 rounded-2xl shadow-sm border border-orange-100 text-center hover:shadow-md transition-shadow">
+            <div className="bg-white p-6 rounded-2xl shadow-sm border border-yellow-100 text-center hover:shadow-md transition-shadow">
               <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-yellow-500 to-pink-700 bg-clip-text text-transparent mb-2">{mockData.stats.yearsExperience}</div>
               <div className="text-sm text-gray-600 font-medium">Years Excellence</div>
             </div>
@@ -67,8 +67,8 @@ export const HomePage = () => {
               const IconComponent = iconMap[item.icon];
               return (
                 <div key={item.id} className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition-all border border-gray-100">
-                  <div className="w-14 h-14 bg-gradient-to-br from-orange-100 to-red-100 rounded-xl flex items-center justify-center mb-6">
-                    <IconComponent className="text-orange-600" size={26} strokeWidth={2} />
+                  <div className="w-14 h-14 bg-gradient-to-br from-yellow-100 to-red-100 rounded-xl flex items-center justify-center mb-6">
+                    <IconComponent className="text-yellow-600" size={26} strokeWidth={2} />
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 mb-3">{item.title}</h3>
                   <p className="text-sm text-gray-600 leading-relaxed">{item.description}</p>
@@ -79,7 +79,7 @@ export const HomePage = () => {
 
           <div className="text-center mt-12">
             <Link to="/about">
-              <Button size="lg" variant="outline" className="border-2 border-orange-600 text-orange-600 hover:bg-orange-50">
+              <Button size="lg" variant="outline" className="border-2 border-yellow-600 text-yellow-600 hover:bg-yellow-50">
                 Learn More About Us
               </Button>
             </Link>
@@ -104,7 +104,7 @@ export const HomePage = () => {
                 </Button>
               </Link>
               <Link to="/services">
-                <Button size="lg" variant="outline" className="text-lg px-8 h-14 border-2 border-orange-600 text-orange-600 hover:bg-white">
+                <Button size="lg" variant="outline" className="text-lg px-8 h-14 border-2 border-yellow-600 text-yellow-600 hover:bg-white">
                   Explore Capabilities
                 </Button>
               </Link>
