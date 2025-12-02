@@ -291,6 +291,7 @@ export const OnlineSamplingPage = () => {
       </section>
 
       <Footer />
+      </div>
     </div>
   );
 };
