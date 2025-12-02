@@ -71,7 +71,7 @@ export const ServicesPage = () => {
       <Header />
 
       {/* Page Header */}
-      <section className="pt-32 pb-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-orange-50 to-white">
+      <section className="pt-32 pb-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-yellow-50 to-white">
         <div className="container mx-auto">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
@@ -91,10 +91,10 @@ export const ServicesPage = () => {
             {services.map((service) => {
               const IconComponent = service.icon;
               return (
-                <Card key={service.id} className="border-2 border-orange-100 hover:shadow-xl transition-all duration-300">
+                <Card key={service.id} className="border-2 border-yellow-100 hover:shadow-xl transition-all duration-300">
                   <CardHeader>
-                    <div className="w-16 h-16 bg-gradient-to-br from-orange-100 to-red-100 rounded-xl flex items-center justify-center mb-6">
-                      <IconComponent className="text-orange-600" size={32} strokeWidth={2} />
+                    <div className="w-16 h-16 bg-gradient-to-br from-yellow-100 to-red-100 rounded-xl flex items-center justify-center mb-6">
+                      <IconComponent className="text-yellow-600" size={32} strokeWidth={2} />
                     </div>
                     <CardTitle className="text-2xl mb-3">{service.title}</CardTitle>
                     <CardDescription className="text-base leading-relaxed">
@@ -114,7 +114,7 @@ export const ServicesPage = () => {
                       </ul>
                     </div>
                     <Link to={`/services/${service.slug}`}>
-                      <Button className="w-full bg-gradient-to-r from-orange-600 to-red-500 hover:from-orange-700 hover:to-red-600">
+                      <Button className="w-full bg-gradient-to-r from-yellow-500 to-pink-700 hover:from-orange-700 hover:to-red-600">
                         Learn More <ArrowRight className="ml-2" size={18} />
                       </Button>
                     </Link>
@@ -127,7 +127,7 @@ export const ServicesPage = () => {
       </section>
 
       {/* Why Choose Our Services */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-orange-50">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-yellow-50">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Why Choose Our Services</h2>
@@ -166,7 +166,7 @@ export const ServicesPage = () => {
             Let's discuss which research solution best fits your needs
           </p>
           <Link to="/contact">
-            <Button size="lg" className="bg-gradient-to-r from-orange-600 to-red-500 hover:from-orange-700 hover:to-red-600 text-lg px-8 h-14">
+            <Button size="lg" className="bg-gradient-to-r from-yellow-500 to-pink-700 hover:from-orange-700 hover:to-red-600 text-lg px-8 h-14">
               Contact Us Today
             </Button>
           </Link>
