@@ -17,18 +17,19 @@ import {
 
 export const OnlineSamplingPage = () => {
   return (
-    <div className="min-h-screen bg-white">
+    <div 
+      className="min-h-screen relative"
+      style={{
+        backgroundImage: 'linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)), url(https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=1920)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed'
+      }}
+    >
       <Header />
 
-      {/* Hero Section with Background Image */}
-      <section 
-        className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 relative"
-        style={{
-          backgroundImage: 'linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url(https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=1920)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center'
-        }}
-      >
+      {/* Hero Section */}
+      <section className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 relative">
         <div className="container mx-auto relative z-10">
           <div className="max-w-4xl mx-auto text-center text-white">
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 leading-tight">
