@@ -193,7 +193,7 @@ export const JoinUsPage = () => {
       </section>
 
       {/* Auth Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-50">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-orange-50">
         <div className="container mx-auto">
           <div className="max-w-2xl mx-auto">
             <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
