@@ -18,7 +18,6 @@ import {
 
 export const AboutPage = () => {
   const panelStats = [
-    { label: 'Global Panelists', value: '10M+', icon: Users },
     { label: 'Countries Covered', value: '50+', icon: Globe },
     { label: 'B2B Professionals', value: '2M+', icon: Target },
     { label: 'Healthcare Experts', value: '500K+', icon: Award }
