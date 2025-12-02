@@ -115,10 +115,10 @@ export const JoinUsPage = () => {
       <Header />
 
       {/* Page Header */}
-      <section className="pt-32 pb-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-orange-50 to-white">
+      <section className="pt-32 pb-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-yellow-50 to-white">
         <div className="container mx-auto">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-block px-4 py-2 bg-orange-100 rounded-full text-sm font-semibold text-orange-700 mb-4">
+            <div className="inline-block px-4 py-2 bg-yellow-100 rounded-full text-sm font-semibold text-pink-800 mb-4">
               Your Voice Matters
             </div>
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
@@ -151,8 +151,8 @@ export const JoinUsPage = () => {
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center flex-shrink-0">
-                  <svg className="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center flex-shrink-0">
+                  <svg className="w-6 h-6 text-pink-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </div>
@@ -193,7 +193,7 @@ export const JoinUsPage = () => {
       </section>
 
       {/* Auth Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-orange-50">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-yellow-50">
         <div className="container mx-auto">
           <div className="max-w-2xl mx-auto">
             <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
@@ -216,7 +216,7 @@ export const JoinUsPage = () => {
                     <CardDescription className="text-base">
                       Join thousands earning extra income by sharing their opinions. Simple registration, verified profiles get priority access to high-paying surveys!
                     </CardDescription>
-                    <div className="mt-4 bg-gradient-to-r from-orange-600 to-red-500 text-white px-4 py-3 rounded-lg">
+                    <div className="mt-4 bg-gradient-to-r from-yellow-500 to-pink-700 text-white px-4 py-3 rounded-lg">
                       <p className="text-sm font-semibold text-center">
                         ✨ Start earning within 24 hours of profile approval
                       </p>
@@ -345,7 +345,7 @@ export const JoinUsPage = () => {
 
                       <Button 
                         type="submit" 
-                        className="w-full bg-gradient-to-r from-orange-600 to-red-500 hover:from-orange-700 hover:to-red-600 h-12 text-base"
+                        className="w-full bg-gradient-to-r from-yellow-500 to-pink-700 hover:from-pink-800 hover:to-red-600 h-12 text-base"
                         disabled={loading}
                       >
                         {loading ? 'Creating Account...' : 'Create Account'}
@@ -358,7 +358,7 @@ export const JoinUsPage = () => {
               {/* Login Tab */}
               <TabsContent value="login">
                 <Card className="border-2 border-gray-100 shadow-lg">
-                  <CardHeader className="bg-gradient-to-r from-orange-50 to-red-50 border-b border-gray-100">
+                  <CardHeader className="bg-gradient-to-r from-yellow-50 to-pink-50 border-b border-gray-100">
                     <CardTitle className="text-2xl">Welcome Back, Panelist!</CardTitle>
                     <CardDescription className="text-base">Login to check available surveys and track your earnings</CardDescription>
                     <div className="mt-4 flex items-center gap-2 text-sm text-gray-600">
@@ -400,14 +400,14 @@ export const JoinUsPage = () => {
 
                       <Button 
                         type="submit" 
-                        className="w-full bg-gradient-to-r from-orange-600 to-red-500 hover:from-orange-700 hover:to-red-600 h-12 text-base"
+                        className="w-full bg-gradient-to-r from-yellow-500 to-pink-700 hover:from-pink-800 hover:to-red-600 h-12 text-base"
                         disabled={loading}
                       >
                         {loading ? 'Logging in...' : 'Login'}
                       </Button>
 
                       <p className="text-center text-sm text-gray-600">
-                        Forgot your password? <button type="button" className="text-orange-600 font-semibold hover:underline">Reset it here</button>
+                        Forgot your password? <button type="button" className="text-pink-700 font-semibold hover:underline">Reset it here</button>
                       </p>
                     </form>
                   </CardContent>
