@@ -312,6 +312,7 @@ export const CATIPage = () => {
       </section>
 
       <Footer />
+      </div>
     </div>
   );
 };
