@@ -46,22 +46,23 @@ export const ContactPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white">
-      <Header />
+    <div className="min-h-screen bg-white relative">
+      {/* Full Page Background Image */}
+      <div className="fixed inset-0 z-0">
+        <img 
+          src="https://images.unsplash.com/photo-1541746972996-4e0b0f43e02a?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2Mzl8MHwxfHNlYXJjaHwxfHxidXNpbmVzcyUyMHRlYW18ZW58MHx8fHwxNzY0NjU2ODI1fDA&ixlib=rb-4.1.0&q=85" 
+          alt="Professional Team"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-yellow-900/90 via-pink-900/85 to-purple-900/85"></div>
+      </div>
+      
+      <div className="relative z-10">
+        <Header />
 
-      {/* Page Header */}
-      <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 min-h-[450px] flex items-center">
-        {/* Background Image with Overlay */}
-        <div className="absolute inset-0 z-0">
-          <img 
-            src="https://images.unsplash.com/photo-1541746972996-4e0b0f43e02a?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2Mzl8MHwxfHNlYXJjaHwxfHxidXNpbmVzcyUyMHRlYW18ZW58MHx8fHwxNzY0NjU2ODI1fDA&ixlib=rb-4.1.0&q=85" 
-            alt="Professional Team"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-yellow-900/85 via-pink-900/80 to-purple-900/85"></div>
-        </div>
-        
-        <div className="container mx-auto relative z-10">
+        {/* Page Header */}
+        <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 min-h-[450px] flex items-center">
+          <div className="container mx-auto">
           <div className="max-w-4xl mx-auto text-center">
             <div className="inline-block px-5 py-2 bg-gradient-to-r from-yellow-400 to-pink-500 text-white rounded-full text-sm font-bold mb-4 shadow-xl">
               Let's Connect
