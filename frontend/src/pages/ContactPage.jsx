@@ -154,7 +154,7 @@ export const ContactPage = () => {
                   </div>
                   <Button 
                     type="submit" 
-                    className="w-full bg-slate-800 hover:bg-slate-900 h-12 text-base"
+                    className="w-full bg-gradient-to-r from-yellow-500 to-pink-700 hover:from-yellow-600 hover:to-pink-800 h-12 text-base shadow-lg"
                     disabled={loading}
                   >
                     {loading ? 'Submitting...' : 'Submit Inquiry'}
