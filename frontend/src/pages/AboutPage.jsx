@@ -157,37 +157,37 @@ export const AboutPage = () => {
       </section>
 
       {/* Unique Strengths */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-transparent">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-white drop-shadow-lg mb-4">What Makes Us Unique</h2>
             <p className="text-lg text-gray-100 drop-shadow-md">Distinctive advantages that define our approach</p>
           </div>
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center">
+            <div className="text-center bg-white/95 backdrop-blur-md p-8 rounded-2xl border-2 border-yellow-300 shadow-xl">
               <div className="w-16 h-16 bg-gradient-to-br from-blue-100 to-blue-200 rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <Target className="text-blue-600" size={32} />
               </div>
-              <h3 className="text-xl font-bold text-white drop-shadow-lg mb-3">Niche Audience Access</h3>
-              <p className="text-gray-100 drop-shadow-md leading-relaxed">
+              <h3 className="text-xl font-bold text-gray-900 mb-3">Niche Audience Access</h3>
+              <p className="text-gray-700 leading-relaxed">
                 Exclusive access to hard-to-reach professionals and specialized audience segments that others struggle to find.
               </p>
             </div>
-            <div className="text-center">
+            <div className="text-center bg-white/95 backdrop-blur-md p-8 rounded-2xl border-2 border-pink-300 shadow-xl">
               <div className="w-16 h-16 bg-gradient-to-br from-green-100 to-green-200 rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <Globe className="text-green-600" size={32} />
               </div>
-              <h3 className="text-xl font-bold text-white drop-shadow-lg mb-3">Global Reach</h3>
-              <p className="text-gray-100 drop-shadow-md leading-relaxed">
+              <h3 className="text-xl font-bold text-gray-900 mb-3">Global Reach</h3>
+              <p className="text-gray-700 leading-relaxed">
                 Pan-global panel network spanning 50+ countries with verified panelists across all major markets.
               </p>
             </div>
-            <div className="text-center">
+            <div className="text-center bg-white/95 backdrop-blur-md p-8 rounded-2xl border-2 border-yellow-300 shadow-xl">
               <div className="w-16 h-16 bg-gradient-to-br from-purple-100 to-purple-200 rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <Shield className="text-purple-600" size={32} />
               </div>
-              <h3 className="text-xl font-bold text-white drop-shadow-lg mb-3">Strict Quality Checks</h3>
-              <p className="text-gray-100 drop-shadow-md leading-relaxed">
+              <h3 className="text-xl font-bold text-gray-900 mb-3">Strict Quality Checks</h3>
+              <p className="text-gray-700 leading-relaxed">
                 Multi-layered quality assurance protocols ensuring every data point meets the highest standards of accuracy and reliability.
               </p>
             </div>
