@@ -6,7 +6,7 @@ import { Linkedin } from 'lucide-react';
 
 export const Footer = () => {
   return (
-    <footer className="bg-slate-900 text-white py-8 px-4 sm:px-6 lg:px-8">
+    <footer className="bg-gradient-to-br from-gray-900 to-slate-900 text-white py-8 px-4 sm:px-6 lg:px-8">
       <div className="container mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-start gap-8 mb-6">
           {/* Left Side - Logo and Content */}
@@ -16,8 +16,8 @@ export const Footer = () => {
                 <Logo />
               </div>
             </div>
-            <p className="text-slate-400 mb-2 text-base leading-relaxed">{mockData.company.tagline}</p>
-            <p className="text-slate-500 text-sm leading-relaxed">
+            <p className="text-slate-300 mb-2 text-base leading-relaxed">{mockData.company.tagline}</p>
+            <p className="text-slate-400 text-sm leading-relaxed">
               Transforming market complexity into strategic clarity through precision research methodologies.
             </p>
           </div>
@@ -28,7 +28,7 @@ export const Footer = () => {
               href="https://www.linkedin.com/company/factum-research" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-lg transition-colors font-medium"
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-orange-600 to-red-500 hover:from-orange-700 hover:to-red-600 text-white px-5 py-2.5 rounded-lg transition-all font-medium shadow-lg"
             >
               <Linkedin size={20} />
               Follow us on LinkedIn
