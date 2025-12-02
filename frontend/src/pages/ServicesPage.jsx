@@ -101,10 +101,10 @@ export const ServicesPage = () => {
             {services.map((service) => {
               const IconComponent = service.icon;
               return (
-                <Card key={service.id} className="border-2 border-yellow-100 hover:shadow-xl transition-all duration-300">
+                <Card key={service.id} className="border-2 border-yellow-200 hover:shadow-2xl transition-all duration-300 bg-gradient-to-br from-white to-yellow-50/30">
                   <CardHeader>
-                    <div className="w-16 h-16 bg-gradient-to-br from-yellow-100 to-red-100 rounded-xl flex items-center justify-center mb-6">
-                      <IconComponent className="text-yellow-600" size={32} strokeWidth={2} />
+                    <div className="w-16 h-16 bg-gradient-to-br from-yellow-400 to-pink-600 rounded-xl flex items-center justify-center mb-6 shadow-lg">
+                      <IconComponent className="text-white" size={32} strokeWidth={2.5} />
                     </div>
                     <CardTitle className="text-2xl mb-3">{service.title}</CardTitle>
                     <CardDescription className="text-base leading-relaxed">
