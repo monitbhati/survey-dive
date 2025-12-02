@@ -1,0 +1,134 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Button } from '../components/ui/button';
+import { ArrowRight, TrendingUp, ShieldCheck, Award, Target } from 'lucide-react';
+import { mockData } from '../mock';
+import { Header } from '../components/Header';
+import { Footer } from '../components/Footer';
+
+const iconMap = {
+  TrendingUp,
+  ShieldCheck,
+  Award,
+  Target
+};
+
+export const HomePage = () => {
+  return (
+    <div className="min-h-screen bg-white">
+      <Header />
+
+      {/* Hero Section */}
+      <section className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-slate-50 via-white to-white">
+        <div className="container mx-auto">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="inline-block px-4 py-2 bg-slate-100 rounded-full text-sm font-medium text-slate-700 mb-6">
+              Strategic Market Intelligence
+            </div>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+              {mockData.company.tagline}
+            </h1>
+            <p className="text-lg sm:text-xl text-gray-600 mb-10 max-w-3xl mx-auto leading-relaxed">
+              {mockData.company.description}
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link to="/contact">
+                <Button size="lg" className="bg-slate-800 hover:bg-slate-900 text-lg px-8 h-14">
+                  Initiate Consultation <ArrowRight className="ml-2" size={20} />
+                </Button>
+              </Link>
+              <Link to="/services">
+                <Button size="lg" variant="outline" className="text-lg px-8 h-14 border-2 border-slate-800 text-slate-800 hover:bg-slate-50">
+                  Explore Capabilities
+                </Button>
+              </Link>
+            </div>
+          </div>
+
+          {/* Stats */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20 max-w-5xl mx-auto">
+            <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 text-center hover:shadow-md transition-shadow">
+              <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent mb-2">{mockData.stats.projectsCompleted}</div>
+              <div className="text-sm text-gray-600 font-medium">Strategic Projects</div>
+            </div>
+            <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 text-center hover:shadow-md transition-shadow">
+              <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent mb-2">{mockData.stats.industriesServed}</div>
+              <div className="text-sm text-gray-600 font-medium">Industry Sectors</div>
+            </div>
+            <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 text-center hover:shadow-md transition-shadow">
+              <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent mb-2">{mockData.stats.clientSatisfaction}</div>
+              <div className="text-sm text-gray-600 font-medium">Client Retention</div>
+            </div>
+            <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 text-center hover:shadow-md transition-shadow">
+              <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent mb-2">{mockData.stats.yearsExperience}</div>
+              <div className="text-sm text-gray-600 font-medium">Years Excellence</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Quick Overview Section */}
+      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white">
+        <div className="container mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">Strategic Advantages</h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Differentiated capabilities that transform market research into strategic intelligence
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+            {mockData.whyChooseUs.map((item) => {
+              const IconComponent = iconMap[item.icon];
+              return (
+                <div key={item.id} className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition-all border border-gray-100">
+                  <div className="w-14 h-14 bg-gradient-to-br from-slate-100 to-slate-200 rounded-xl flex items-center justify-center mb-6">
+                    <IconComponent className="text-slate-700" size={26} strokeWidth={2} />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">{item.title}</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed">{item.description}</p>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="text-center mt-12">
+            <Link to="/about">
+              <Button size="lg" variant="outline" className="border-2 border-slate-800 text-slate-800 hover:bg-slate-50">
+                Learn More About Us
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 to-slate-100">
+        <div className="container mx-auto">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              Ready to Transform Your Market Intelligence?
+            </h2>
+            <p className="text-lg text-gray-600 mb-10 max-w-2xl mx-auto">
+              Connect with our research strategists to explore how we can support your intelligence requirements
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link to="/contact">
+                <Button size="lg" className="bg-slate-800 hover:bg-slate-900 text-lg px-8 h-14">
+                  Get Started Today
+                </Button>
+              </Link>
+              <Link to="/services">
+                <Button size="lg" variant="outline" className="text-lg px-8 h-14 border-2 border-slate-800 text-slate-800 hover:bg-white">
+                  View Our Services
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+    </div>
+  );
+};
