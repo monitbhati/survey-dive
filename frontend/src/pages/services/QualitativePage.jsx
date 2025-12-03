@@ -71,7 +71,7 @@ export const QualitativePage = () => {
               <CardContent className="pt-8 pb-8">
                 <MessageCircle className="text-pink-700 mb-4" size={40} />
                 <h3 className="text-2xl font-bold text-gray-900 mb-3">In-Depth Interviews (IDI)</h3>
-                <p className="text-gray-100 drop-shadow-sm leading-relaxed mb-4">
+                <p className="text-gray-900 leading-relaxed mb-4">
                   One-on-one conversations that dive deep into individual perspectives, experiences, and decision-making processes.
                 </p>
                 <ul className="space-y-2">
