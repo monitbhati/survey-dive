@@ -300,7 +300,7 @@ export const JoinUsPage = () => {
                           </div>
                         </div>
                         <div>
-                          <Label htmlFor="country">Country *</Label>
+                          <Label htmlFor="country" className="text-white drop-shadow-md">Country *</Label>
                           <Input
                             id="country"
                             name="country"
@@ -310,7 +310,7 @@ export const JoinUsPage = () => {
                           />
                         </div>
                         <div>
-                          <Label htmlFor="profession">Profession *</Label>
+                          <Label htmlFor="profession" className="text-white drop-shadow-md">Profession *</Label>
                           <Input
                             id="profession"
                             name="profession"
