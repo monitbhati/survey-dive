@@ -228,35 +228,35 @@ export const CATIPage = () => {
             <div className="flex items-start gap-4">
               <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg">1</div>
               <div>
-                <h4 className="text-xl font-bold text-gray-900 mb-2">Script Development</h4>
+                <h4 className="text-xl font-bold text-white drop-shadow-md mb-2">Script Development</h4>
                 <p className="text-gray-600 leading-relaxed">We work with you to create conversational interview scripts optimized for telephone delivery while maintaining research rigor.</p>
               </div>
             </div>
             <div className="flex items-start gap-4">
               <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg">2</div>
               <div>
-                <h4 className="text-xl font-bold text-gray-900 mb-2">Interviewer Training</h4>
+                <h4 className="text-xl font-bold text-white drop-shadow-md mb-2">Interviewer Training</h4>
                 <p className="text-gray-600 leading-relaxed">Project-specific training sessions ensure interviewers understand context, terminology, and proper interview techniques for your study.</p>
               </div>
             </div>
             <div className="flex items-start gap-4">
               <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg">3</div>
               <div>
-                <h4 className="text-xl font-bold text-gray-900 mb-2">Soft Launch</h4>
+                <h4 className="text-xl font-bold text-white drop-shadow-md mb-2">Soft Launch</h4>
                 <p className="text-gray-600 leading-relaxed">We conduct a controlled pilot phase to test scripts, identify issues, and refine approach before full-scale deployment.</p>
               </div>
             </div>
             <div className="flex items-start gap-4">
               <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg">4</div>
               <div>
-                <h4 className="text-xl font-bold text-gray-900 mb-2">Full Fieldwork</h4>
+                <h4 className="text-xl font-bold text-white drop-shadow-md mb-2">Full Fieldwork</h4>
                 <p className="text-gray-600 leading-relaxed">Structured calling schedule with optimal contact strategies, callback management, and continuous quality monitoring throughout fieldwork.</p>
               </div>
             </div>
             <div className="flex items-start gap-4">
               <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg">5</div>
               <div>
-                <h4 className="text-xl font-bold text-gray-900 mb-2">Quality Verification</h4>
+                <h4 className="text-xl font-bold text-white drop-shadow-md mb-2">Quality Verification</h4>
                 <p className="text-gray-600 leading-relaxed">Post-fieldwork validation including callback verification, data cleaning, and comprehensive quality assurance documentation.</p>
               </div>
             </div>
@@ -295,7 +295,7 @@ export const CATIPage = () => {
           <h2 className="text-3xl sm:text-4xl font-bold text-white drop-shadow-lg mb-6">
             Ready to Launch Your CATI Study?
           </h2>
-          <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-100 drop-shadow-md mb-8 max-w-2xl mx-auto">
             Our team is ready to discuss your telephone interviewing needs
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

@@ -56,7 +56,7 @@ export const SurveyDesigningPage = () => {
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-white drop-shadow-lg mb-4">What is Survey Designing?</h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            <p className="text-lg text-gray-100 drop-shadow-md max-w-3xl mx-auto">
               Survey designing is the art and science of creating questionnaires that accurately capture data while providing a positive respondent experience. A well-designed survey yields reliable, actionable insights that drive business decisions.
             </p>
           </div>
@@ -192,7 +192,7 @@ export const SurveyDesigningPage = () => {
               <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <Zap className="text-pink-700" size={32} />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Respondent-Centric</h3>
+              <h3 className="text-xl font-bold text-white drop-shadow-md mb-3">Respondent-Centric</h3>
               <p className="text-gray-600 leading-relaxed">
                 We prioritize user experience to keep respondents engaged and motivated throughout the survey.
               </p>
@@ -201,7 +201,7 @@ export const SurveyDesigningPage = () => {
               <div className="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <BarChart3 className="text-green-600" size={32} />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Data Quality Focus</h3>
+              <h3 className="text-xl font-bold text-white drop-shadow-md mb-3">Data Quality Focus</h3>
               <p className="text-gray-600 leading-relaxed">
                 Every design decision is made with data integrity and analytical requirements in mind.
               </p>
@@ -210,7 +210,7 @@ export const SurveyDesigningPage = () => {
               <div className="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <ClipboardList className="text-purple-600" size={32} />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Research Best Practices</h3>
+              <h3 className="text-xl font-bold text-white drop-shadow-md mb-3">Research Best Practices</h3>
               <p className="text-gray-600 leading-relaxed">
                 We follow industry standards and academic research principles in all our survey designs.
               </p>
@@ -227,35 +227,35 @@ export const SurveyDesigningPage = () => {
             <div className="flex items-start gap-4">
               <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg">1</div>
               <div>
-                <h4 className="text-xl font-bold text-gray-900 mb-2">Objectives Briefing</h4>
+                <h4 className="text-xl font-bold text-white drop-shadow-md mb-2">Objectives Briefing</h4>
                 <p className="text-gray-600 leading-relaxed">We start by understanding your research goals, target audience, and key metrics to inform survey structure and content.</p>
               </div>
             </div>
             <div className="flex items-start gap-4">
               <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg">2</div>
               <div>
-                <h4 className="text-xl font-bold text-gray-900 mb-2">Questionnaire Development</h4>
+                <h4 className="text-xl font-bold text-white drop-shadow-md mb-2">Questionnaire Development</h4>
                 <p className="text-gray-600 leading-relaxed">Our researchers craft questions, select scales, and structure the survey flow to optimize data quality and completion rates.</p>
               </div>
             </div>
             <div className="flex items-start gap-4">
               <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg">3</div>
               <div>
-                <h4 className="text-xl font-bold text-gray-900 mb-2">Programming & Logic</h4>
+                <h4 className="text-xl font-bold text-white drop-shadow-md mb-2">Programming & Logic</h4>
                 <p className="text-gray-600 leading-relaxed">Complex survey logic, randomization, and piping are programmed and tested to ensure proper functionality.</p>
               </div>
             </div>
             <div className="flex items-start gap-4">
               <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg">4</div>
               <div>
-                <h4 className="text-xl font-bold text-gray-900 mb-2">Pilot Testing</h4>
+                <h4 className="text-xl font-bold text-white drop-shadow-md mb-2">Pilot Testing</h4>
                 <p className="text-gray-600 leading-relaxed">Soft launch with small sample identifies issues, timing concerns, and areas for improvement before full deployment.</p>
               </div>
             </div>
             <div className="flex items-start gap-4">
               <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg">5</div>
               <div>
-                <h4 className="text-xl font-bold text-gray-900 mb-2">Refinement & Launch</h4>
+                <h4 className="text-xl font-bold text-white drop-shadow-md mb-2">Refinement & Launch</h4>
                 <p className="text-gray-600 leading-relaxed">Based on pilot results, we refine the survey and launch full fieldwork with confidence in data quality.</p>
               </div>
             </div>
@@ -302,7 +302,7 @@ export const SurveyDesigningPage = () => {
           <h2 className="text-3xl sm:text-4xl font-bold text-white drop-shadow-lg mb-6">
             Ready to Create a High-Quality Survey?
           </h2>
-          <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-100 drop-shadow-md mb-8 max-w-2xl mx-auto">
             Let our survey design experts help you craft the perfect questionnaire
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

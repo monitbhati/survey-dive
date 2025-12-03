@@ -55,7 +55,7 @@ export const QualitativePage = () => {
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-white drop-shadow-lg mb-4">What is Qualitative Research?</h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            <p className="text-lg text-gray-100 drop-shadow-md max-w-3xl mx-auto">
               Qualitative research explores the deeper meaning, motivations, and contexts behind human behavior. Through open-ended conversations and observations, we uncover rich insights that quantitative methods cannot capture.
             </p>
           </div>
@@ -210,35 +210,35 @@ export const QualitativePage = () => {
             <div className="flex items-start gap-4">
               <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg">1</div>
               <div>
-                <h4 className="text-xl font-bold text-gray-900 mb-2">Research Design</h4>
+                <h4 className="text-xl font-bold text-white drop-shadow-md mb-2">Research Design</h4>
                 <p className="text-gray-600 leading-relaxed">We collaborate with you to define research objectives, develop discussion guides, and select appropriate qualitative methods for your needs.</p>
               </div>
             </div>
             <div className="flex items-start gap-4">
               <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg">2</div>
               <div>
-                <h4 className="text-xl font-bold text-gray-900 mb-2">Participant Recruitment</h4>
+                <h4 className="text-xl font-bold text-white drop-shadow-md mb-2">Participant Recruitment</h4>
                 <p className="text-gray-600 leading-relaxed">Targeted recruitment with detailed screeners ensures participants match your specifications and can provide valuable insights.</p>
               </div>
             </div>
             <div className="flex items-start gap-4">
               <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg">3</div>
               <div>
-                <h4 className="text-xl font-bold text-gray-900 mb-2">Fieldwork Execution</h4>
+                <h4 className="text-xl font-bold text-white drop-shadow-md mb-2">Fieldwork Execution</h4>
                 <p className="text-gray-600 leading-relaxed">Expert moderators conduct interviews or groups with appropriate probing, creating environments that encourage authentic sharing.</p>
               </div>
             </div>
             <div className="flex items-start gap-4">
               <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg">4</div>
               <div>
-                <h4 className="text-xl font-bold text-gray-900 mb-2">Analysis & Synthesis</h4>
+                <h4 className="text-xl font-bold text-white drop-shadow-md mb-2">Analysis & Synthesis</h4>
                 <p className="text-gray-600 leading-relaxed">Rigorous thematic analysis identifies patterns, key themes, and strategic insights from your qualitative data.</p>
               </div>
             </div>
             <div className="flex items-start gap-4">
               <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg">5</div>
               <div>
-                <h4 className="text-xl font-bold text-gray-900 mb-2">Strategic Reporting</h4>
+                <h4 className="text-xl font-bold text-white drop-shadow-md mb-2">Strategic Reporting</h4>
                 <p className="text-gray-600 leading-relaxed">Comprehensive reports with rich verbatims, thematic insights, and actionable recommendations tied to your business objectives.</p>
               </div>
             </div>
@@ -277,7 +277,7 @@ export const QualitativePage = () => {
           <h2 className="text-3xl sm:text-4xl font-bold text-white drop-shadow-lg mb-6">
             Ready to Uncover Deeper Insights?
           </h2>
-          <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-100 drop-shadow-md mb-8 max-w-2xl mx-auto">
             Let's discuss how qualitative research can reveal the "why" behind your questions
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
