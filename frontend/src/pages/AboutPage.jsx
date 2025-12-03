@@ -350,9 +350,9 @@ export const AboutPage = () => {
           </Link>
         </div>
         </section>
-      </div>
 
       <Footer />
+      </div>
     </div>
   );
 };
