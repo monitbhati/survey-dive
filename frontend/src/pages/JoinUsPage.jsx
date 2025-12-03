@@ -195,7 +195,7 @@ export const JoinUsPage = () => {
         {/* Signup/Login Forms */}
         <section className="py-20 px-4 sm:px-6 lg:px-8">
           <div className="container mx-auto max-w-2xl">
-            <Card className="border-2 border-yellow-200 shadow-2xl bg-white/98 backdrop-blur-lg">
+            <Card className="border-2 border-white/30 shadow-2xl bg-white/10 backdrop-blur-lg">
               <CardHeader>
                 <div className="flex gap-2 mb-6">
                   <button
@@ -203,7 +203,7 @@ export const JoinUsPage = () => {
                     className={`flex-1 py-3 rounded-lg font-semibold transition-all ${
                       activeTab === 'signup'
                         ? 'bg-gradient-to-r from-yellow-500 to-pink-700 text-white shadow-lg'
-                        : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                        : 'bg-white/20 text-white hover:bg-white/30'
                     }`}
                   >
                     Sign Up
@@ -213,7 +213,7 @@ export const JoinUsPage = () => {
                     className={`flex-1 py-3 rounded-lg font-semibold transition-all ${
                       activeTab === 'login'
                         ? 'bg-gradient-to-r from-yellow-500 to-pink-700 text-white shadow-lg'
-                        : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                        : 'bg-white/20 text-white hover:bg-white/30'
                     }`}
                   >
                     Login
@@ -223,15 +223,15 @@ export const JoinUsPage = () => {
               <CardContent>
                 {activeTab === 'signup' ? (
                   <div>
-                    <CardHeader className="bg-gradient-to-r from-yellow-50 to-pink-50 border-b border-gray-100">
-                      <CardTitle className="text-2xl">Create Your Account</CardTitle>
-                      <CardDescription>Join our panel and start earning today</CardDescription>
+                    <CardHeader className="bg-transparent border-b border-white/20">
+                      <CardTitle className="text-2xl text-white drop-shadow-md">Create Your Account</CardTitle>
+                      <CardDescription className="text-gray-100 drop-shadow-sm">Join our panel and start earning today</CardDescription>
                     </CardHeader>
                     <CardContent className="pt-6">
                       <form onSubmit={handleSignup} className="space-y-4">
                         <div className="grid grid-cols-2 gap-4">
                           <div>
-                            <Label htmlFor="firstName">First Name *</Label>
+                            <Label htmlFor="firstName" className="text-white drop-shadow-md">First Name *</Label>
                             <Input
                               id="firstName"
                               name="firstName"
