@@ -268,29 +268,29 @@ export const SurveyDesigningPage = () => {
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-4xl font-bold text-white drop-shadow-lg mb-12 text-center">Question Types We Design</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className=" p-6 rounded-xl border border-yellow-200">
-              <h4 className="font-bold text-gray-900 mb-2">Multiple Choice</h4>
-              <p className="text-gray-600 text-sm">Single or multi-select options for categorical data</p>
+            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border-2 border-white/30">
+              <h4 className="font-bold text-white drop-shadow-md mb-2">Multiple Choice</h4>
+              <p className="text-gray-100 drop-shadow-sm text-sm">Single or multi-select options for categorical data</p>
             </div>
-            <div className=" p-6 rounded-xl border border-yellow-200">
-              <h4 className="font-bold text-gray-900 mb-2">Rating Scales</h4>
-              <p className="text-gray-600 text-sm">Likert, semantic differential, and numeric scales</p>
+            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border-2 border-white/30">
+              <h4 className="font-bold text-white drop-shadow-md mb-2">Rating Scales</h4>
+              <p className="text-gray-100 drop-shadow-sm text-sm">Likert, semantic differential, and numeric scales</p>
             </div>
-            <div className=" p-6 rounded-xl border border-yellow-200">
-              <h4 className="font-bold text-gray-900 mb-2">Open-Ended</h4>
-              <p className="text-gray-600 text-sm">Text responses for qualitative insights</p>
+            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border-2 border-white/30">
+              <h4 className="font-bold text-white drop-shadow-md mb-2">Open-Ended</h4>
+              <p className="text-gray-100 drop-shadow-sm text-sm">Text responses for qualitative insights</p>
             </div>
-            <div className=" p-6 rounded-xl border border-yellow-200">
-              <h4 className="font-bold text-gray-900 mb-2">Matrix Questions</h4>
-              <p className="text-gray-600 text-sm">Efficient multi-item rating grids</p>
+            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border-2 border-white/30">
+              <h4 className="font-bold text-white drop-shadow-md mb-2">Matrix Questions</h4>
+              <p className="text-gray-100 drop-shadow-sm text-sm">Efficient multi-item rating grids</p>
             </div>
-            <div className=" p-6 rounded-xl border border-yellow-200">
-              <h4 className="font-bold text-gray-900 mb-2">Ranking Questions</h4>
-              <p className="text-gray-600 text-sm">Drag-and-drop or numbered preference ranking</p>
+            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border-2 border-white/30">
+              <h4 className="font-bold text-white drop-shadow-md mb-2">Ranking Questions</h4>
+              <p className="text-gray-100 drop-shadow-sm text-sm">Drag-and-drop or numbered preference ranking</p>
             </div>
-            <div className=" p-6 rounded-xl border border-yellow-200">
-              <h4 className="font-bold text-gray-900 mb-2">MaxDiff & Conjoint</h4>
-              <p className="text-gray-600 text-sm">Advanced trade-off analysis designs</p>
+            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border-2 border-white/30">
+              <h4 className="font-bold text-white drop-shadow-md mb-2">MaxDiff & Conjoint</h4>
+              <p className="text-gray-100 drop-shadow-sm text-sm">Advanced trade-off analysis designs</p>
             </div>
           </div>
         </div>
