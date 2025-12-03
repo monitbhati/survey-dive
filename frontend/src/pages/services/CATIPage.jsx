@@ -103,9 +103,9 @@ export const CATIPage = () => {
       {/* Our CATI Capabilities */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 ">
         <div className="container mx-auto max-w-6xl">
-          <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">Our CATI Capabilities</h2>
+          <h2 className="text-4xl font-bold text-white drop-shadow-lg mb-12 text-center">Our CATI Capabilities</h2>
           <div className="grid md:grid-cols-2 gap-8">
-            <Card className="border-2 border-gray-100">
+            <Card className="border-2 border-yellow-300 bg-white/95 backdrop-blur-md">
               <CardContent className="pt-8 pb-8">
                 <Headphones className="text-pink-700 mb-4" size={32} />
                 <h3 className="text-2xl font-bold text-gray-900 mb-3">Professional Interviewers</h3>
