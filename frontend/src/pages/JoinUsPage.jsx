@@ -377,9 +377,9 @@ export const JoinUsPage = () => {
             </Card>
           </div>
         </section>
-      </div>
 
       <Footer />
+      </div>
     </div>
   );
 };
