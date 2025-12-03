@@ -109,7 +109,7 @@ export const CATIPage = () => {
               <CardContent className="pt-8 pb-8">
                 <Headphones className="text-pink-700 mb-4" size={32} />
                 <h3 className="text-2xl font-bold text-gray-900 mb-3">Professional Interviewers</h3>
-                <p className="text-gray-600 leading-relaxed mb-4">
+                <p className="text-gray-100 drop-shadow-sm leading-relaxed mb-4">
                   Our trained telephone interviewers undergo rigorous screening and continuous training to ensure professional, consistent, and empathetic interview conduct.
                 </p>
                 <ul className="space-y-2">
@@ -137,7 +137,7 @@ export const CATIPage = () => {
               <CardContent className="pt-8 pb-8">
                 <Phone className="text-green-600 mb-4" size={32} />
                 <h3 className="text-2xl font-bold text-gray-900 mb-3">Advanced CATI Software</h3>
-                <p className="text-gray-600 leading-relaxed mb-4">
+                <p className="text-gray-100 drop-shadow-sm leading-relaxed mb-4">
                   State-of-the-art CATI platforms with intelligent skip logic, real-time data validation, and automated callback scheduling for optimal efficiency.
                 </p>
                 <ul className="space-y-2">
@@ -165,7 +165,7 @@ export const CATIPage = () => {
               <CardContent className="pt-8 pb-8">
                 <Shield className="text-purple-600 mb-4" size={32} />
                 <h3 className="text-2xl font-bold text-gray-900 mb-3">Quality Control Systems</h3>
-                <p className="text-gray-600 leading-relaxed mb-4">
+                <p className="text-gray-100 drop-shadow-sm leading-relaxed mb-4">
                   Multi-layered quality assurance including live call monitoring, call recording review, and interviewer performance evaluation.
                 </p>
                 <ul className="space-y-2">
@@ -193,7 +193,7 @@ export const CATIPage = () => {
               <CardContent className="pt-8 pb-8">
                 <Globe className="text-orange-600 mb-4" size={32} />
                 <h3 className="text-2xl font-bold text-gray-900 mb-3">Multi-Language Support</h3>
-                <p className="text-gray-600 leading-relaxed mb-4">
+                <p className="text-gray-100 drop-shadow-sm leading-relaxed mb-4">
                   Native-speaking interviewers across multiple languages enabling international research with cultural sensitivity and linguistic accuracy.
                 </p>
                 <ul className="space-y-2">
@@ -229,35 +229,35 @@ export const CATIPage = () => {
               <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg">1</div>
               <div>
                 <h4 className="text-xl font-bold text-white drop-shadow-md mb-2">Script Development</h4>
-                <p className="text-gray-600 leading-relaxed">We work with you to create conversational interview scripts optimized for telephone delivery while maintaining research rigor.</p>
+                <p className="text-gray-100 drop-shadow-sm leading-relaxed">We work with you to create conversational interview scripts optimized for telephone delivery while maintaining research rigor.</p>
               </div>
             </div>
             <div className="flex items-start gap-4">
               <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg">2</div>
               <div>
                 <h4 className="text-xl font-bold text-white drop-shadow-md mb-2">Interviewer Training</h4>
-                <p className="text-gray-600 leading-relaxed">Project-specific training sessions ensure interviewers understand context, terminology, and proper interview techniques for your study.</p>
+                <p className="text-gray-100 drop-shadow-sm leading-relaxed">Project-specific training sessions ensure interviewers understand context, terminology, and proper interview techniques for your study.</p>
               </div>
             </div>
             <div className="flex items-start gap-4">
               <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg">3</div>
               <div>
                 <h4 className="text-xl font-bold text-white drop-shadow-md mb-2">Soft Launch</h4>
-                <p className="text-gray-600 leading-relaxed">We conduct a controlled pilot phase to test scripts, identify issues, and refine approach before full-scale deployment.</p>
+                <p className="text-gray-100 drop-shadow-sm leading-relaxed">We conduct a controlled pilot phase to test scripts, identify issues, and refine approach before full-scale deployment.</p>
               </div>
             </div>
             <div className="flex items-start gap-4">
               <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg">4</div>
               <div>
                 <h4 className="text-xl font-bold text-white drop-shadow-md mb-2">Full Fieldwork</h4>
-                <p className="text-gray-600 leading-relaxed">Structured calling schedule with optimal contact strategies, callback management, and continuous quality monitoring throughout fieldwork.</p>
+                <p className="text-gray-100 drop-shadow-sm leading-relaxed">Structured calling schedule with optimal contact strategies, callback management, and continuous quality monitoring throughout fieldwork.</p>
               </div>
             </div>
             <div className="flex items-start gap-4">
               <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg">5</div>
               <div>
                 <h4 className="text-xl font-bold text-white drop-shadow-md mb-2">Quality Verification</h4>
-                <p className="text-gray-600 leading-relaxed">Post-fieldwork validation including callback verification, data cleaning, and comprehensive quality assurance documentation.</p>
+                <p className="text-gray-100 drop-shadow-sm leading-relaxed">Post-fieldwork validation including callback verification, data cleaning, and comprehensive quality assurance documentation.</p>
               </div>
             </div>
           </div>

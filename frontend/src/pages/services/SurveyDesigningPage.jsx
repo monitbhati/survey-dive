@@ -72,7 +72,7 @@ export const SurveyDesigningPage = () => {
               <CardContent className="pt-8 pb-8">
                 <Layout className="text-pink-700 mb-4" size={32} />
                 <h3 className="text-2xl font-bold text-gray-900 mb-3">Question Development</h3>
-                <p className="text-gray-600 leading-relaxed mb-4">
+                <p className="text-gray-100 drop-shadow-sm leading-relaxed mb-4">
                   Crafting clear, unbiased questions that capture accurate data while avoiding common pitfalls like leading questions or double-barreling.
                 </p>
                 <ul className="space-y-2">
@@ -100,7 +100,7 @@ export const SurveyDesigningPage = () => {
               <CardContent className="pt-8 pb-8">
                 <Settings className="text-green-600 mb-4" size={32} />
                 <h3 className="text-2xl font-bold text-gray-900 mb-3">Survey Logic Programming</h3>
-                <p className="text-gray-600 leading-relaxed mb-4">
+                <p className="text-gray-100 drop-shadow-sm leading-relaxed mb-4">
                   Complex skip patterns, piping, and randomization ensure each respondent sees only relevant questions in the right sequence.
                 </p>
                 <ul className="space-y-2">
@@ -128,7 +128,7 @@ export const SurveyDesigningPage = () => {
               <CardContent className="pt-8 pb-8">
                 <Smartphone className="text-purple-600 mb-4" size={32} />
                 <h3 className="text-2xl font-bold text-gray-900 mb-3">Mobile Optimization</h3>
-                <p className="text-gray-600 leading-relaxed mb-4">
+                <p className="text-gray-100 drop-shadow-sm leading-relaxed mb-4">
                   Responsive design ensures seamless survey experience across all devices, from smartphones to desktop computers.
                 </p>
                 <ul className="space-y-2">
@@ -156,7 +156,7 @@ export const SurveyDesigningPage = () => {
               <CardContent className="pt-8 pb-8">
                 <TestTube className="text-orange-600 mb-4" size={32} />
                 <h3 className="text-2xl font-bold text-gray-900 mb-3">Testing & Refinement</h3>
-                <p className="text-gray-600 leading-relaxed mb-4">
+                <p className="text-gray-100 drop-shadow-sm leading-relaxed mb-4">
                   Rigorous pilot testing identifies issues before launch, ensuring smooth fieldwork and high-quality data collection.
                 </p>
                 <ul className="space-y-2">
@@ -193,7 +193,7 @@ export const SurveyDesigningPage = () => {
                 <Zap className="text-pink-700" size={32} />
               </div>
               <h3 className="text-xl font-bold text-white drop-shadow-md mb-3">Respondent-Centric</h3>
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-gray-100 drop-shadow-sm leading-relaxed">
                 We prioritize user experience to keep respondents engaged and motivated throughout the survey.
               </p>
             </div>
@@ -202,7 +202,7 @@ export const SurveyDesigningPage = () => {
                 <BarChart3 className="text-green-600" size={32} />
               </div>
               <h3 className="text-xl font-bold text-white drop-shadow-md mb-3">Data Quality Focus</h3>
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-gray-100 drop-shadow-sm leading-relaxed">
                 Every design decision is made with data integrity and analytical requirements in mind.
               </p>
             </div>
@@ -211,7 +211,7 @@ export const SurveyDesigningPage = () => {
                 <ClipboardList className="text-purple-600" size={32} />
               </div>
               <h3 className="text-xl font-bold text-white drop-shadow-md mb-3">Research Best Practices</h3>
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-gray-100 drop-shadow-sm leading-relaxed">
                 We follow industry standards and academic research principles in all our survey designs.
               </p>
             </div>
@@ -228,35 +228,35 @@ export const SurveyDesigningPage = () => {
               <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg">1</div>
               <div>
                 <h4 className="text-xl font-bold text-white drop-shadow-md mb-2">Objectives Briefing</h4>
-                <p className="text-gray-600 leading-relaxed">We start by understanding your research goals, target audience, and key metrics to inform survey structure and content.</p>
+                <p className="text-gray-100 drop-shadow-sm leading-relaxed">We start by understanding your research goals, target audience, and key metrics to inform survey structure and content.</p>
               </div>
             </div>
             <div className="flex items-start gap-4">
               <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg">2</div>
               <div>
                 <h4 className="text-xl font-bold text-white drop-shadow-md mb-2">Questionnaire Development</h4>
-                <p className="text-gray-600 leading-relaxed">Our researchers craft questions, select scales, and structure the survey flow to optimize data quality and completion rates.</p>
+                <p className="text-gray-100 drop-shadow-sm leading-relaxed">Our researchers craft questions, select scales, and structure the survey flow to optimize data quality and completion rates.</p>
               </div>
             </div>
             <div className="flex items-start gap-4">
               <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg">3</div>
               <div>
                 <h4 className="text-xl font-bold text-white drop-shadow-md mb-2">Programming & Logic</h4>
-                <p className="text-gray-600 leading-relaxed">Complex survey logic, randomization, and piping are programmed and tested to ensure proper functionality.</p>
+                <p className="text-gray-100 drop-shadow-sm leading-relaxed">Complex survey logic, randomization, and piping are programmed and tested to ensure proper functionality.</p>
               </div>
             </div>
             <div className="flex items-start gap-4">
               <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg">4</div>
               <div>
                 <h4 className="text-xl font-bold text-white drop-shadow-md mb-2">Pilot Testing</h4>
-                <p className="text-gray-600 leading-relaxed">Soft launch with small sample identifies issues, timing concerns, and areas for improvement before full deployment.</p>
+                <p className="text-gray-100 drop-shadow-sm leading-relaxed">Soft launch with small sample identifies issues, timing concerns, and areas for improvement before full deployment.</p>
               </div>
             </div>
             <div className="flex items-start gap-4">
               <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg">5</div>
               <div>
                 <h4 className="text-xl font-bold text-white drop-shadow-md mb-2">Refinement & Launch</h4>
-                <p className="text-gray-600 leading-relaxed">Based on pilot results, we refine the survey and launch full fieldwork with confidence in data quality.</p>
+                <p className="text-gray-100 drop-shadow-sm leading-relaxed">Based on pilot results, we refine the survey and launch full fieldwork with confidence in data quality.</p>
               </div>
             </div>
           </div>
