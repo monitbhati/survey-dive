@@ -331,14 +331,14 @@ export const JoinUsPage = () => {
                   </div>
                 ) : (
                   <div>
-                    <CardHeader className="bg-gradient-to-r from-yellow-50 to-pink-50 border-b border-gray-100">
-                      <CardTitle className="text-2xl">Welcome Back</CardTitle>
-                      <CardDescription>Login to your panelist account</CardDescription>
+                    <CardHeader className="bg-transparent border-b border-white/20">
+                      <CardTitle className="text-2xl text-white drop-shadow-md">Welcome Back</CardTitle>
+                      <CardDescription className="text-gray-100 drop-shadow-sm">Login to your panelist account</CardDescription>
                     </CardHeader>
                     <CardContent className="pt-6">
                       <form onSubmit={handleLogin} className="space-y-4">
                         <div>
-                          <Label htmlFor="loginEmail">Email *</Label>
+                          <Label htmlFor="loginEmail" className="text-white drop-shadow-md">Email *</Label>
                           <Input
                             id="loginEmail"
                             name="email"
@@ -349,7 +349,7 @@ export const JoinUsPage = () => {
                           />
                         </div>
                         <div>
-                          <Label htmlFor="loginPassword">Password *</Label>
+                          <Label htmlFor="loginPassword" className="text-white drop-shadow-md">Password *</Label>
                           <Input
                             id="loginPassword"
                             name="password"
@@ -366,8 +366,8 @@ export const JoinUsPage = () => {
                         >
                           {loading ? 'Logging in...' : 'Login'}
                         </Button>
-                        <p className="text-sm text-center text-gray-600">
-                          Forgot your password? <button type="button" className="text-pink-700 font-semibold hover:underline">Reset it here</button>
+                        <p className="text-sm text-center text-white drop-shadow-md">
+                          Forgot your password? <button type="button" className="text-yellow-300 font-semibold hover:underline drop-shadow-md">Reset it here</button>
                         </p>
                       </form>
                     </CardContent>
