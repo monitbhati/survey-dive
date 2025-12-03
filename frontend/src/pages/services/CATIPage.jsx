@@ -109,25 +109,25 @@ export const CATIPage = () => {
               <CardContent className="pt-8 pb-8">
                 <Headphones className="text-pink-700 mb-4" size={32} />
                 <h3 className="text-2xl font-bold text-gray-900 mb-3">Professional Interviewers</h3>
-                <p className="text-gray-100 drop-shadow-sm leading-relaxed mb-4">
+                <p className="text-gray-900 leading-relaxed mb-4">
                   Our trained telephone interviewers undergo rigorous screening and continuous training to ensure professional, consistent, and empathetic interview conduct.
                 </p>
                 <ul className="space-y-2">
                   <li className="flex items-start">
                     <CheckCircle className="text-green-600 mr-2 flex-shrink-0 mt-0.5" size={16} />
-                    <span className="text-sm text-gray-700">Extensive interview training</span>
+                    <span className="text-sm text-gray-900">Extensive interview training</span>
                   </li>
                   <li className="flex items-start">
                     <CheckCircle className="text-green-600 mr-2 flex-shrink-0 mt-0.5" size={16} />
-                    <span className="text-sm text-gray-700">Subject matter expertise</span>
+                    <span className="text-sm text-gray-900">Subject matter expertise</span>
                   </li>
                   <li className="flex items-start">
                     <CheckCircle className="text-green-600 mr-2 flex-shrink-0 mt-0.5" size={16} />
-                    <span className="text-sm text-gray-700">Soft skills assessment</span>
+                    <span className="text-sm text-gray-900">Soft skills assessment</span>
                   </li>
                   <li className="flex items-start">
                     <CheckCircle className="text-green-600 mr-2 flex-shrink-0 mt-0.5" size={16} />
-                    <span className="text-sm text-gray-700">Performance monitoring</span>
+                    <span className="text-sm text-gray-900">Performance monitoring</span>
                   </li>
                 </ul>
               </CardContent>
@@ -137,25 +137,25 @@ export const CATIPage = () => {
               <CardContent className="pt-8 pb-8">
                 <Phone className="text-green-600 mb-4" size={32} />
                 <h3 className="text-2xl font-bold text-gray-900 mb-3">Advanced CATI Software</h3>
-                <p className="text-gray-100 drop-shadow-sm leading-relaxed mb-4">
+                <p className="text-gray-900 leading-relaxed mb-4">
                   State-of-the-art CATI platforms with intelligent skip logic, real-time data validation, and automated callback scheduling for optimal efficiency.
                 </p>
                 <ul className="space-y-2">
                   <li className="flex items-start">
                     <CheckCircle className="text-green-600 mr-2 flex-shrink-0 mt-0.5" size={16} />
-                    <span className="text-sm text-gray-700">Smart question routing</span>
+                    <span className="text-sm text-gray-900">Smart question routing</span>
                   </li>
                   <li className="flex items-start">
                     <CheckCircle className="text-green-600 mr-2 flex-shrink-0 mt-0.5" size={16} />
-                    <span className="text-sm text-gray-700">Automatic data validation</span>
+                    <span className="text-sm text-gray-900">Automatic data validation</span>
                   </li>
                   <li className="flex items-start">
                     <CheckCircle className="text-green-600 mr-2 flex-shrink-0 mt-0.5" size={16} />
-                    <span className="text-sm text-gray-700">Callback management</span>
+                    <span className="text-sm text-gray-900">Callback management</span>
                   </li>
                   <li className="flex items-start">
                     <CheckCircle className="text-green-600 mr-2 flex-shrink-0 mt-0.5" size={16} />
-                    <span className="text-sm text-gray-700">Real-time reporting</span>
+                    <span className="text-sm text-gray-900">Real-time reporting</span>
                   </li>
                 </ul>
               </CardContent>
@@ -165,25 +165,25 @@ export const CATIPage = () => {
               <CardContent className="pt-8 pb-8">
                 <Shield className="text-purple-600 mb-4" size={32} />
                 <h3 className="text-2xl font-bold text-gray-900 mb-3">Quality Control Systems</h3>
-                <p className="text-gray-100 drop-shadow-sm leading-relaxed mb-4">
+                <p className="text-gray-900 leading-relaxed mb-4">
                   Multi-layered quality assurance including live call monitoring, call recording review, and interviewer performance evaluation.
                 </p>
                 <ul className="space-y-2">
                   <li className="flex items-start">
                     <CheckCircle className="text-green-600 mr-2 flex-shrink-0 mt-0.5" size={16} />
-                    <span className="text-sm text-gray-700">Live supervisor monitoring</span>
+                    <span className="text-sm text-gray-900">Live supervisor monitoring</span>
                   </li>
                   <li className="flex items-start">
                     <CheckCircle className="text-green-600 mr-2 flex-shrink-0 mt-0.5" size={16} />
-                    <span className="text-sm text-gray-700">Call recording & review</span>
+                    <span className="text-sm text-gray-900">Call recording & review</span>
                   </li>
                   <li className="flex items-start">
                     <CheckCircle className="text-green-600 mr-2 flex-shrink-0 mt-0.5" size={16} />
-                    <span className="text-sm text-gray-700">Validation callbacks</span>
+                    <span className="text-sm text-gray-900">Validation callbacks</span>
                   </li>
                   <li className="flex items-start">
                     <CheckCircle className="text-green-600 mr-2 flex-shrink-0 mt-0.5" size={16} />
-                    <span className="text-sm text-gray-700">Performance metrics</span>
+                    <span className="text-sm text-gray-900">Performance metrics</span>
                   </li>
                 </ul>
               </CardContent>
@@ -193,25 +193,25 @@ export const CATIPage = () => {
               <CardContent className="pt-8 pb-8">
                 <Globe className="text-orange-600 mb-4" size={32} />
                 <h3 className="text-2xl font-bold text-gray-900 mb-3">Multi-Language Support</h3>
-                <p className="text-gray-100 drop-shadow-sm leading-relaxed mb-4">
+                <p className="text-gray-900 leading-relaxed mb-4">
                   Native-speaking interviewers across multiple languages enabling international research with cultural sensitivity and linguistic accuracy.
                 </p>
                 <ul className="space-y-2">
                   <li className="flex items-start">
                     <CheckCircle className="text-green-600 mr-2 flex-shrink-0 mt-0.5" size={16} />
-                    <span className="text-sm text-gray-700">Native language interviewers</span>
+                    <span className="text-sm text-gray-900">Native language interviewers</span>
                   </li>
                   <li className="flex items-start">
                     <CheckCircle className="text-green-600 mr-2 flex-shrink-0 mt-0.5" size={16} />
-                    <span className="text-sm text-gray-700">Cultural adaptation</span>
+                    <span className="text-sm text-gray-900">Cultural adaptation</span>
                   </li>
                   <li className="flex items-start">
                     <CheckCircle className="text-green-600 mr-2 flex-shrink-0 mt-0.5" size={16} />
-                    <span className="text-sm text-gray-700">Localized scripts</span>
+                    <span className="text-sm text-gray-900">Localized scripts</span>
                   </li>
                   <li className="flex items-start">
                     <CheckCircle className="text-green-600 mr-2 flex-shrink-0 mt-0.5" size={16} />
-                    <span className="text-sm text-gray-700">Global coverage</span>
+                    <span className="text-sm text-gray-900">Global coverage</span>
                   </li>
                 </ul>
               </CardContent>
