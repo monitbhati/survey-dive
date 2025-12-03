@@ -13,11 +13,13 @@ import { QualitativePage } from "./pages/services/QualitativePage";
 import { SurveyDesigningPage } from "./pages/services/SurveyDesigningPage";
 import LogoShowcase from "./pages/LogoShowcase";
 import { Toaster } from "./components/ui/sonner";
+import { ScrollToTop } from "./components/ScrollToTop";
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
