@@ -43,7 +43,7 @@ export const HomePage = () => {
           </div>
 
           {/* Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-20 max-w-5xl mx-auto">
             <div className="bg-white/95 backdrop-blur-sm p-6 rounded-2xl shadow-lg border border-yellow-200 text-center hover:shadow-xl transition-all hover:scale-105">
               <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-yellow-500 to-pink-700 bg-clip-text text-transparent mb-2">{mockData.stats.projectsCompleted}</div>
               <div className="text-sm text-gray-700 font-semibold">Strategic Projects</div>
@@ -55,10 +55,6 @@ export const HomePage = () => {
             <div className="bg-white/95 backdrop-blur-sm p-6 rounded-2xl shadow-lg border border-yellow-200 text-center hover:shadow-xl transition-all hover:scale-105">
               <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-yellow-500 to-pink-700 bg-clip-text text-transparent mb-2">{mockData.stats.clientSatisfaction}</div>
               <div className="text-sm text-gray-700 font-semibold">Client Retention</div>
-            </div>
-            <div className="bg-white/95 backdrop-blur-sm p-6 rounded-2xl shadow-lg border border-yellow-200 text-center hover:shadow-xl transition-all hover:scale-105">
-              <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-yellow-500 to-pink-700 bg-clip-text text-transparent mb-2">{mockData.stats.yearsExperience}</div>
-              <div className="text-sm text-gray-700 font-semibold">Years Excellence</div>
             </div>
           </div>
         </div>
