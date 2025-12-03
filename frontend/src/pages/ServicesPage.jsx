@@ -183,9 +183,9 @@ export const ServicesPage = () => {
           </Link>
         </div>
         </section>
-      </div>
 
       <Footer />
+      </div>
     </div>
   );
 };
