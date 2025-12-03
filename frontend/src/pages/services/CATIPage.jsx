@@ -223,7 +223,7 @@ export const CATIPage = () => {
       {/* Process */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 ">
         <div className="container mx-auto max-w-6xl">
-          <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">Our CATI Process</h2>
+          <h2 className="text-4xl font-bold text-white drop-shadow-lg mb-12 text-center">Our CATI Process</h2>
           <div className="space-y-6">
             <div className="flex items-start gap-4">
               <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg">1</div>
@@ -267,7 +267,7 @@ export const CATIPage = () => {
       {/* Ideal Use Cases */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 ">
         <div className="container mx-auto max-w-6xl">
-          <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">Ideal Use Cases for CATI</h2>
+          <h2 className="text-4xl font-bold text-white drop-shadow-lg mb-12 text-center">Ideal Use Cases for CATI</h2>
           <div className="grid md:grid-cols-2 gap-6">
             <div className=" p-6 rounded-xl border border-yellow-200">
               <h4 className="font-bold text-gray-900 mb-2">B2B Research</h4>
@@ -292,7 +292,7 @@ export const CATIPage = () => {
       {/* CTA */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 ">
         <div className="container mx-auto text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
+          <h2 className="text-3xl sm:text-4xl font-bold text-white drop-shadow-lg mb-6">
             Ready to Launch Your CATI Study?
           </h2>
           <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">

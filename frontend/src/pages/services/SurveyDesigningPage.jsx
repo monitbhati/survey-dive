@@ -55,7 +55,7 @@ export const SurveyDesigningPage = () => {
       <section className="py-20 px-4 sm:px-6 lg:px-8 ">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">What is Survey Designing?</h2>
+            <h2 className="text-4xl font-bold text-white drop-shadow-lg mb-4">What is Survey Designing?</h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               Survey designing is the art and science of creating questionnaires that accurately capture data while providing a positive respondent experience. A well-designed survey yields reliable, actionable insights that drive business decisions.
             </p>
@@ -66,7 +66,7 @@ export const SurveyDesigningPage = () => {
       {/* Our Design Approach */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 ">
         <div className="container mx-auto max-w-6xl">
-          <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">Our Survey Design Expertise</h2>
+          <h2 className="text-4xl font-bold text-white drop-shadow-lg mb-12 text-center">Our Survey Design Expertise</h2>
           <div className="grid md:grid-cols-2 gap-8">
             <Card className="border-2 border-yellow-300 bg-white/95 backdrop-blur-md">
               <CardContent className="pt-8 pb-8">
@@ -186,7 +186,7 @@ export const SurveyDesigningPage = () => {
       {/* Design Principles */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 ">
         <div className="container mx-auto max-w-6xl">
-          <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">Our Design Principles</h2>
+          <h2 className="text-4xl font-bold text-white drop-shadow-lg mb-12 text-center">Our Design Principles</h2>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center">
               <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
@@ -222,7 +222,7 @@ export const SurveyDesigningPage = () => {
       {/* Process */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 ">
         <div className="container mx-auto max-w-6xl">
-          <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">Our Survey Design Process</h2>
+          <h2 className="text-4xl font-bold text-white drop-shadow-lg mb-12 text-center">Our Survey Design Process</h2>
           <div className="space-y-6">
             <div className="flex items-start gap-4">
               <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg">1</div>
@@ -266,7 +266,7 @@ export const SurveyDesigningPage = () => {
       {/* Question Types */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 ">
         <div className="container mx-auto max-w-6xl">
-          <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">Question Types We Design</h2>
+          <h2 className="text-4xl font-bold text-white drop-shadow-lg mb-12 text-center">Question Types We Design</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div className=" p-6 rounded-xl border border-yellow-200">
               <h4 className="font-bold text-gray-900 mb-2">Multiple Choice</h4>
@@ -299,7 +299,7 @@ export const SurveyDesigningPage = () => {
       {/* CTA */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 ">
         <div className="container mx-auto text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
+          <h2 className="text-3xl sm:text-4xl font-bold text-white drop-shadow-lg mb-6">
             Ready to Create a High-Quality Survey?
           </h2>
           <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
