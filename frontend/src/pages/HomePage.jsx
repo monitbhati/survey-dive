@@ -120,9 +120,9 @@ export const HomePage = () => {
           </div>
         </div>
       </section>
-      </div>
 
       <Footer />
+      </div>
     </div>
   );
 };
