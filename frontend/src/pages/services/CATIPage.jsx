@@ -55,8 +55,8 @@ export const CATIPage = () => {
       <section className="py-20 px-4 sm:px-6 lg:px-8 ">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">What is CATI?</h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            <h2 className="text-4xl font-bold text-white drop-shadow-lg mb-4">What is CATI?</h2>
+            <p className="text-lg text-gray-100 drop-shadow-md max-w-3xl mx-auto">
               CATI (Computer Assisted Telephone Interviewing) combines professional telephone interviewers with advanced software systems to conduct structured phone surveys, ensuring consistent data collection and superior respondent experiences.
             </p>
           </div>
@@ -66,7 +66,7 @@ export const CATIPage = () => {
       {/* Why Choose CATI */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 ">
         <div className="container mx-auto max-w-6xl">
-          <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">Why Choose CATI?</h2>
+          <h2 className="text-4xl font-bold text-white drop-shadow-lg mb-12 text-center">Why Choose CATI?</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             <Card className="border-2 border-gray-100">
               <CardContent className="pt-6 pb-6 text-center">
