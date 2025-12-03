@@ -269,21 +269,21 @@ export const CATIPage = () => {
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-4xl font-bold text-white drop-shadow-lg mb-12 text-center">Ideal Use Cases for CATI</h2>
           <div className="grid md:grid-cols-2 gap-6">
-            <div className=" p-6 rounded-xl border border-yellow-200">
-              <h4 className="font-bold text-gray-900 mb-2">B2B Research</h4>
-              <p className="text-gray-600 text-sm">Reaching busy professionals and decision-makers who prefer phone communication</p>
+            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border-2 border-white/30">
+              <h4 className="font-bold text-white drop-shadow-md mb-2">B2B Research</h4>
+              <p className="text-gray-100 drop-shadow-sm text-sm">Reaching busy professionals and decision-makers who prefer phone communication</p>
             </div>
-            <div className=" p-6 rounded-xl border border-yellow-200">
-              <h4 className="font-bold text-gray-900 mb-2">Complex Surveys</h4>
-              <p className="text-gray-600 text-sm">Technical or detailed questionnaires requiring explanation and probing</p>
+            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border-2 border-white/30">
+              <h4 className="font-bold text-white drop-shadow-md mb-2">Complex Surveys</h4>
+              <p className="text-gray-100 drop-shadow-sm text-sm">Technical or detailed questionnaires requiring explanation and probing</p>
             </div>
-            <div className=" p-6 rounded-xl border border-yellow-200">
-              <h4 className="font-bold text-gray-900 mb-2">Sensitive Topics</h4>
-              <p className="text-gray-600 text-sm">Research on personal or confidential subjects benefiting from human rapport</p>
+            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border-2 border-white/30">
+              <h4 className="font-bold text-white drop-shadow-md mb-2">Sensitive Topics</h4>
+              <p className="text-gray-100 drop-shadow-sm text-sm">Research on personal or confidential subjects benefiting from human rapport</p>
             </div>
-            <div className=" p-6 rounded-xl border border-yellow-200">
-              <h4 className="font-bold text-gray-900 mb-2">Low Digital Access</h4>
-              <p className="text-gray-600 text-sm">Audiences with limited internet access or technology literacy</p>
+            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border-2 border-white/30">
+              <h4 className="font-bold text-white drop-shadow-md mb-2">Low Digital Access</h4>
+              <p className="text-gray-100 drop-shadow-sm text-sm">Audiences with limited internet access or technology literacy</p>
             </div>
           </div>
         </div>
