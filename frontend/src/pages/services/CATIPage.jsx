@@ -18,15 +18,17 @@ import {
 
 export const CATIPage = () => {
   return (
-    <div 
-      className="min-h-screen relative"
-      style={{
-        backgroundImage: 'linear-gradient(rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.88)), url(https://images.pexels.com/photos/7709291/pexels-photo-7709291.jpeg)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundAttachment: 'fixed'
-      }}
-    >
+    <div className="min-h-screen bg-white relative">
+      {/* Full Page Background Image */}
+      <div className="fixed inset-0 z-0">
+        <img 
+          src="https://images.pexels.com/photos/7709291/pexels-photo-7709291.jpeg" 
+          alt="CATI Excellence"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-purple-900/90 via-pink-900/85 to-yellow-900/75"></div>
+      </div>
+      
       <div className="relative z-10">
       <Header />
 
