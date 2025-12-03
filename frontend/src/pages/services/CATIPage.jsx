@@ -68,28 +68,28 @@ export const CATIPage = () => {
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-4xl font-bold text-white drop-shadow-lg mb-12 text-center">Why Choose CATI?</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <Card className="border-2 border-gray-100">
+            <Card className="border-2 border-yellow-300 bg-white/95 backdrop-blur-md">
               <CardContent className="pt-6 pb-6 text-center">
                 <Users className="text-pink-700 mx-auto mb-3" size={40} />
                 <h3 className="font-bold text-gray-900 mb-2">Personal Touch</h3>
                 <p className="text-sm text-gray-600">Human interaction builds rapport and encourages detailed responses</p>
               </CardContent>
             </Card>
-            <Card className="border-2 border-gray-100">
+            <Card className="border-2 border-pink-300 bg-white/95 backdrop-blur-md">
               <CardContent className="pt-6 pb-6 text-center">
                 <Shield className="text-green-600 mx-auto mb-3" size={40} />
                 <h3 className="font-bold text-gray-900 mb-2">High Quality</h3>
                 <p className="text-sm text-gray-600">Live monitoring ensures data accuracy and proper interview conduct</p>
               </CardContent>
             </Card>
-            <Card className="border-2 border-gray-100">
+            <Card className="border-2 border-yellow-300 bg-white/95 backdrop-blur-md">
               <CardContent className="pt-6 pb-6 text-center">
                 <Globe className="text-purple-600 mx-auto mb-3" size={40} />
                 <h3 className="font-bold text-gray-900 mb-2">Complex Topics</h3>
                 <p className="text-sm text-gray-600">Ideal for detailed, technical, or sensitive research subjects</p>
               </CardContent>
             </Card>
-            <Card className="border-2 border-gray-100">
+            <Card className="border-2 border-pink-300 bg-white/95 backdrop-blur-md">
               <CardContent className="pt-6 pb-6 text-center">
                 <BarChart3 className="text-orange-600 mx-auto mb-3" size={40} />
                 <h3 className="font-bold text-gray-900 mb-2">Better Response</h3>
