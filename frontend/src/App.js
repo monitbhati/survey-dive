@@ -34,6 +34,8 @@ function App() {
           <Route path="/join-us" element={<JoinUsPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/dashboard" element={<UserDashboardPage />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+          <Route path="/terms-conditions" element={<TermsConditionsPage />} />
           <Route path="/logo-showcase" element={<LogoShowcase />} />
           <Route path="/admin/login" element={<AdminLoginPage />} />
           <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
