@@ -180,15 +180,6 @@ export const ContactPage = () => {
                   </div>
                   <div className="flex items-start">
                     <div className="w-14 h-14 bg-gradient-to-br from-yellow-400 to-pink-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
-                      <PhoneCall className="text-white" size={24} strokeWidth={2.5} />
-                    </div>
-                    <div className="ml-5">
-                      <div className="font-semibold text-white drop-shadow-md mb-1">Phone</div>
-                      <div className="text-gray-100 drop-shadow-sm">{mockData.company.phone}</div>
-                    </div>
-                  </div>
-                  <div className="flex items-start">
-                    <div className="w-14 h-14 bg-gradient-to-br from-yellow-400 to-pink-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
                       <MapPin className="text-white" size={24} />
                     </div>
                     <div className="ml-5">
