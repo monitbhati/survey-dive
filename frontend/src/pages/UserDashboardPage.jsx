@@ -187,14 +187,6 @@ export const UserDashboardPage = () => {
                     </div>
 
                     <div className="flex items-start gap-3">
-                      <Briefcase className="text-purple-600 mt-1" size={20} />
-                      <div>
-                        <p className="text-sm text-gray-600">Profession</p>
-                        <p className="font-semibold text-gray-900">{user?.profession}</p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start gap-3">
                       <User className="text-purple-600 mt-1" size={20} />
                       <div>
                         <p className="text-sm text-gray-600">Gender</p>
