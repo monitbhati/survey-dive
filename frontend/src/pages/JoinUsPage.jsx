@@ -356,10 +356,56 @@ export const JoinUsPage = () => {
                             required
                           />
                         </div>
+                        
+                        {/* Terms and Privacy Agreement */}
+                        <div className="space-y-3 pt-2">
+                          <div className="flex items-start gap-3">
+                            <input
+                              type="checkbox"
+                              id="terms"
+                              checked={agreedToTerms}
+                              onChange={(e) => setAgreedToTerms(e.target.checked)}
+                              className="mt-1 w-4 h-4 rounded border-white/30 text-purple-600 focus:ring-purple-500"
+                            />
+                            <label htmlFor="terms" className="text-sm text-white drop-shadow-md cursor-pointer">
+                              I agree to the{' '}
+                              <a 
+                                href="/terms-conditions" 
+                                target="_blank"
+                                className="text-yellow-300 hover:text-yellow-200 underline font-semibold"
+                              >
+                                Terms & Conditions
+                              </a>
+                              {' '}*
+                            </label>
+                          </div>
+                          
+                          <div className="flex items-start gap-3">
+                            <input
+                              type="checkbox"
+                              id="privacy"
+                              checked={agreedToPrivacy}
+                              onChange={(e) => setAgreedToPrivacy(e.target.checked)}
+                              className="mt-1 w-4 h-4 rounded border-white/30 text-purple-600 focus:ring-purple-500"
+                            />
+                            <label htmlFor="privacy" className="text-sm text-white drop-shadow-md cursor-pointer">
+                              I have read and accept the{' '}
+                              <a 
+                                href="/privacy-policy" 
+                                target="_blank"
+                                className="text-yellow-300 hover:text-yellow-200 underline font-semibold"
+                              >
+                                Privacy Policy
+                              </a>
+                              {' '}*
+                            </label>
+                          </div>
+                        </div>
+
                         <Button
                           type="submit"
-                          disabled={loading}
-                          className="w-full bg-gradient-to-r from-yellow-500 to-pink-700 hover:from-yellow-600 hover:to-pink-800 h-12 text-base"
+                          disabled={loading || !agreedToTerms || !agreedToPrivacy}
+                          className="w-full bg-gradient-to-r from-yellow-500 to-pink-700 hover:from-yellow-600 hover:to-pink-800 h-12 text-base disabled:opacity-50 disabled:cursor-not-allowed"
                         >
                           {loading ? 'Creating Account...' : 'Create Account'}
                         </Button>
