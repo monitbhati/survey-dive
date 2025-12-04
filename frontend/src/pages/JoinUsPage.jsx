@@ -75,55 +75,6 @@ export const JoinUsPage = () => {
   const handleSignup = async (e) => {
     e.preventDefault();
     
-    // Comprehensive client-side validation with specific error messages
-    const missingFields = [];
-    
-    if (!signupData.firstName || signupData.firstName.trim() === '') {
-      missingFields.push('First Name');
-    }
-    
-    if (!signupData.lastName || signupData.lastName.trim() === '') {
-      missingFields.push('Last Name');
-    }
-    
-    if (!signupData.email || signupData.email.trim() === '') {
-      missingFields.push('Email');
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(signupData.email)) {
-      toast.error('Please enter a valid email address');
-      return;
-    }
-    
-    if (!signupData.password || signupData.password.trim() === '') {
-      missingFields.push('Password');
-    } else if (signupData.password.length < 6) {
-      toast.error('Password must be at least 6 characters long');
-      return;
-    }
-    
-    if (!signupData.age || signupData.age === '') {
-      missingFields.push('Age');
-    } else if (parseInt(signupData.age) < 18) {
-      toast.error('You must be at least 18 years old to register');
-      return;
-    } else if (parseInt(signupData.age) > 100) {
-      toast.error('Please enter a valid age');
-      return;
-    }
-    
-    if (!signupData.country || signupData.country.trim() === '') {
-      missingFields.push('Country');
-    }
-    
-    if (!signupData.gender || signupData.gender === '') {
-      missingFields.push('Gender');
-    }
-    
-    // Show error for missing fields
-    if (missingFields.length > 0) {
-      toast.error(`Please fill in the following fields: ${missingFields.join(', ')}`);
-      return;
-    }
-    
     // Check if user agreed to terms and privacy policy
     if (!agreedToTerms || !agreedToPrivacy) {
       toast.error('Please agree to the Terms & Conditions and Privacy Policy to continue');
@@ -132,53 +83,30 @@ export const JoinUsPage = () => {
     
     setLoading(true);
     try {
-      // Map frontend fields to backend expected fields
-      const backendData = {
-        name: signupData.firstName,
-        surname: signupData.lastName,
-        email: signupData.email,
-        password: signupData.password,
-        age: parseInt(signupData.age),
-        country: signupData.country,
-        gender: signupData.gender
-      };
-      
-      const response = await axios.post(`${API}/auth/signup`, backendData);
-      toast.success('Registration successful! Please login with your credentials.');
+      const response = await axios.post(`${API}/auth/signup`, signupData);
+      toast.success('Registration successful!');
       setSignupData({ firstName: '', lastName: '', email: '', age: '', country: '', gender: '', password: '' });
       setAgreedToTerms(false);
       setAgreedToPrivacy(false);
       setActiveTab('login');
     } catch (error) {
       console.error('Signup error:', error.message || 'Registration failed');
-      let errorMessage = 'Registration failed. Please try again.';
+      let errorMessage = 'Registration failed';
       
       if (error.response?.data?.detail) {
         // Handle both string and array formats
         if (typeof error.response.data.detail === 'string') {
           errorMessage = error.response.data.detail;
         } else if (Array.isArray(error.response.data.detail)) {
-          // Parse validation errors from backend
-          const errors = error.response.data.detail.map(err => {
-            if (err.msg) {
-              const field = err.loc ? err.loc[err.loc.length - 1] : 'field';
-              return `${field}: ${err.msg}`;
-            }
-            return err;
-          });
-          errorMessage = errors.join('; ');
+          errorMessage = error.response.data.detail.map(err => err.msg || err).join(', ');
         } else {
           errorMessage = 'Registration failed. Please check your information.';
         }
-      } else if (error.response?.status === 400) {
-        errorMessage = 'Email already registered or invalid data. Please check your information.';
-      } else if (error.response?.status === 422) {
-        errorMessage = 'Please check all fields are filled correctly.';
-      } else if (error.message && error.message !== 'Network Error') {
+      } else if (error.message) {
         errorMessage = error.message;
       }
       
-      toast.error(errorMessage, { duration: 5000 });
+      toast.error(errorMessage);
     } finally {
       setLoading(false);
     }
@@ -235,13 +163,112 @@ export const JoinUsPage = () => {
       <div className="relative z-10">
         <Header />
 
-        {/* Two Column Layout: Form + Content */}
-        <section className="pt-32 pb-12 px-4 sm:px-6 lg:px-8">
-          <div className="container mx-auto max-w-7xl">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              
-              {/* LEFT COLUMN: Signup/Login Form */}
-              <div>
+        {/* Page Header */}
+        <section className="pt-32 pb-16 px-4 sm:px-6 lg:px-8 min-h-[550px] flex items-center">
+          <div className="container mx-auto">
+            <div className="max-w-4xl mx-auto text-center">
+              <div className="inline-block px-5 py-2 bg-yellow-400/90 backdrop-blur-sm rounded-full text-sm font-bold text-purple-900 mb-4 shadow-lg">
+                Your Voice Matters
+              </div>
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
+                Join Our Global Panel
+              </h1>
+              <p className="text-lg sm:text-xl text-gray-100 leading-relaxed mb-4 drop-shadow-md">
+                Turn your opinions into income. Share your thoughts on products, services, and trends while earning rewards from the comfort of your home.
+              </p>
+              <div className="flex flex-wrap gap-6 justify-center mt-8 text-left max-w-3xl mx-auto">
+                <div className="flex items-start gap-3">
+                  <div className="w-12 h-12 bg-green-400 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg">
+                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-white drop-shadow-md">Earn Extra Income</h3>
+                    <p className="text-sm text-gray-200 drop-shadow">Get paid for sharing your opinions</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg">
+                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-white drop-shadow-md">Flexible Timing</h3>
+                    <p className="text-sm text-gray-200 drop-shadow">Work on your own schedule</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-12 h-12 bg-pink-500 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg">
+                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-white drop-shadow-md">Simple & Easy</h3>
+                    <p className="text-sm text-gray-200 drop-shadow">Quick online surveys</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Why Researchers Love Our Panel */}
+        <section className="py-20 px-4 sm:px-6 lg:px-8">
+          <div className="container mx-auto max-w-6xl">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-bold text-white mb-4 drop-shadow-lg">Why Researchers Love Our Panel</h2>
+              <p className="text-lg text-gray-100 drop-shadow-md">Join thousands of panelists making a difference</p>
+            </div>
+            <div className="grid md:grid-cols-3 gap-8">
+              <div className="bg-white/95 backdrop-blur-md p-8 rounded-2xl border-2 border-yellow-200 shadow-xl text-center hover:scale-105 transition-all">
+                <div className="w-20 h-20 bg-gradient-to-br from-yellow-400 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                  <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                  </svg>
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-3">Diverse Opportunities</h3>
+                <p className="text-gray-700">Access surveys across industries</p>
+                <div className="mt-4 bg-gradient-to-r from-yellow-500 to-pink-700 text-white px-4 py-3 rounded-lg">
+                  <p className="text-2xl font-bold">500+</p>
+                  <p className="text-sm">Surveys Monthly</p>
+                </div>
+              </div>
+              <div className="bg-white/95 backdrop-blur-md p-8 rounded-2xl border-2 border-yellow-200 shadow-xl text-center hover:scale-105 transition-all">
+                <div className="w-20 h-20 bg-gradient-to-br from-yellow-400 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                  <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-3">Competitive Rewards</h3>
+                <p className="text-gray-700">Earn for every completed survey</p>
+                <div className="mt-4 bg-gradient-to-r from-yellow-500 to-pink-700 text-white px-4 py-3 rounded-lg">
+                  <p className="text-2xl font-bold">Fast Payouts</p>
+                  <p className="text-sm">Multiple options</p>
+                </div>
+              </div>
+              <div className="bg-white/95 backdrop-blur-md p-8 rounded-2xl border-2 border-yellow-200 shadow-xl text-center hover:scale-105 transition-all">
+                <div className="w-20 h-20 bg-gradient-to-br from-yellow-400 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                  <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                  </svg>
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-3">Data Privacy</h3>
+                <p className="text-gray-700">Your information is secure</p>
+                <div className="mt-4 bg-gradient-to-r from-yellow-500 to-pink-700 text-white px-4 py-3 rounded-lg">
+                  <p className="text-2xl font-bold">100% Secure</p>
+                  <p className="text-sm">Encrypted data</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Signup/Login Forms */}
+        <section className="py-20 px-4 sm:px-6 lg:px-8">
+          <div className="container mx-auto max-w-2xl">
             <Card className="border-2 border-white/30 shadow-2xl bg-white/10 backdrop-blur-lg">
               <CardHeader>
                 <div className="flex gap-2 mb-6">
@@ -284,7 +311,6 @@ export const JoinUsPage = () => {
                               name="firstName"
                               value={signupData.firstName}
                               onChange={handleSignupChange}
-                              placeholder="Enter your first name"
                               required
                             />
                           </div>
@@ -295,7 +321,6 @@ export const JoinUsPage = () => {
                               name="lastName"
                               value={signupData.lastName}
                               onChange={handleSignupChange}
-                              placeholder="Enter your last name"
                               required
                             />
                           </div>
@@ -308,43 +333,37 @@ export const JoinUsPage = () => {
                             type="email"
                             value={signupData.email}
                             onChange={handleSignupChange}
-                            placeholder="your.email@example.com"
                             required
                           />
                         </div>
                         <div>
-                          <Label htmlFor="password" className="text-white drop-shadow-md">Password * (min. 6 characters)</Label>
+                          <Label htmlFor="password" className="text-white drop-shadow-md">Password *</Label>
                           <Input
                             id="password"
                             name="password"
                             type="password"
                             value={signupData.password}
                             onChange={handleSignupChange}
-                            placeholder="Create a secure password"
-                            minLength={6}
                             required
                           />
                         </div>
                         <div className="grid grid-cols-2 gap-4">
                           <div>
-                            <Label htmlFor="age" className="text-white drop-shadow-md">Age * (18+)</Label>
+                            <Label htmlFor="age" className="text-white drop-shadow-md">Age *</Label>
                             <Input
                               id="age"
                               name="age"
                               type="number"
-                              min="18"
-                              max="100"
                               value={signupData.age}
                               onChange={handleSignupChange}
-                              placeholder="Your age"
                               required
                             />
                           </div>
                           <div>
                             <Label htmlFor="gender" className="text-white drop-shadow-md">Gender *</Label>
-                            <Select name="gender" value={signupData.gender} onValueChange={(value) => handleSelectChange('gender', value)} required>
+                            <Select name="gender" onValueChange={(value) => handleSelectChange('gender', value)} required>
                               <SelectTrigger>
-                                <SelectValue placeholder="Select your gender" />
+                                <SelectValue placeholder="Select" />
                               </SelectTrigger>
                               <SelectContent>
                                 <SelectItem value="male">Male</SelectItem>
@@ -469,111 +488,6 @@ export const JoinUsPage = () => {
                 )}
               </CardContent>
             </Card>
-              </div>
-
-              {/* RIGHT COLUMN: Content */}
-              <div>
-              <div className="inline-block px-5 py-2 bg-yellow-400/90 backdrop-blur-sm rounded-full text-sm font-bold text-purple-900 mb-4 shadow-lg">
-                Your Voice Matters
-              </div>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
-                Join Our Global Panel
-              </h1>
-              <p className="text-lg sm:text-xl text-gray-100 leading-relaxed mb-4 drop-shadow-md">
-                Turn your opinions into income. Share your thoughts on products, services, and trends while earning rewards from the comfort of your home.
-              </p>
-              <div className="flex flex-wrap gap-6 justify-center mt-8 text-left max-w-3xl mx-auto">
-                <div className="flex items-start gap-3">
-                  <div className="w-12 h-12 bg-green-400 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg">
-                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-white drop-shadow-md">Earn Extra Income</h3>
-                    <p className="text-sm text-gray-200 drop-shadow">Get paid for sharing your opinions</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <div className="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg">
-                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-white drop-shadow-md">Flexible Timing</h3>
-                    <p className="text-sm text-gray-200 drop-shadow">Work on your own schedule</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <div className="w-12 h-12 bg-pink-500 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg">
-                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-white drop-shadow-md">Simple & Easy</h3>
-                    <p className="text-sm text-gray-200 drop-shadow">Quick online surveys</p>
-                  </div>
-                </div>
-              </div>
-              {/* End RIGHT COLUMN */}
-              
-            </div>
-            {/* End grid */}
-          </div>
-        </section>
-
-
-
-        {/* Why Researchers Love Our Panel */}
-        <section className="py-20 px-4 sm:px-6 lg:px-8">
-          <div className="container mx-auto max-w-6xl">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-white mb-4 drop-shadow-lg">Why Researchers Love Our Panel</h2>
-              <p className="text-lg text-gray-100 drop-shadow-md">Join thousands of panelists making a difference</p>
-            </div>
-            <div className="grid md:grid-cols-3 gap-8">
-              <div className="bg-white/95 backdrop-blur-md p-8 rounded-2xl border-2 border-yellow-200 shadow-xl text-center hover:scale-105 transition-all">
-                <div className="w-20 h-20 bg-gradient-to-br from-yellow-400 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
-                  <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                  </svg>
-                </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">Diverse Opportunities</h3>
-                <p className="text-gray-700">Access surveys across industries</p>
-                <div className="mt-4 bg-gradient-to-r from-yellow-500 to-pink-700 text-white px-4 py-3 rounded-lg">
-                  <p className="text-2xl font-bold">500+</p>
-                  <p className="text-sm">Surveys Monthly</p>
-                </div>
-              </div>
-              <div className="bg-white/95 backdrop-blur-md p-8 rounded-2xl border-2 border-yellow-200 shadow-xl text-center hover:scale-105 transition-all">
-                <div className="w-20 h-20 bg-gradient-to-br from-yellow-400 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
-                  <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">Competitive Rewards</h3>
-                <p className="text-gray-700">Earn for every completed survey</p>
-                <div className="mt-4 bg-gradient-to-r from-yellow-500 to-pink-700 text-white px-4 py-3 rounded-lg">
-                  <p className="text-2xl font-bold">Fast Payouts</p>
-                  <p className="text-sm">Multiple options</p>
-                </div>
-              </div>
-              <div className="bg-white/95 backdrop-blur-md p-8 rounded-2xl border-2 border-yellow-200 shadow-xl text-center hover:scale-105 transition-all">
-                <div className="w-20 h-20 bg-gradient-to-br from-yellow-400 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
-                  <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                  </svg>
-                </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">Data Privacy</h3>
-                <p className="text-gray-700">Your information is secure</p>
-                <div className="mt-4 bg-gradient-to-r from-yellow-500 to-pink-700 text-white px-4 py-3 rounded-lg">
-                  <p className="text-2xl font-bold">100% Secure</p>
-                  <p className="text-sm">Encrypted data</p>
-                </div>
-              </div>
-            </div>
           </div>
         </section>
 
