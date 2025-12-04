@@ -134,7 +134,6 @@ export const PrivacyPolicyPage = () => {
                 <div className="bg-gray-50 p-6 rounded-lg border border-gray-200 mt-4">
                   <p className="text-gray-900 font-semibold mb-2">FACTUM RESEARCH</p>
                   <p className="text-gray-700">Email: <a href="mailto:rfq@factumresearch.com" className="text-purple-600 hover:underline">rfq@factumresearch.com</a></p>
-                  <p className="text-gray-700">Phone: +91 8690396627</p>
                   <p className="text-gray-700">Address: B2-1424 Tower-B2 DLF Mypad TCG 6/6, Vibhuti Khand, Gomti Nagar, Lucknow - Uttar Pradesh 226010</p>
                 </div>
 
