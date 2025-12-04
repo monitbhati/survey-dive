@@ -3,7 +3,7 @@ import { Button } from '../components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
 import { Input } from '../components/ui/input';
 import { Textarea } from '../components/ui/textarea';
-import { Mail, PhoneCall, MapPin } from 'lucide-react';
+import { Mail, MapPin } from 'lucide-react';
 import { mockData } from '../mock';
 import { toast } from 'sonner';
 import { Header } from '../components/Header';
