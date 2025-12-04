@@ -303,7 +303,7 @@ export const AboutPage = () => {
           <div className="text-center">
             <a href="/panel-reach-presentation.html" target="_blank" rel="noopener noreferrer">
               <Button size="lg" className="bg-gradient-to-r from-yellow-500 to-pink-700 hover:from-orange-700 hover:to-red-600">
-                Learn More About Our Panel Reach <ArrowRight className="ml-2" size={20} />
+                View/Download Our Panel Book <ArrowRight className="ml-2" size={20} />
               </Button>
             </a>
           </div>
