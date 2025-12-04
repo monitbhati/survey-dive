@@ -112,8 +112,9 @@ export const JoinUsPage = () => {
         navigate('/dashboard');
       }, 1000);
     } catch (error) {
-      console.error('Login error:', error);
-      toast.error(error.response?.data?.detail || 'Login failed');
+      console.error('Login error:', error.message || error);
+      const errorMessage = error.response?.data?.detail || error.message || 'Login failed';
+      toast.error(errorMessage);
     } finally {
       setLoading(false);
     }
