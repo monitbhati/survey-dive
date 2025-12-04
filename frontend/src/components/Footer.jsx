@@ -39,8 +39,17 @@ export const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-slate-800 pt-4 text-center text-slate-500 text-sm">
-          <p>&copy; {new Date().getFullYear()} {mockData.company.name}. All rights reserved.</p>
+        <div className="border-t border-slate-800 pt-4 text-center">
+          <div className="flex flex-wrap justify-center gap-4 mb-3">
+            <Link to="/privacy-policy" className="text-slate-400 hover:text-white text-sm transition-colors">
+              Privacy Policy
+            </Link>
+            <span className="text-slate-600">•</span>
+            <Link to="/terms-conditions" className="text-slate-400 hover:text-white text-sm transition-colors">
+              Terms & Conditions
+            </Link>
+          </div>
+          <p className="text-slate-500 text-sm">&copy; {new Date().getFullYear()} {mockData.company.name}. All rights reserved.</p>
         </div>
       </div>
     </footer>
