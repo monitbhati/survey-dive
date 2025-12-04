@@ -469,8 +469,8 @@ export const JoinUsPage = () => {
           </div>
         </section>
 
-        {/* Page Header */}
-        <section className="pt-32 pb-16 px-4 sm:px-6 lg:px-8 min-h-[550px] flex items-center">
+        {/* Benefits Section */}
+        <section className="py-16 px-4 sm:px-6 lg:px-8 min-h-[450px] flex items-center">
           <div className="container mx-auto">
             <div className="max-w-4xl mx-auto text-center">
               <div className="inline-block px-5 py-2 bg-yellow-400/90 backdrop-blur-sm rounded-full text-sm font-bold text-purple-900 mb-4 shadow-lg">
