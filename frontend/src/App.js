@@ -12,6 +12,8 @@ import { CATIPage } from "./pages/services/CATIPage";
 import { QualitativePage } from "./pages/services/QualitativePage";
 import { SurveyDesigningPage } from "./pages/services/SurveyDesigningPage";
 import { UserDashboardPage } from "./pages/UserDashboardPage";
+import { PrivacyPolicyPage } from "./pages/PrivacyPolicyPage";
+import { TermsConditionsPage } from "./pages/TermsConditionsPage";
 import LogoShowcase from "./pages/LogoShowcase";
 import { Toaster } from "./components/ui/sonner";
 import { ScrollToTop } from "./components/ScrollToTop";
