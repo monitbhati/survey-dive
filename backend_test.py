@@ -17,7 +17,7 @@ TEST_USER_DATA = {
     "name": "Test",
     "surname": "User", 
     "email": "testfinal@factum.com",
-    "password": "test123",
+    "password": "test1234",
     "age": 28,
     "country": "India",
     "gender": "male"
