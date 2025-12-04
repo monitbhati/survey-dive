@@ -270,8 +270,10 @@ metadata:
 
 test_plan:
   current_focus:
-    - "All backend API endpoints tested and working"
-  stuck_tasks: []
+    - "Join Us Signup Flow - UI interaction issues"
+    - "User Login and Dashboard - dependent on signup fix"
+  stuck_tasks:
+    - "Join Us Signup Flow"
   test_all: true
   test_priority: "high_first"
 
