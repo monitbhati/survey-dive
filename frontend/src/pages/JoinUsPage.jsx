@@ -345,29 +345,35 @@ export const JoinUsPage = () => {
                             type="email"
                             value={signupData.email}
                             onChange={handleSignupChange}
+                            placeholder="your.email@example.com"
                             required
                           />
                         </div>
                         <div>
-                          <Label htmlFor="password" className="text-white drop-shadow-md">Password *</Label>
+                          <Label htmlFor="password" className="text-white drop-shadow-md">Password * (min. 6 characters)</Label>
                           <Input
                             id="password"
                             name="password"
                             type="password"
                             value={signupData.password}
                             onChange={handleSignupChange}
+                            placeholder="Create a secure password"
+                            minLength={6}
                             required
                           />
                         </div>
                         <div className="grid grid-cols-2 gap-4">
                           <div>
-                            <Label htmlFor="age" className="text-white drop-shadow-md">Age *</Label>
+                            <Label htmlFor="age" className="text-white drop-shadow-md">Age * (18+)</Label>
                             <Input
                               id="age"
                               name="age"
                               type="number"
+                              min="18"
+                              max="100"
                               value={signupData.age}
                               onChange={handleSignupChange}
+                              placeholder="Your age"
                               required
                             />
                           </div>
