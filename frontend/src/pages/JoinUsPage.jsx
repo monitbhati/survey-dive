@@ -126,8 +126,22 @@ export const JoinUsPage = () => {
         navigate('/dashboard');
       }, 1000);
     } catch (error) {
-      console.error('Login error:', error.message || error);
-      const errorMessage = error.response?.data?.detail || error.message || 'Login failed';
+      console.error('Login error:', error.message || 'Login failed');
+      let errorMessage = 'Login failed';
+      
+      if (error.response?.data?.detail) {
+        // Handle both string and array formats
+        if (typeof error.response.data.detail === 'string') {
+          errorMessage = error.response.data.detail;
+        } else if (Array.isArray(error.response.data.detail)) {
+          errorMessage = error.response.data.detail.map(err => err.msg || err).join(', ');
+        } else {
+          errorMessage = 'Login failed. Please check your credentials.';
+        }
+      } else if (error.message) {
+        errorMessage = error.message;
+      }
+      
       toast.error(errorMessage);
     } finally {
       setLoading(false);
