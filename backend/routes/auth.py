@@ -121,3 +121,57 @@ async def login(credentials: UserLogin):
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail="An error occurred during login"
         )
+
+@router.get("/me", response_model=dict)
+async def get_current_user(authorization: str = Header(None)):
+    """
+    Get current logged-in user information.
+    """
+    try:
+        if not authorization or not authorization.startswith("Bearer "):
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Invalid authorization header"
+            )
+        
+        token = authorization.split(" ")[1]
+        payload = decode_access_token(token)
+        
+        if not payload:
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Invalid or expired token"
+            )
+        
+        email = payload.get("sub")
+        user_doc = await users_collection.find_one({"email": email}, {"_id": 0})
+        
+        if not user_doc:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail="User not found"
+            )
+        
+        # Remove sensitive data
+        user_doc.pop("hashed_password", None)
+        
+        # Map 'name' to 'firstName' and 'surname' to 'lastName' for frontend
+        return {
+            "id": user_doc.get("id"),
+            "firstName": user_doc.get("name"),
+            "lastName": user_doc.get("surname"),
+            "email": user_doc.get("email"),
+            "age": user_doc.get("age"),
+            "country": user_doc.get("country"),
+            "profession": user_doc.get("profession"),
+            "gender": user_doc.get("gender")
+        }
+    
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error getting current user: {str(e)}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="An error occurred while fetching user data"
+        )
