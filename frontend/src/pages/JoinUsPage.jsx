@@ -14,6 +14,7 @@ const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
 export const JoinUsPage = () => {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('signup');
   const [signupData, setSignupData] = useState({
     firstName: '',
