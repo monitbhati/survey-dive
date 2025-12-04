@@ -517,6 +517,7 @@ export const JoinUsPage = () => {
                   </div>
                 </div>
               </div>
+              
             </div>
           </div>
         </section>
