@@ -322,8 +322,12 @@ export const AboutPage = () => {
               <Card key={index} className="border-2 border-yellow-300 bg-white/95 backdrop-blur-md">
                 <CardContent className="pt-8 pb-8">
                   <div className="flex items-start gap-4">
-                    <div className="w-20 h-20 bg-yellow-100 rounded-full flex items-center justify-center flex-shrink-0">
-                      <User className="text-pink-700" size={40} />
+                    <div className="w-24 h-24 rounded-full overflow-hidden flex-shrink-0 border-4 border-yellow-400 shadow-lg">
+                      <img 
+                        src={member.image} 
+                        alt={member.name}
+                        className="w-full h-full object-cover"
+                      />
                     </div>
                     <div className="flex-1">
                       <h3 className="text-xl font-bold text-gray-900 mb-1">{member.name}</h3>
