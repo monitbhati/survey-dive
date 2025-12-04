@@ -9,7 +9,7 @@ class UserBase(BaseModel):
     email: EmailStr
     age: int = Field(ge=18, le=100)
     country: str
-    profession: str
+    profession: Optional[str] = None
     gender: str
 
 class UserCreate(UserBase):
