@@ -288,7 +288,7 @@ export const JoinUsPage = () => {
         </section>
 
         {/* Signup/Login Forms */}
-        <section className="py-20 px-4 sm:px-6 lg:px-8">
+        <section className="py-12 px-4 sm:px-6 lg:px-8">
           <div className="container mx-auto max-w-2xl">
             <Card className="border-2 border-white/30 shadow-2xl bg-white/10 backdrop-blur-lg">
               <CardHeader>
