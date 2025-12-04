@@ -333,12 +333,15 @@ export const JoinUsPage = () => {
                           </div>
                         </div>
                         <div>
-                          <Label htmlFor="country" className="text-white drop-shadow-md">Country *</Label>
+                          <Label htmlFor="country" className="text-white drop-shadow-md">
+                            Country * {detectingCountry && <span className="text-xs text-yellow-300">(Detecting...)</span>}
+                          </Label>
                           <Input
                             id="country"
                             name="country"
                             value={signupData.country}
                             onChange={handleSignupChange}
+                            placeholder={detectingCountry ? "Detecting your country..." : "Enter your country"}
                             required
                           />
                         </div>
