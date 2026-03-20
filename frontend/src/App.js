@@ -7,7 +7,7 @@ import { ContactPage } from "./pages/ContactPage";
 import { JoinUsPage } from "./pages/JoinUsPage";
 import { AdminLoginPage } from "./pages/AdminLoginPage";
 import { AdminDashboardPage } from "./pages/AdminDashboardPage";
-import { OnlineSamplingPage } from "./pages/services/OnlineSamplingPage";
+import { QuantitativeResearchPage } from "./pages/services/QuantitativeResearchPage";
 import { CATIPage } from "./pages/services/CATIPage";
 import { QualitativePage } from "./pages/services/QualitativePage";
 import { SurveyDesigningPage } from "./pages/services/SurveyDesigningPage";
