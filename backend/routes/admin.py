@@ -83,7 +83,8 @@ async def get_all_contacts():
     Get all contact form submissions (admin only).
     """
     try:
-        contacts = await contact_collection.find().sort("created_at", -1).to_list(1000)
+        # Get all contact submissions with optimized query
+        contacts = await contact_collection.find({}, {'_id': 0}).sort("created_at", -1).to_list(1000)
         
         contact_list = [
             ContactFormSubmission(**contact)
