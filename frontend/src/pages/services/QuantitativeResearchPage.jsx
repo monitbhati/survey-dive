@@ -71,22 +71,22 @@ export const QuantitativeResearchPage = () => {
                 <div className="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mb-4">
                   <Target className="text-pink-700" size={28} />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">Precise Targeting</h3>
+                <h3 className="text-2xl font-bold text-gray-900 mb-3">Statistical Rigor</h3>
                 <p className="text-gray-600 leading-relaxed mb-4">
-                  Advanced profiling and screening criteria ensure we reach your exact target audience based on demographics, behaviors, and professional attributes.
+                  Advanced statistical methodologies and sampling techniques ensure representative data with measurable confidence intervals and significance levels.
                 </p>
                 <ul className="space-y-2">
                   <li className="flex items-start">
                     <CheckCircle className="text-green-600 mr-2 flex-shrink-0 mt-0.5" size={16} />
-                    <span className="text-sm text-gray-700">Demographic targeting</span>
+                    <span className="text-sm text-gray-700">Representative sampling</span>
                   </li>
                   <li className="flex items-start">
                     <CheckCircle className="text-green-600 mr-2 flex-shrink-0 mt-0.5" size={16} />
-                    <span className="text-sm text-gray-700">Psychographic profiling</span>
+                    <span className="text-sm text-gray-700">Confidence intervals</span>
                   </li>
                   <li className="flex items-start">
                     <CheckCircle className="text-green-600 mr-2 flex-shrink-0 mt-0.5" size={16} />
-                    <span className="text-sm text-gray-700">Behavioral segmentation</span>
+                    <span className="text-sm text-gray-700">Significance testing</span>
                   </li>
                 </ul>
               </CardContent>
