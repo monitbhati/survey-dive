@@ -9,9 +9,9 @@ import { Footer } from '../components/Footer';
 const services = [
   {
     id: 1,
-    title: 'Online Sampling',
+    title: 'Quantitative Research',
     icon: Users,
-    description: 'Comprehensive online sampling solutions delivering precise audience targeting across B2B, B2C, and healthcare sectors. Our advanced panel network ensures you reach the right respondents with verified profiles and quality engagement.',
+    description: 'Large-scale quantitative studies delivering statistically significant insights across diverse populations and market segments.',
     highlights: [
       'B2B Professional Panels',
       'B2C Consumer Audiences',
