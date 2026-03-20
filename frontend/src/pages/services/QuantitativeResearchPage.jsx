@@ -226,41 +226,41 @@ export const QuantitativeResearchPage = () => {
       {/* Process */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto max-w-6xl">
-          <h2 className="text-4xl font-bold text-white drop-shadow-lg mb-12 text-center">Our Process</h2>
+          <h2 className="text-4xl font-bold text-white drop-shadow-lg mb-12 text-center">Our Research Process</h2>
           <div className="space-y-6">
             <div className="flex items-start gap-4">
               <div className="w-12 h-12 bg-gradient-to-r from-yellow-500 to-pink-700 text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg">1</div>
               <div>
-                <h4 className="text-xl font-bold text-white drop-shadow-md mb-2">Sample Specification</h4>
-                <p className="text-gray-100 drop-shadow-sm leading-relaxed">We work with you to define precise targeting criteria, sample size, and quality requirements based on your research objectives.</p>
+                <h4 className="text-xl font-bold text-white drop-shadow-md mb-2">Research Design</h4>
+                <p className="text-gray-100 drop-shadow-sm leading-relaxed">We collaborate with you to design the optimal research methodology, sample size calculations, and statistical framework for your objectives.</p>
               </div>
             </div>
             <div className="flex items-start gap-4">
               <div className="w-12 h-12 bg-gradient-to-r from-yellow-500 to-pink-700 text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg">2</div>
               <div>
-                <h4 className="text-xl font-bold text-white drop-shadow-md mb-2">Panel Matching</h4>
-                <p className="text-gray-100 drop-shadow-sm leading-relaxed">Our system identifies and pre-screens qualified panelists from our extensive network who match your target profile.</p>
+                <h4 className="text-xl font-bold text-white drop-shadow-md mb-2">Sampling Strategy</h4>
+                <p className="text-gray-100 drop-shadow-sm leading-relaxed">Implementation of statistically sound sampling techniques ensuring representative coverage and minimizing bias across target populations.</p>
               </div>
             </div>
             <div className="flex items-start gap-4">
               <div className="w-12 h-12 bg-gradient-to-r from-yellow-500 to-pink-700 text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg">3</div>
               <div>
-                <h4 className="text-xl font-bold text-white drop-shadow-md mb-2">Survey Deployment</h4>
-                <p className="text-gray-100 drop-shadow-sm leading-relaxed">We deploy your survey with optimized invitation strategies and real-time monitoring to maximize response rates.</p>
+                <h4 className="text-xl font-bold text-white drop-shadow-md mb-2">Data Collection</h4>
+                <p className="text-gray-100 drop-shadow-sm leading-relaxed">Systematic data gathering using validated instruments with real-time quality monitoring and response rate optimization.</p>
               </div>
             </div>
             <div className="flex items-start gap-4">
               <div className="w-12 h-12 bg-gradient-to-r from-yellow-500 to-pink-700 text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg">4</div>
               <div>
-                <h4 className="text-xl font-bold text-white drop-shadow-md mb-2">Quality Control</h4>
-                <p className="text-gray-100 drop-shadow-sm leading-relaxed">Rigorous validation checks including fraud detection, attention monitoring, and response pattern analysis ensure data quality.</p>
+                <h4 className="text-xl font-bold text-white drop-shadow-md mb-2">Statistical Analysis</h4>
+                <p className="text-gray-100 drop-shadow-sm leading-relaxed">Comprehensive statistical analysis including descriptive statistics, inferential testing, and advanced modeling techniques.</p>
               </div>
             </div>
             <div className="flex items-start gap-4">
               <div className="w-12 h-12 bg-gradient-to-r from-yellow-500 to-pink-700 text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg">5</div>
               <div>
-                <h4 className="text-xl font-bold text-white drop-shadow-md mb-2">Data Delivery</h4>
-                <p className="text-gray-100 drop-shadow-sm leading-relaxed">Clean, validated data delivered in your preferred format with comprehensive quality reports and fieldwork documentation.</p>
+                <h4 className="text-xl font-bold text-white drop-shadow-md mb-2">Insights & Reporting</h4>
+                <p className="text-gray-100 drop-shadow-sm leading-relaxed">Detailed analytical reports with statistical significance testing, confidence intervals, and actionable business recommendations.</p>
               </div>
             </div>
           </div>
