@@ -51,7 +51,8 @@ async def get_all_users():
     Get all registered users (admin only).
     """
     try:
-        users = await users_collection.find().to_list(1000)
+        # Get all registered users with optimized projection
+        users = await users_collection.find({}, {'hashed_password': 0, '_id': 0}).to_list(1000)
         
         user_list = [
             UserResponse(
