@@ -110,9 +110,9 @@ export const AboutPage = () => {
                 <div className="w-14 h-14 bg-yellow-100 rounded-xl flex items-center justify-center mb-6">
                   <Users className="text-blue-600" size={28} />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">Online Sampling</h3>
+                <h3 className="text-2xl font-bold text-gray-900 mb-3">Quantitative Research</h3>
                 <p className="text-gray-700 mb-4 leading-relaxed">
-                  Comprehensive online sampling solutions across diverse audience segments, delivering precise targeting and high-quality respondent engagement.
+                  Comprehensive quantitative research solutions across diverse audience segments, delivering precise targeting and high-quality respondent engagement.
                 </p>
                 <ul className="space-y-2">
                   <li className="flex items-center text-gray-700">
