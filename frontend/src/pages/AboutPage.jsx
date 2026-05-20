@@ -302,7 +302,7 @@ export const AboutPage = () => {
 
           <div className="text-center">
             <a
-              href="/panel-reach-presentation.pdf"
+              href="/panel-reach-presentation.html"
               target="_blank"
               rel="noopener noreferrer"
               data-testid="view-panel-book-link"
