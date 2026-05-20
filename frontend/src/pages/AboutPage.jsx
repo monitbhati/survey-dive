@@ -301,25 +301,20 @@ export const AboutPage = () => {
           </div>
 
           <div className="text-center">
-            <Button
-              data-testid="view-download-panel-book-btn"
-              size="lg"
-              className="bg-gradient-to-r from-yellow-500 to-pink-700 hover:from-orange-700 hover:to-red-600"
-              onClick={() => {
-                const pdfUrl = "/panel-reach-presentation.pdf";
-                // Trigger automatic download
-                const downloadLink = document.createElement("a");
-                downloadLink.href = pdfUrl;
-                downloadLink.download = "Factum-Research-Panel-Book.pdf";
-                document.body.appendChild(downloadLink);
-                downloadLink.click();
-                document.body.removeChild(downloadLink);
-                // Open the PDF in a new tab for viewing
-                window.open(pdfUrl, "_blank", "noopener,noreferrer");
-              }}
+            <a
+              href="/panel-reach-presentation.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-testid="view-panel-book-link"
             >
-              View/Download Our Panel Book <ArrowRight className="ml-2" size={20} />
-            </Button>
+              <Button
+                data-testid="view-panel-book-btn"
+                size="lg"
+                className="bg-gradient-to-r from-yellow-500 to-pink-700 hover:from-orange-700 hover:to-red-600"
+              >
+                View Our Panel Book <ArrowRight className="ml-2" size={20} />
+              </Button>
+            </a>
           </div>
         </div>
       </section>
