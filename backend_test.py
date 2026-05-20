@@ -10,7 +10,7 @@ import sys
 from datetime import datetime
 
 # Backend URL from frontend/.env
-BASE_URL = "https://data-insights-186.preview.emergentagent.com/api"
+BASE_URL = "https://factum-research-1.preview.emergentagent.com/api"
 
 # Test data as specified in the review request
 TEST_USER_DATA = {
