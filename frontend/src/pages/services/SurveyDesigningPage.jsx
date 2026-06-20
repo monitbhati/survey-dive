@@ -1,327 +1,143 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { Button } from '../../components/ui/button';
 import { Card, CardContent } from '../../components/ui/card';
 import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
 import { 
-  ClipboardList, 
-  Layout, 
-  Smartphone, 
-  Settings, 
-  CheckCircle, 
-  ArrowRight,
-  BarChart3,
-  Zap,
-  TestTube
+  ClipboardList, Layout, Smartphone, Settings, CheckCircle, ArrowRight, BarChart3, Zap, TestTube
 } from 'lucide-react';
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.15 } }
+};
 
 export const SurveyDesigningPage = () => {
   return (
-    <div className="min-h-screen bg-white relative">
-      {/* Full Page Background Image */}
-      <div className="fixed inset-0 z-0">
-        <img 
-          src="https://images.unsplash.com/photo-1589278559766-6d2fc8520367?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Njd8MHwxfHNlYXJjaHwyfHxxdWVzdGlvbm5haXJlJTIwZGVzaWduJTIwY29sb3JmdWx8ZW58MHx8fHllbGxvd3wxNzY0NzE5OTI3fDA&ixlib=rb-4.1.0&q=85" 
-          alt="Survey Designing"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-purple-900/90 via-pink-900/85 to-yellow-900/75"></div>
-      </div>
-      
-      <div className="relative z-10">
+    <div className="min-h-screen bg-[#26323A] flex flex-col">
       <Header />
 
-      {/* Hero Section */}
-      <section className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 relative">
-        <div className="container mx-auto">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 leading-tight text-white drop-shadow-lg">
-              Survey Designing
-            </h1>
-            <p className="text-lg sm:text-xl mb-8 leading-relaxed text-gray-100 drop-shadow-md">
-              Expertly crafted survey instruments that balance respondent experience with data quality, ensuring optimal completion rates and actionable insights
-            </p>
-            <Link to="/contact">
-              <Button size="lg" className="bg-gradient-to-r from-yellow-500 to-pink-700 hover:from-yellow-600 hover:to-pink-800 text-lg px-8 h-14">
-                Request a Quote <ArrowRight className="ml-2" size={20} />
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
+      <main className="flex-grow pt-32 pb-24 relative z-10">
+        
+        {/* Hero Section */}
+        <section className="px-4 sm:px-6 lg:px-8 mb-24">
+          <motion.div 
+            initial="hidden"
+            animate="visible"
+            variants={staggerContainer}
+            className="container mx-auto max-w-4xl text-center"
+          >
+            <motion.h1 variants={fadeInUp} className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
+              Survey <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#DE7823] to-[#BF4A3B]">Designing</span>
+            </motion.h1>
+            <motion.p variants={fadeInUp} className="text-lg sm:text-xl text-[#A8ADB8] leading-relaxed mb-10 max-w-2xl mx-auto">
+              Expertly crafted survey instruments that balance respondent experience with data quality, ensuring optimal completion rates and actionable insights.
+            </motion.p>
+            <motion.div variants={fadeInUp}>
+              <Link to="/contact">
+                <Button size="lg" className="bg-gradient-to-r from-[#DE7823] to-[#BF4A3B] hover:from-[#BF4A3B] hover:to-[#A31E52] text-lg px-8 h-14 shadow-lg">
+                  Request a Quote <ArrowRight className="ml-2" size={20} />
+                </Button>
+              </Link>
+            </motion.div>
+          </motion.div>
+        </section>
 
-      {/* Overview */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 ">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-white drop-shadow-lg mb-4">What is Survey Designing?</h2>
-            <p className="text-lg text-gray-100 drop-shadow-md max-w-3xl mx-auto">
+        {/* Overview */}
+        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[#1A2329]/50 border-t border-b border-[#3E4F59]/50">
+          <div className="container mx-auto max-w-4xl text-center">
+            <h2 className="text-3xl font-bold text-white mb-6">What is Survey Designing?</h2>
+            <p className="text-lg text-[#A8ADB8] leading-relaxed">
               Survey designing is the art and science of creating questionnaires that accurately capture data while providing a positive respondent experience. A well-designed survey yields reliable, actionable insights that drive business decisions.
             </p>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Our Design Approach */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 ">
-        <div className="container mx-auto max-w-6xl">
-          <h2 className="text-4xl font-bold text-white drop-shadow-lg mb-12 text-center">Our Survey Design Expertise</h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            <Card className="border-2 border-yellow-300 bg-white/95 backdrop-blur-md">
-              <CardContent className="pt-8 pb-8">
-                <Layout className="text-pink-700 mb-4" size={32} />
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">Question Development</h3>
-                <p className="text-gray-900 leading-relaxed mb-4">
-                  Crafting clear, unbiased questions that capture accurate data while avoiding common pitfalls like leading questions or double-barreling.
-                </p>
-                <ul className="space-y-2">
-                  <li className="flex items-start">
-                    <CheckCircle className="text-green-600 mr-2 flex-shrink-0 mt-0.5" size={16} />
-                    <span className="text-sm text-gray-700">Objective question wording</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="text-green-600 mr-2 flex-shrink-0 mt-0.5" size={16} />
-                    <span className="text-sm text-gray-700">Appropriate scale selection</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="text-green-600 mr-2 flex-shrink-0 mt-0.5" size={16} />
-                    <span className="text-sm text-gray-700">Response option optimization</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="text-green-600 mr-2 flex-shrink-0 mt-0.5" size={16} />
-                    <span className="text-sm text-gray-700">Question order logic</span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card className="border-2 border-yellow-300 bg-white/95 backdrop-blur-md">
-              <CardContent className="pt-8 pb-8">
-                <Settings className="text-green-600 mb-4" size={32} />
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">Survey Logic Programming</h3>
-                <p className="text-gray-900 leading-relaxed mb-4">
-                  Complex skip patterns, piping, and randomization ensure each respondent sees only relevant questions in the right sequence.
-                </p>
-                <ul className="space-y-2">
-                  <li className="flex items-start">
-                    <CheckCircle className="text-green-600 mr-2 flex-shrink-0 mt-0.5" size={16} />
-                    <span className="text-sm text-gray-700">Skip logic implementation</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="text-green-600 mr-2 flex-shrink-0 mt-0.5" size={16} />
-                    <span className="text-sm text-gray-700">Text piping & substitution</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="text-green-600 mr-2 flex-shrink-0 mt-0.5" size={16} />
-                    <span className="text-sm text-gray-700">Randomization & rotation</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="text-green-600 mr-2 flex-shrink-0 mt-0.5" size={16} />
-                    <span className="text-sm text-gray-700">Quota management</span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card className="border-2 border-yellow-300 bg-white/95 backdrop-blur-md">
-              <CardContent className="pt-8 pb-8">
-                <Smartphone className="text-purple-600 mb-4" size={32} />
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">Mobile Optimization</h3>
-                <p className="text-gray-900 leading-relaxed mb-4">
-                  Responsive design ensures seamless survey experience across all devices, from smartphones to desktop computers.
-                </p>
-                <ul className="space-y-2">
-                  <li className="flex items-start">
-                    <CheckCircle className="text-green-600 mr-2 flex-shrink-0 mt-0.5" size={16} />
-                    <span className="text-sm text-gray-700">Mobile-first design approach</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="text-green-600 mr-2 flex-shrink-0 mt-0.5" size={16} />
-                    <span className="text-sm text-gray-700">Touch-friendly interfaces</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="text-green-600 mr-2 flex-shrink-0 mt-0.5" size={16} />
-                    <span className="text-sm text-gray-700">Fast loading times</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="text-green-600 mr-2 flex-shrink-0 mt-0.5" size={16} />
-                    <span className="text-sm text-gray-700">Cross-device testing</span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card className="border-2 border-yellow-300 bg-white/95 backdrop-blur-md">
-              <CardContent className="pt-8 pb-8">
-                <TestTube className="text-orange-600 mb-4" size={32} />
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">Testing & Refinement</h3>
-                <p className="text-gray-900 leading-relaxed mb-4">
-                  Rigorous pilot testing identifies issues before launch, ensuring smooth fieldwork and high-quality data collection.
-                </p>
-                <ul className="space-y-2">
-                  <li className="flex items-start">
-                    <CheckCircle className="text-green-600 mr-2 flex-shrink-0 mt-0.5" size={16} />
-                    <span className="text-sm text-gray-700">Soft launch testing</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="text-green-600 mr-2 flex-shrink-0 mt-0.5" size={16} />
-                    <span className="text-sm text-gray-700">Logic validation</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="text-green-600 mr-2 flex-shrink-0 mt-0.5" size={16} />
-                    <span className="text-sm text-gray-700">Timing optimization</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="text-green-600 mr-2 flex-shrink-0 mt-0.5" size={16} />
-                    <span className="text-sm text-gray-700">Respondent feedback</span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Design Principles */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 ">
-        <div className="container mx-auto max-w-6xl">
-          <h2 className="text-4xl font-bold text-white drop-shadow-lg mb-12 text-center">Our Design Principles</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <Zap className="text-pink-700" size={32} />
-              </div>
-              <h3 className="text-xl font-bold text-white drop-shadow-md mb-3">Respondent-Centric</h3>
-              <p className="text-gray-100 drop-shadow-sm leading-relaxed">
-                We prioritize user experience to keep respondents engaged and motivated throughout the survey.
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <BarChart3 className="text-green-600" size={32} />
-              </div>
-              <h3 className="text-xl font-bold text-white drop-shadow-md mb-3">Data Quality Focus</h3>
-              <p className="text-gray-100 drop-shadow-sm leading-relaxed">
-                Every design decision is made with data integrity and analytical requirements in mind.
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <ClipboardList className="text-purple-600" size={32} />
-              </div>
-              <h3 className="text-xl font-bold text-white drop-shadow-md mb-3">Research Best Practices</h3>
-              <p className="text-gray-100 drop-shadow-sm leading-relaxed">
-                We follow industry standards and academic research principles in all our survey designs.
-              </p>
+        {/* Expertise Grid */}
+        <section className="py-24 px-4 sm:px-6 lg:px-8">
+          <div className="container mx-auto max-w-6xl">
+            <h2 className="text-3xl font-bold text-white mb-12 text-center">Our Design Expertise</h2>
+            <div className="grid md:grid-cols-2 gap-8">
+              {[
+                { icon: Layout, title: 'Question Development', items: ['Objective wording', 'Scale selection', 'Option optimization', 'Order logic'] },
+                { icon: Settings, title: 'Logic Programming', items: ['Skip logic implementation', 'Text piping & substitution', 'Randomization', 'Quota management'] },
+                { icon: Smartphone, title: 'Mobile Optimization', items: ['Mobile-first design', 'Touch-friendly UI', 'Fast loading times', 'Cross-device testing'] },
+                { icon: TestTube, title: 'Testing & Refinement', items: ['Soft launch testing', 'Logic validation', 'Timing optimization', 'Respondent feedback'] }
+              ].map((exp, idx) => (
+                <Card key={idx} className="border border-[#3E4F59] bg-[#2E3D47]/80 backdrop-blur-md">
+                  <CardContent className="pt-8 pb-8">
+                    <exp.icon className="text-[#DE7823] mb-6" size={32} />
+                    <h3 className="text-2xl font-bold text-white mb-4">{exp.title}</h3>
+                    <ul className="space-y-3">
+                      {exp.items.map((item, i) => (
+                        <li key={i} className="flex items-start text-[#A8ADB8] text-sm">
+                          <CheckCircle className="text-[#DE7823] mr-3 flex-shrink-0" size={16} />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Process */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 ">
-        <div className="container mx-auto max-w-6xl">
-          <h2 className="text-4xl font-bold text-white drop-shadow-lg mb-12 text-center">Our Survey Design Process</h2>
-          <div className="space-y-6">
-            <div className="flex items-start gap-4">
-              <div className="w-12 h-12 bg-gradient-to-r from-yellow-500 to-pink-700 text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg">1</div>
-              <div>
-                <h4 className="text-xl font-bold text-white drop-shadow-md mb-2">Objectives Briefing</h4>
-                <p className="text-gray-100 drop-shadow-sm leading-relaxed">We start by understanding your research goals, target audience, and key metrics to inform survey structure and content.</p>
-              </div>
-            </div>
-            <div className="flex items-start gap-4">
-              <div className="w-12 h-12 bg-gradient-to-r from-yellow-500 to-pink-700 text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg">2</div>
-              <div>
-                <h4 className="text-xl font-bold text-white drop-shadow-md mb-2">Questionnaire Development</h4>
-                <p className="text-gray-100 drop-shadow-sm leading-relaxed">Our researchers craft questions, select scales, and structure the survey flow to optimize data quality and completion rates.</p>
-              </div>
-            </div>
-            <div className="flex items-start gap-4">
-              <div className="w-12 h-12 bg-gradient-to-r from-yellow-500 to-pink-700 text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg">3</div>
-              <div>
-                <h4 className="text-xl font-bold text-white drop-shadow-md mb-2">Programming & Logic</h4>
-                <p className="text-gray-100 drop-shadow-sm leading-relaxed">Complex survey logic, randomization, and piping are programmed and tested to ensure proper functionality.</p>
-              </div>
-            </div>
-            <div className="flex items-start gap-4">
-              <div className="w-12 h-12 bg-gradient-to-r from-yellow-500 to-pink-700 text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg">4</div>
-              <div>
-                <h4 className="text-xl font-bold text-white drop-shadow-md mb-2">Pilot Testing</h4>
-                <p className="text-gray-100 drop-shadow-sm leading-relaxed">Soft launch with small sample identifies issues, timing concerns, and areas for improvement before full deployment.</p>
-              </div>
-            </div>
-            <div className="flex items-start gap-4">
-              <div className="w-12 h-12 bg-gradient-to-r from-yellow-500 to-pink-700 text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg">5</div>
-              <div>
-                <h4 className="text-xl font-bold text-white drop-shadow-md mb-2">Refinement & Launch</h4>
-                <p className="text-gray-100 drop-shadow-sm leading-relaxed">Based on pilot results, we refine the survey and launch full fieldwork with confidence in data quality.</p>
-              </div>
+        {/* Principles */}
+        <section className="py-20 px-4 sm:px-6 lg:px-8">
+          <div className="container mx-auto max-w-6xl">
+            <h2 className="text-3xl font-bold text-white mb-12 text-center">Our Design Principles</h2>
+            <div className="grid md:grid-cols-3 gap-8">
+              {[
+                { icon: Zap, title: 'Respondent-Centric', text: 'We prioritize user experience to keep respondents engaged and motivated.' },
+                { icon: BarChart3, title: 'Data Quality Focus', text: 'Every design decision is made with data integrity in mind.' },
+                { icon: ClipboardList, title: 'Research Best Practices', text: 'We follow industry standards and academic research principles.' }
+              ].map((p, idx) => (
+                <div key={idx} className="text-center p-8 border border-[#3E4F59] bg-[#2E3D47]/50 rounded-2xl">
+                  <p.icon className="text-[#BF4A3B] mx-auto mb-6" size={40} />
+                  <h3 className="text-xl font-bold text-white mb-3">{p.title}</h3>
+                  <p className="text-[#A8ADB8] text-sm leading-relaxed">{p.text}</p>
+                </div>
+              ))}
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Question Types */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 ">
-        <div className="container mx-auto max-w-6xl">
-          <h2 className="text-4xl font-bold text-white drop-shadow-lg mb-12 text-center">Question Types We Design</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border-2 border-white/30">
-              <h4 className="font-bold text-white drop-shadow-md mb-2">Multiple Choice</h4>
-              <p className="text-gray-100 drop-shadow-sm text-sm">Single or multi-select options for categorical data</p>
-            </div>
-            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border-2 border-white/30">
-              <h4 className="font-bold text-white drop-shadow-md mb-2">Rating Scales</h4>
-              <p className="text-gray-100 drop-shadow-sm text-sm">Likert, semantic differential, and numeric scales</p>
-            </div>
-            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border-2 border-white/30">
-              <h4 className="font-bold text-white drop-shadow-md mb-2">Open-Ended</h4>
-              <p className="text-gray-100 drop-shadow-sm text-sm">Text responses for qualitative insights</p>
-            </div>
-            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border-2 border-white/30">
-              <h4 className="font-bold text-white drop-shadow-md mb-2">Matrix Questions</h4>
-              <p className="text-gray-100 drop-shadow-sm text-sm">Efficient multi-item rating grids</p>
-            </div>
-            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border-2 border-white/30">
-              <h4 className="font-bold text-white drop-shadow-md mb-2">Ranking Questions</h4>
-              <p className="text-gray-100 drop-shadow-sm text-sm">Drag-and-drop or numbered preference ranking</p>
-            </div>
-            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border-2 border-white/30">
-              <h4 className="font-bold text-white drop-shadow-md mb-2">MaxDiff & Conjoint</h4>
-              <p className="text-gray-100 drop-shadow-sm text-sm">Advanced trade-off analysis designs</p>
+        {/* Process */}
+        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[#1A2329]/50">
+          <div className="container mx-auto max-w-4xl">
+            <h2 className="text-3xl font-bold text-white mb-16 text-center">Our Design Process</h2>
+            <div className="space-y-12">
+              {[
+                { n: '01', t: 'Objectives Briefing', d: 'Understanding research goals and key metrics.' },
+                { n: '02', t: 'Questionnaire Development', d: 'Crafting questions to optimize data quality.' },
+                { n: '03', t: 'Programming & Logic', d: 'Implementing skip patterns and randomization.' },
+                { n: '04', t: 'Pilot Testing', d: 'Validating instruments before full deployment.' },
+                { n: '05', t: 'Refinement & Launch', d: 'Final adjustments for fieldwork.' }
+              ].map((step, idx) => (
+                <div key={idx} className="flex items-start gap-6">
+                  <div className="w-12 h-12 rounded-full border border-[#DE7823] text-[#DE7823] flex items-center justify-center flex-shrink-0 font-bold">
+                    {step.n}
+                  </div>
+                  <div>
+                    <h4 className="text-xl font-bold text-white mb-2">{step.t}</h4>
+                    <p className="text-[#A8ADB8]">{step.d}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* CTA */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 ">
-        <div className="container mx-auto text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold text-white drop-shadow-lg mb-6">
-            Ready to Create a High-Quality Survey?
-          </h2>
-          <p className="text-lg text-gray-100 drop-shadow-md mb-8 max-w-2xl mx-auto">
-            Let our survey design experts help you craft the perfect questionnaire
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/contact">
-              <Button size="lg" className="bg-gradient-to-r from-yellow-500 to-pink-700 hover:from-yellow-600 hover:to-pink-800 text-lg px-8 h-14">
-                Contact Us
-              </Button>
-            </Link>
-            <Link to="/services">
-              <Button size="lg" variant="outline" className="text-lg px-8 h-14 border-2 border-white text-white hover:bg-white/10">
-                View All Services
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
-
+      </main>
       <Footer />
-      </div>
     </div>
   );
 };

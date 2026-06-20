@@ -1,297 +1,152 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { Button } from '../../components/ui/button';
 import { Card, CardContent } from '../../components/ui/card';
 import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
 import { 
-  Users, 
-  Target, 
-  Globe, 
-  Shield, 
-  CheckCircle, 
-  ArrowRight,
-  Zap,
-  BarChart3
+  Users, Target, Shield, ArrowRight, CheckCircle, Zap, BarChart3, Globe, Activity
 } from 'lucide-react';
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.15 } }
+};
 
 export const QuantitativeResearchPage = () => {
   return (
-    <div className="min-h-screen bg-white relative">
-      {/* Full Page Background Image */}
-      <div className="fixed inset-0 z-0">
-        <img 
-          src="https://images.pexels.com/photos/669615/pexels-photo-669615.jpeg" 
-          alt="Quantitative Research"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-purple-900/90 via-pink-900/85 to-yellow-900/85"></div>
-      </div>
-      
-      <div className="relative z-10">
-        <Header />
+    <div className="min-h-screen bg-[#26323A] flex flex-col">
+      <Header />
 
+      <main className="flex-grow pt-32 pb-24 relative z-10">
+        
         {/* Hero Section */}
-        <section className="pt-32 pb-16 px-4 sm:px-6 lg:px-8">
-          <div className="container mx-auto max-w-4xl text-center">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
-              Quantitative Research
-            </h1>
-            <p className="text-lg sm:text-xl text-gray-100 leading-relaxed drop-shadow-md">
-              Large-scale quantitative studies delivering statistically significant insights across diverse populations and market segments
-            </p>
-            <Link to="/contact">
-              <Button size="lg" className="bg-gradient-to-r from-yellow-500 to-pink-700 hover:from-yellow-600 hover:to-pink-800 text-lg px-8 h-14">
-                Request a Quote <ArrowRight className="ml-2" size={20} />
-              </Button>
-            </Link>
-          </div>
+        <section className="px-4 sm:px-6 lg:px-8 mb-24">
+          <motion.div 
+            initial="hidden"
+            animate="visible"
+            variants={staggerContainer}
+            className="container mx-auto max-w-4xl text-center"
+          >
+            <motion.h1 variants={fadeInUp} className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
+              Quantitative <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#DE7823] to-[#BF4A3B]">Research</span>
+            </motion.h1>
+            <motion.p variants={fadeInUp} className="text-lg sm:text-xl text-[#A8ADB8] leading-relaxed mb-10 max-w-2xl mx-auto">
+              Large-scale quantitative studies delivering statistically significant insights across diverse populations and market segments.
+            </motion.p>
+            <motion.div variants={fadeInUp}>
+              <Link to="/contact">
+                <Button size="lg" className="bg-gradient-to-r from-[#DE7823] to-[#BF4A3B] hover:from-[#BF4A3B] hover:to-[#A31E52] text-lg px-8 h-14 shadow-lg">
+                  Request a Quote <ArrowRight className="ml-2" size={20} />
+                </Button>
+              </Link>
+            </motion.div>
+          </motion.div>
         </section>
 
         {/* Overview */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-white drop-shadow-lg mb-4">What is Quantitative Research?</h2>
-            <p className="text-lg text-gray-100 drop-shadow-md max-w-3xl mx-auto">
+        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[#1A2329]/50 border-t border-b border-[#3E4F59]/50">
+          <div className="container mx-auto max-w-4xl text-center">
+            <h2 className="text-3xl font-bold text-white mb-6">What is Quantitative Research?</h2>
+            <p className="text-lg text-[#A8ADB8] leading-relaxed">
               Quantitative research employs statistical methods and large sample sizes to measure, analyze, and quantify market behaviors, preferences, and trends with mathematical precision.
             </p>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Our Approach */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="container mx-auto max-w-6xl">
-          <h2 className="text-4xl font-bold text-white drop-shadow-lg mb-12 text-center">Our Quantitative Research Approach</h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            <Card className="border-2 border-yellow-300 bg-white/95 backdrop-blur-md">
-              <CardContent className="pt-8 pb-8">
-                <div className="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mb-4">
-                  <Target className="text-pink-700" size={28} />
-                </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">Statistical Rigor</h3>
-                <p className="text-gray-600 leading-relaxed mb-4">
-                  Advanced statistical methodologies and sampling techniques ensure representative data with measurable confidence intervals and significance levels.
-                </p>
-                <ul className="space-y-2">
-                  <li className="flex items-start">
-                    <CheckCircle className="text-green-600 mr-2 flex-shrink-0 mt-0.5" size={16} />
-                    <span className="text-sm text-gray-700">Representative sampling</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="text-green-600 mr-2 flex-shrink-0 mt-0.5" size={16} />
-                    <span className="text-sm text-gray-700">Confidence intervals</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="text-green-600 mr-2 flex-shrink-0 mt-0.5" size={16} />
-                    <span className="text-sm text-gray-700">Significance testing</span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card className="border-2 border-pink-300 bg-white/95 backdrop-blur-md">
-              <CardContent className="pt-8 pb-8">
-                <div className="w-14 h-14 bg-green-100 rounded-xl flex items-center justify-center mb-4">
-                  <Shield className="text-green-600" size={28} />
-                </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">Data Validation</h3>
-                <p className="text-gray-600 leading-relaxed mb-4">
-                  Comprehensive data cleaning and validation protocols including outlier detection, consistency checks, and statistical verification processes.
-                </p>
-                <ul className="space-y-2">
-                  <li className="flex items-start">
-                    <CheckCircle className="text-green-600 mr-2 flex-shrink-0 mt-0.5" size={16} />
-                    <span className="text-sm text-gray-700">Outlier detection</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="text-green-600 mr-2 flex-shrink-0 mt-0.5" size={16} />
-                    <span className="text-sm text-gray-700">Consistency validation</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="text-green-600 mr-2 flex-shrink-0 mt-0.5" size={16} />
-                    <span className="text-sm text-gray-700">Statistical verification</span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card className="border-2 border-yellow-300 bg-white/95 backdrop-blur-md">
-              <CardContent className="pt-8 pb-8">
-                <div className="w-14 h-14 bg-purple-100 rounded-xl flex items-center justify-center mb-4">
-                  <Globe className="text-purple-600" size={28} />
-                </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">Scale & Coverage</h3>
-                <p className="text-gray-600 leading-relaxed mb-4">
-                  Large-scale data collection capabilities across multiple markets and demographics, ensuring robust sample sizes for reliable statistical analysis.
-                </p>
-                <ul className="space-y-2">
-                  <li className="flex items-start">
-                    <CheckCircle className="text-green-600 mr-2 flex-shrink-0 mt-0.5" size={16} />
-                    <span className="text-sm text-gray-700">Large sample sizes</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="text-green-600 mr-2 flex-shrink-0 mt-0.5" size={16} />
-                    <span className="text-sm text-gray-700">Multi-market studies</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="text-green-600 mr-2 flex-shrink-0 mt-0.5" size={16} />
-                    <span className="text-sm text-gray-700">Cross-demographic analysis</span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card className="border-2 border-pink-300 bg-white/95 backdrop-blur-md">
-              <CardContent className="pt-8 pb-8">
-                <div className="w-14 h-14 bg-orange-100 rounded-xl flex items-center justify-center mb-4">
-                  <Zap className="text-orange-600" size={28} />
-                </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">Advanced Analytics</h3>
-                <p className="text-gray-600 leading-relaxed mb-4">
-                  Sophisticated analytical tools and techniques including multivariate analysis, segmentation, and predictive modeling for deeper insights.
-                </p>
-                <ul className="space-y-2">
-                  <li className="flex items-start">
-                    <CheckCircle className="text-green-600 mr-2 flex-shrink-0 mt-0.5" size={16} />
-                    <span className="text-sm text-gray-700">Multivariate analysis</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="text-green-600 mr-2 flex-shrink-0 mt-0.5" size={16} />
-                    <span className="text-sm text-gray-700">Statistical modeling</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="text-green-600 mr-2 flex-shrink-0 mt-0.5" size={16} />
-                    <span className="text-sm text-gray-700">Predictive insights</span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Specialty Areas */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="container mx-auto max-w-6xl">
-          <h2 className="text-4xl font-bold text-white drop-shadow-lg mb-12 text-center">Research Methodologies</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white/95 backdrop-blur-md p-8 rounded-2xl border-2 border-blue-200">
-              <Users className="text-pink-700 mb-4" size={40} />
-              <h3 className="text-2xl font-bold text-gray-900 mb-3">Survey Research</h3>
-              <p className="text-gray-600 leading-relaxed mb-4">
-                Comprehensive survey methodologies including online, telephone, and mixed-mode approaches for maximum reach and response quality.
-              </p>
-              <ul className="space-y-2 text-sm text-gray-700">
-                <li>• Online Surveys</li>
-                <li>• Telephone Interviews</li>
-                <li>• Mixed-Mode Studies</li>
-                <li>• Panel Research</li>
-              </ul>
-            </div>
-
-            <div className="bg-white/95 backdrop-blur-md p-8 rounded-2xl border-2 border-green-200">
-              <BarChart3 className="text-green-600 mb-4" size={40} />
-              <h3 className="text-2xl font-bold text-gray-900 mb-3">Market Measurement</h3>
-              <p className="text-gray-600 leading-relaxed mb-4">
-                Precise market sizing, brand tracking, and performance measurement studies with statistical accuracy and trend analysis.
-              </p>
-              <ul className="space-y-2 text-sm text-gray-700">
-                <li>• Market Sizing</li>
-                <li>• Brand Tracking</li>
-                <li>• Usage & Attitude</li>
-                <li>• Competitive Analysis</li>
-              </ul>
-            </div>
-
-            <div className="bg-white/95 backdrop-blur-md p-8 rounded-2xl border-2 border-purple-200">
-              <Shield className="text-purple-600 mb-4" size={40} />
-              <h3 className="text-2xl font-bold text-gray-900 mb-3">Statistical Analysis</h3>
-              <p className="text-gray-600 leading-relaxed mb-4">
-                Advanced statistical techniques including regression analysis, factor analysis, and clustering for deep data insights.
-              </p>
-              <ul className="space-y-2 text-sm text-gray-700">
-                <li>• Regression Analysis</li>
-                <li>• Factor Analysis</li>
-                <li>• Cluster Analysis</li>
-                <li>• Conjoint Analysis</li>
-              </ul>
+        {/* Our Approach */}
+        <section className="py-24 px-4 sm:px-6 lg:px-8">
+          <div className="container mx-auto max-w-6xl">
+            <h2 className="text-3xl font-bold text-white mb-12 text-center">Our Research Approach</h2>
+            <div className="grid md:grid-cols-2 gap-8">
+              {[
+                { icon: Target, title: 'Statistical Rigor', list: ['Representative sampling', 'Confidence intervals', 'Significance testing'] },
+                { icon: Shield, title: 'Data Validation', list: ['Outlier detection', 'Consistency validation', 'Statistical verification'] },
+                { icon: Globe, title: 'Scale & Coverage', list: ['Large sample sizes', 'Multi-market studies', 'Cross-demographic analysis'] },
+                { icon: Zap, title: 'Advanced Analytics', list: ['Multivariate analysis', 'Statistical modeling', 'Predictive insights'] }
+              ].map((app, idx) => (
+                <Card key={idx} className="border border-[#3E4F59] bg-[#2E3D47]/80 backdrop-blur-md">
+                  <CardContent className="pt-8 pb-8">
+                    <app.icon className="text-[#DE7823] mb-6" size={32} />
+                    <h3 className="text-2xl font-bold text-white mb-4">{app.title}</h3>
+                    <ul className="space-y-3">
+                      {app.list.map((item, i) => (
+                        <li key={i} className="flex items-start text-[#A8ADB8] text-sm">
+                          <CheckCircle className="text-[#DE7823] mr-3 flex-shrink-0" size={16} />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Process */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="container mx-auto max-w-6xl">
-          <h2 className="text-4xl font-bold text-white drop-shadow-lg mb-12 text-center">Our Research Process</h2>
-          <div className="space-y-6">
-            <div className="flex items-start gap-4">
-              <div className="w-12 h-12 bg-gradient-to-r from-yellow-500 to-pink-700 text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg">1</div>
-              <div>
-                <h4 className="text-xl font-bold text-white drop-shadow-md mb-2">Research Design</h4>
-                <p className="text-gray-100 drop-shadow-sm leading-relaxed">We collaborate with you to design the optimal research methodology, sample size calculations, and statistical framework for your objectives.</p>
-              </div>
-            </div>
-            <div className="flex items-start gap-4">
-              <div className="w-12 h-12 bg-gradient-to-r from-yellow-500 to-pink-700 text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg">2</div>
-              <div>
-                <h4 className="text-xl font-bold text-white drop-shadow-md mb-2">Sampling Strategy</h4>
-                <p className="text-gray-100 drop-shadow-sm leading-relaxed">Implementation of statistically sound sampling techniques ensuring representative coverage and minimizing bias across target populations.</p>
-              </div>
-            </div>
-            <div className="flex items-start gap-4">
-              <div className="w-12 h-12 bg-gradient-to-r from-yellow-500 to-pink-700 text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg">3</div>
-              <div>
-                <h4 className="text-xl font-bold text-white drop-shadow-md mb-2">Data Collection</h4>
-                <p className="text-gray-100 drop-shadow-sm leading-relaxed">Systematic data gathering using validated instruments with real-time quality monitoring and response rate optimization.</p>
-              </div>
-            </div>
-            <div className="flex items-start gap-4">
-              <div className="w-12 h-12 bg-gradient-to-r from-yellow-500 to-pink-700 text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg">4</div>
-              <div>
-                <h4 className="text-xl font-bold text-white drop-shadow-md mb-2">Statistical Analysis</h4>
-                <p className="text-gray-100 drop-shadow-sm leading-relaxed">Comprehensive statistical analysis including descriptive statistics, inferential testing, and advanced modeling techniques.</p>
-              </div>
-            </div>
-            <div className="flex items-start gap-4">
-              <div className="w-12 h-12 bg-gradient-to-r from-yellow-500 to-pink-700 text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg">5</div>
-              <div>
-                <h4 className="text-xl font-bold text-white drop-shadow-md mb-2">Insights & Reporting</h4>
-                <p className="text-gray-100 drop-shadow-sm leading-relaxed">Detailed analytical reports with statistical significance testing, confidence intervals, and actionable business recommendations.</p>
-              </div>
+        {/* Methodologies */}
+        <section className="py-20 px-4 sm:px-6 lg:px-8">
+          <div className="container mx-auto max-w-6xl">
+            <h2 className="text-3xl font-bold text-white mb-12 text-center">Research Methodologies</h2>
+            <div className="grid md:grid-cols-3 gap-8">
+              {[
+                { icon: Users, title: 'Survey Research', list: ['Online Surveys', 'Telephone Interviews', 'Mixed-Mode Studies', 'Panel Research'] },
+                { icon: BarChart3, title: 'Market Measurement', list: ['Market Sizing', 'Brand Tracking', 'Usage & Attitude', 'Competitive Analysis'] },
+                { icon: Shield, title: 'Statistical Analysis', list: ['Regression Analysis', 'Factor Analysis', 'Cluster Analysis', 'Conjoint Analysis'] }
+              ].map((m, idx) => (
+                <Card key={idx} className="border border-[#3E4F59] bg-[#2E3D47]/80 backdrop-blur-md">
+                  <CardContent className="pt-8 pb-8">
+                    <m.icon className="text-[#BF4A3B] mb-6" size={32} />
+                    <h3 className="text-xl font-bold text-white mb-4">{m.title}</h3>
+                    <ul className="space-y-3">
+                      {m.list.map((item, i) => (
+                        <li key={i} className="text-[#A8ADB8] text-sm flex items-center gap-2">
+                          <div className="w-1.5 h-1.5 rounded-full bg-[#BF4A3B]"></div>
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* CTA */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="container mx-auto text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold text-white drop-shadow-lg mb-6">
-            Ready to Launch Your Quantitative Study?
-          </h2>
-          <p className="text-lg text-gray-100 drop-shadow-md mb-8 max-w-2xl mx-auto">
-            Let's discuss your research objectives and design a statistically robust study
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/contact">
-              <Button size="lg" className="bg-gradient-to-r from-yellow-500 to-pink-700 hover:from-yellow-600 hover:to-pink-800 text-lg px-8 h-14">
-                Contact Us
-              </Button>
-            </Link>
-            <Link to="/services">
-              <Button size="lg" variant="outline" className="text-lg px-8 h-14 border-2 border-white text-white hover:bg-white/10">
-                View All Services
-              </Button>
-            </Link>
+        {/* Process */}
+        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[#1A2329]/50">
+          <div className="container mx-auto max-w-4xl">
+            <h2 className="text-3xl font-bold text-white mb-16 text-center">Our Research Process</h2>
+            <div className="space-y-12">
+              {[
+                { n: '01', t: 'Research Design', d: 'Objective setting, sample size calculations, and statistical framework design.' },
+                { n: '02', t: 'Sampling Strategy', d: 'Sound sampling techniques to ensure representative population coverage.' },
+                { n: '03', t: 'Data Collection', d: 'Systematic gathering with real-time quality monitoring.' },
+                { n: '04', t: 'Statistical Analysis', d: 'Multivariate analysis and inferential testing.' },
+                { n: '05', t: 'Insights & Reporting', d: 'Actionable reports with statistical significance testing.' }
+              ].map((step, idx) => (
+                <div key={idx} className="flex items-start gap-6">
+                  <div className="w-12 h-12 rounded-full border border-[#DE7823] text-[#DE7823] flex items-center justify-center flex-shrink-0 font-bold">
+                    {step.n}
+                  </div>
+                  <div>
+                    <h4 className="text-xl font-bold text-white mb-2">{step.t}</h4>
+                    <p className="text-[#A8ADB8]">{step.d}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
+      </main>
       <Footer />
-      </div>
     </div>
   );
 };

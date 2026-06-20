@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { Button } from '../../components/ui/button';
 import { Card, CardContent } from '../../components/ui/card';
 import { Header } from '../../components/Header';
@@ -12,291 +13,141 @@ import {
   CheckCircle, 
   ArrowRight,
   Lightbulb,
-  FileText
+  FileText,
+  Activity
 } from 'lucide-react';
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.15 } }
+};
 
 export const QualitativePage = () => {
   return (
-    <div className="min-h-screen bg-white relative">
-      {/* Full Page Background Image */}
-      <div className="fixed inset-0 z-0">
-        <img 
-          src="https://images.unsplash.com/photo-1672917187338-7f81ecac3d3f?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Njl8MHwxfHNlYXJjaHw0fHxwZW9wbGUlMjBkaXNjdXNzaW9uJTIwZm9jdXMlMjBncm91cHxlbnwwfHx8fDE3NjQ3MTk5MjJ8MA&ixlib=rb-4.1.0&q=85" 
-          alt="Qualitative Research"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-purple-900/90 via-pink-900/85 to-yellow-900/75"></div>
-      </div>
-      
-      <div className="relative z-10">
+    <div className="min-h-screen bg-[#26323A] flex flex-col">
       <Header />
 
-      {/* Hero Section */}
-      <section className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 relative">
-        <div className="container mx-auto">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 leading-tight text-white drop-shadow-lg">
-              Qualitative Deep Dives
-            </h1>
-            <p className="text-lg sm:text-xl mb-8 leading-relaxed text-gray-100 drop-shadow-md">
-              Uncover the "why" behind behaviors through expert-led in-depth interviews, focus groups, and ethnographic research that reveal insights beyond numbers
-            </p>
-            <Link to="/contact">
-              <Button size="lg" className="bg-gradient-to-r from-yellow-500 to-pink-700 hover:from-yellow-600 hover:to-pink-800 text-lg px-8 h-14">
-                Request a Quote <ArrowRight className="ml-2" size={20} />
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
+      <main className="flex-grow pt-32 pb-24 relative z-10">
+        
+        {/* Hero Section */}
+        <section className="px-4 sm:px-6 lg:px-8 mb-24">
+          <motion.div 
+            initial="hidden"
+            animate="visible"
+            variants={staggerContainer}
+            className="container mx-auto max-w-4xl text-center"
+          >
+            <motion.h1 variants={fadeInUp} className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
+              Qualitative <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#DE7823] to-[#BF4A3B]">Deep Dives</span>
+            </motion.h1>
+            <motion.p variants={fadeInUp} className="text-lg sm:text-xl text-[#A8ADB8] leading-relaxed mb-10 max-w-2xl mx-auto">
+              Uncover the "why" behind behaviors through expert-led in-depth interviews, focus groups, and ethnographic research that reveal insights beyond numbers.
+            </motion.p>
+            <motion.div variants={fadeInUp}>
+              <Link to="/contact">
+                <Button size="lg" className="bg-gradient-to-r from-[#DE7823] to-[#BF4A3B] hover:from-[#BF4A3B] hover:to-[#A31E52] text-lg px-8 h-14 shadow-lg">
+                  Request a Quote <ArrowRight className="ml-2" size={20} />
+                </Button>
+              </Link>
+            </motion.div>
+          </motion.div>
+        </section>
 
-      {/* Overview */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 ">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-white drop-shadow-lg mb-4">What is Qualitative Research?</h2>
-            <p className="text-lg text-gray-100 drop-shadow-md max-w-3xl mx-auto">
+        {/* Overview */}
+        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[#1A2329]/50 border-t border-b border-[#3E4F59]/50">
+          <div className="container mx-auto max-w-4xl text-center">
+            <h2 className="text-3xl font-bold text-white mb-6">What is Qualitative Research?</h2>
+            <p className="text-lg text-[#A8ADB8] leading-relaxed">
               Qualitative research explores the deeper meaning, motivations, and contexts behind human behavior. Through open-ended conversations and observations, we uncover rich insights that quantitative methods cannot capture.
             </p>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Research Methods */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 ">
-        <div className="container mx-auto max-w-6xl">
-          <h2 className="text-4xl font-bold text-white drop-shadow-lg mb-12 text-center">Our Qualitative Methods</h2>
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
-            <Card className="border-2 border-yellow-300 bg-white/95 backdrop-blur-md">
-              <CardContent className="pt-8 pb-8">
-                <MessageCircle className="text-pink-700 mb-4" size={40} />
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">In-Depth Interviews (IDI)</h3>
-                <p className="text-gray-900 leading-relaxed mb-4">
-                  One-on-one conversations that dive deep into individual perspectives, experiences, and decision-making processes.
-                </p>
-                <ul className="space-y-2">
-                  <li className="flex items-start">
-                    <CheckCircle className="text-green-600 mr-2 flex-shrink-0 mt-0.5" size={16} />
-                    <span className="text-sm text-gray-700">Structured & semi-structured formats</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="text-green-600 mr-2 flex-shrink-0 mt-0.5" size={16} />
-                    <span className="text-sm text-gray-700">45-90 minute sessions</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="text-green-600 mr-2 flex-shrink-0 mt-0.5" size={16} />
-                    <span className="text-sm text-gray-700">Expert moderators</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="text-green-600 mr-2 flex-shrink-0 mt-0.5" size={16} />
-                    <span className="text-sm text-gray-700">Audio/video recording</span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card className="border-2 border-yellow-300 bg-white/95 backdrop-blur-md">
-              <CardContent className="pt-8 pb-8">
-                <Users className="text-green-600 mb-4" size={40} />
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">Focus Group Discussions</h3>
-                <p className="text-gray-900 leading-relaxed mb-4">
-                  Moderated group discussions where participants interact, share viewpoints, and build on each other's ideas.
-                </p>
-                <ul className="space-y-2">
-                  <li className="flex items-start">
-                    <CheckCircle className="text-green-600 mr-2 flex-shrink-0 mt-0.5" size={16} />
-                    <span className="text-sm text-gray-700">6-10 participants per group</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="text-green-600 mr-2 flex-shrink-0 mt-0.5" size={16} />
-                    <span className="text-sm text-gray-700">Professional facilities</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="text-green-600 mr-2 flex-shrink-0 mt-0.5" size={16} />
-                    <span className="text-sm text-gray-700">Client observation rooms</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="text-green-600 mr-2 flex-shrink-0 mt-0.5" size={16} />
-                    <span className="text-sm text-gray-700">Live streaming options</span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card className="border-2 border-yellow-300 bg-white/95 backdrop-blur-md">
-              <CardContent className="pt-8 pb-8">
-                <Eye className="text-purple-600 mb-4" size={40} />
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">Ethnographic Research</h3>
-                <p className="text-gray-900 leading-relaxed mb-4">
-                  Observational research in natural environments to understand behaviors, contexts, and cultural influences.
-                </p>
-                <ul className="space-y-2">
-                  <li className="flex items-start">
-                    <CheckCircle className="text-green-600 mr-2 flex-shrink-0 mt-0.5" size={16} />
-                    <span className="text-sm text-gray-700">In-home observations</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="text-green-600 mr-2 flex-shrink-0 mt-0.5" size={16} />
-                    <span className="text-sm text-gray-700">Shop-alongs</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="text-green-600 mr-2 flex-shrink-0 mt-0.5" size={16} />
-                    <span className="text-sm text-gray-700">Workplace studies</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="text-green-600 mr-2 flex-shrink-0 mt-0.5" size={16} />
-                    <span className="text-sm text-gray-700">Contextual inquiry</span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Our Approach */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 ">
-        <div className="container mx-auto max-w-6xl">
-          <h2 className="text-4xl font-bold text-white drop-shadow-lg mb-12 text-center">Our Qualitative Approach</h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            <Card className="border-2 border-yellow-300 bg-white/95 backdrop-blur-md">
-              <CardContent className="pt-8 pb-8">
-                <Target className="text-pink-700 mb-4" size={32} />
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">Expert Moderators</h3>
-                <p className="text-gray-900 leading-relaxed">
-                  Our moderators bring years of experience, deep listening skills, and the ability to probe beneath surface responses to uncover true insights. They create comfortable environments that encourage candid sharing.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-2 border-yellow-300 bg-white/95 backdrop-blur-md">
-              <CardContent className="pt-8 pb-8">
-                <Lightbulb className="text-green-600 mb-4" size={32} />
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">Thematic Analysis</h3>
-                <p className="text-gray-900 leading-relaxed">
-                  We employ rigorous analytical frameworks to identify patterns, themes, and insights across qualitative data. Our analysis goes beyond reporting quotes to synthesizing strategic implications.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-2 border-yellow-300 bg-white/95 backdrop-blur-md">
-              <CardContent className="pt-8 pb-8">
-                <FileText className="text-purple-600 mb-4" size={32} />
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">Comprehensive Documentation</h3>
-                <p className="text-gray-900 leading-relaxed">
-                  Full transcriptions, detailed field notes, and video recordings preserve the richness of qualitative data for deep analysis and future reference.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-2 border-yellow-300 bg-white/95 backdrop-blur-md">
-              <CardContent className="pt-8 pb-8">
-                <Users className="text-orange-600 mb-4" size={32} />
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">Strategic Recruitment</h3>
-                <p className="text-gray-900 leading-relaxed">
-                  Careful participant screening ensures we recruit individuals who can articulate experiences and provide rich, meaningful contributions to your research.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Process */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 ">
-        <div className="container mx-auto max-w-6xl">
-          <h2 className="text-4xl font-bold text-white drop-shadow-lg mb-12 text-center">Our Qualitative Research Process</h2>
-          <div className="space-y-6">
-            <div className="flex items-start gap-4">
-              <div className="w-12 h-12 bg-gradient-to-r from-yellow-500 to-pink-700 text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg">1</div>
-              <div>
-                <h4 className="text-xl font-bold text-white drop-shadow-md mb-2">Research Design</h4>
-                <p className="text-gray-100 drop-shadow-sm leading-relaxed">We collaborate with you to define research objectives, develop discussion guides, and select appropriate qualitative methods for your needs.</p>
-              </div>
-            </div>
-            <div className="flex items-start gap-4">
-              <div className="w-12 h-12 bg-gradient-to-r from-yellow-500 to-pink-700 text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg">2</div>
-              <div>
-                <h4 className="text-xl font-bold text-white drop-shadow-md mb-2">Participant Recruitment</h4>
-                <p className="text-gray-100 drop-shadow-sm leading-relaxed">Targeted recruitment with detailed screeners ensures participants match your specifications and can provide valuable insights.</p>
-              </div>
-            </div>
-            <div className="flex items-start gap-4">
-              <div className="w-12 h-12 bg-gradient-to-r from-yellow-500 to-pink-700 text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg">3</div>
-              <div>
-                <h4 className="text-xl font-bold text-white drop-shadow-md mb-2">Fieldwork Execution</h4>
-                <p className="text-gray-100 drop-shadow-sm leading-relaxed">Expert moderators conduct interviews or groups with appropriate probing, creating environments that encourage authentic sharing.</p>
-              </div>
-            </div>
-            <div className="flex items-start gap-4">
-              <div className="w-12 h-12 bg-gradient-to-r from-yellow-500 to-pink-700 text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg">4</div>
-              <div>
-                <h4 className="text-xl font-bold text-white drop-shadow-md mb-2">Analysis & Synthesis</h4>
-                <p className="text-gray-100 drop-shadow-sm leading-relaxed">Rigorous thematic analysis identifies patterns, key themes, and strategic insights from your qualitative data.</p>
-              </div>
-            </div>
-            <div className="flex items-start gap-4">
-              <div className="w-12 h-12 bg-gradient-to-r from-yellow-500 to-pink-700 text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg">5</div>
-              <div>
-                <h4 className="text-xl font-bold text-white drop-shadow-md mb-2">Strategic Reporting</h4>
-                <p className="text-gray-100 drop-shadow-sm leading-relaxed">Comprehensive reports with rich verbatims, thematic insights, and actionable recommendations tied to your business objectives.</p>
-              </div>
+        {/* Research Methods */}
+        <section className="py-24 px-4 sm:px-6 lg:px-8">
+          <div className="container mx-auto max-w-6xl">
+            <h2 className="text-3xl font-bold text-white mb-12 text-center">Our Qualitative Methods</h2>
+            <div className="grid md:grid-cols-3 gap-8">
+              {[
+                { icon: MessageCircle, title: 'In-Depth Interviews', list: ['Structured & semi-structured', '45-90 minute sessions', 'Expert moderators', 'Audio/video recording'] },
+                { icon: Users, title: 'Focus Groups', list: ['6-10 participants', 'Professional facilities', 'Observation rooms', 'Live streaming options'] },
+                { icon: Eye, title: 'Ethnographic Research', list: ['In-home observations', 'Shop-alongs', 'Workplace studies', 'Contextual inquiry'] }
+              ].map((method, idx) => (
+                <Card key={idx} className="border border-[#3E4F59] bg-[#2E3D47]/80 backdrop-blur-md">
+                  <CardContent className="pt-8 pb-8">
+                    <method.icon className="text-[#DE7823] mb-6" size={32} />
+                    <h3 className="text-xl font-bold text-white mb-4">{method.title}</h3>
+                    <ul className="space-y-3">
+                      {method.list.map((item, i) => (
+                        <li key={i} className="flex items-start text-[#A8ADB8] text-sm">
+                          <CheckCircle className="text-[#DE7823] mr-3 flex-shrink-0" size={16} />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* When to Use Qualitative */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 ">
-        <div className="container mx-auto max-w-6xl">
-          <h2 className="text-4xl font-bold text-white drop-shadow-lg mb-12 text-center">When to Choose Qualitative Research</h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border-2 border-white/30">
-              <h4 className="font-bold text-white drop-shadow-md mb-2">Exploratory Research</h4>
-              <p className="text-gray-100 drop-shadow-sm text-sm">Understanding new markets, emerging trends, or unexplored consumer territories</p>
-            </div>
-            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border-2 border-white/30">
-              <h4 className="font-bold text-white drop-shadow-md mb-2">Understanding "Why"</h4>
-              <p className="text-gray-100 drop-shadow-sm text-sm">Uncovering motivations, emotions, and decision-making processes behind behaviors</p>
-            </div>
-            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border-2 border-white/30">
-              <h4 className="font-bold text-white drop-shadow-md mb-2">Concept Testing</h4>
-              <p className="text-gray-100 drop-shadow-sm text-sm">Evaluating new products, messaging, or ideas with rich feedback and reactions</p>
-            </div>
-            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border-2 border-white/30">
-              <h4 className="font-bold text-white drop-shadow-md mb-2">Complex Topics</h4>
-              <p className="text-gray-100 drop-shadow-sm text-sm">Exploring sensitive subjects or complicated issues requiring nuanced discussion</p>
+        {/* Our Approach */}
+        <section className="py-20 px-4 sm:px-6 lg:px-8">
+          <div className="container mx-auto max-w-6xl">
+            <h2 className="text-3xl font-bold text-white mb-12 text-center">Our Qualitative Approach</h2>
+            <div className="grid md:grid-cols-2 gap-8">
+              {[
+                { icon: Target, title: 'Expert Moderators', text: 'Moderators who probe beneath surface responses to create comfortable environments for candid sharing.' },
+                { icon: Lightbulb, title: 'Thematic Analysis', text: 'Rigorous analytical frameworks to identify patterns and synthesize strategic implications.' },
+                { icon: FileText, title: 'Comprehensive Documentation', text: 'Full transcriptions, field notes, and recordings preserving the richness of data.' },
+                { icon: Activity, title: 'Strategic Recruitment', text: 'Targeted screening to ensure participants articulate deep, meaningful experiences.' }
+              ].map((app, idx) => (
+                <Card key={idx} className="border border-[#3E4F59] bg-[#2E3D47]/80">
+                  <CardContent className="pt-8 pb-8">
+                    <app.icon className="text-[#BF4A3B] mb-4" size={32} />
+                    <h3 className="text-xl font-bold text-white mb-3">{app.title}</h3>
+                    <p className="text-[#A8ADB8] leading-relaxed">{app.text}</p>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* CTA */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 ">
-        <div className="container mx-auto text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold text-white drop-shadow-lg mb-6">
-            Ready to Uncover Deeper Insights?
-          </h2>
-          <p className="text-lg text-gray-100 drop-shadow-md mb-8 max-w-2xl mx-auto">
-            Let's discuss how qualitative research can reveal the "why" behind your questions
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/contact">
-              <Button size="lg" className="bg-gradient-to-r from-yellow-500 to-pink-700 hover:from-yellow-600 hover:to-pink-800 text-lg px-8 h-14">
-                Contact Us
-              </Button>
-            </Link>
-            <Link to="/services">
-              <Button size="lg" variant="outline" className="text-lg px-8 h-14 border-2 border-white text-white hover:bg-white/10">
-                View All Services
-              </Button>
-            </Link>
+        {/* Process */}
+        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[#1A2329]/50">
+          <div className="container mx-auto max-w-4xl">
+            <h2 className="text-3xl font-bold text-white mb-16 text-center">Our Qualitative Process</h2>
+            <div className="space-y-12">
+              {[
+                { n: '01', t: 'Research Design', d: 'Objective setting and discussion guide development.' },
+                { n: '02', t: 'Participant Recruitment', d: 'Targeted recruitment with rigorous screening.' },
+                { n: '03', t: 'Fieldwork Execution', d: 'Expert moderation for authentic insight gathering.' },
+                { n: '04', t: 'Analysis & Synthesis', d: 'Rigorous thematic pattern identification.' },
+                { n: '05', t: 'Strategic Reporting', d: 'Actionable recommendations tied to business goals.' }
+              ].map((step, idx) => (
+                <div key={idx} className="flex items-start gap-6">
+                  <div className="w-12 h-12 rounded-full border border-[#DE7823] text-[#DE7823] flex items-center justify-center flex-shrink-0 font-bold">
+                    {step.n}
+                  </div>
+                  <div>
+                    <h4 className="text-xl font-bold text-white mb-2">{step.t}</h4>
+                    <p className="text-[#A8ADB8]">{step.d}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
+      </main>
       <Footer />
-      </div>
     </div>
   );
 };
