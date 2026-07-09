@@ -450,13 +450,6 @@ const PanelNetworkSection = () => (
 
       <div className="text-center">
         <a href="/panel-reach-presentation.html" target="_blank" rel="noopener noreferrer">
-          <Button
-            size="lg"
-            className="bg-gradient-to-r from-[#BF4A3B] to-[#A31E52] hover:from-[#A8294B] hover:to-[#A31E52] text-white hover:scale-105 transition-transform duration-300 shadow-[0_0_20px_rgba(163,30,82,0.4)]"
-          >
-            View Our Panel Book <ArrowRight className="ml-2" size={20} aria-hidden="true" />
-            <span className="sr-only">(opens in a new tab)</span>
-          </Button>
         </a>
       </div>
     </div>
