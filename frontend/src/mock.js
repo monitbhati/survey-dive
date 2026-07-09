@@ -8,10 +8,10 @@ export const mockData = {
   },
   
   stats: {
-    projectsCompleted: '250+',
-    industriesServed: '25+',
-    clientSatisfaction: '98%',
-    yearsExperience: '10+'
+    projectsCompleted: '250',
+    industriesServed: '25',
+    clientSatisfaction: '98',
+    yearsExperience: '10'
   },
   
   services: [

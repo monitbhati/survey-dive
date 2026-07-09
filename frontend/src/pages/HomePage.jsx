@@ -105,7 +105,7 @@ export const HomePage = () => {
               <motion.div variants={fadeInUp}>
                 <div className="bg-[#2E3D47]/90 backdrop-blur-md p-8 rounded-2xl shadow-xl border border-[#3E4F59] text-center hover:shadow-[0_10px_40px_-15px_rgba(163,30,82,0.3)] hover:-translate-y-2 hover:border-[#A31E52] transition-all duration-300">
                   <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-[#A8294B] to-[#A31E52] bg-clip-text text-transparent mb-2">
-                    <CountUp end={parseInt(mockData.stats.clientSatisfaction)} duration={2.5} enableScrollSpy={true} scrollSpyOnce={true} />
+                   <CountUp end={parseInt(mockData.stats.clientSatisfaction)} duration={2.5} suffix="%" enableScrollSpy={true} scrollSpyOnce={true} />
                   </div>
                   <div className="text-sm text-[#A8ADB8] font-semibold tracking-wide">Client Retention</div>
                 </div>
