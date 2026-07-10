@@ -26,7 +26,7 @@ const PANEL_STATS = [
   { label: 'Countries Covered', end: 50, suffix: '+', icon: Globe },
   { label: 'B2B Professionals', end: 200, suffix: 'K+', icon: Target },
   { label: 'Healthcare Experts', end: 30, suffix: 'K+', icon: Award },
-  { label: 'Consumer Panelists', end: 1, suffix: 'M+', icon: Globe  }
+
 ];
 
 const REGION_BREAKDOWN = [
