@@ -26,6 +26,7 @@ const PANEL_STATS = [
   { label: 'Countries Covered', end: 50, suffix: '+', icon: Globe },
   { label: 'B2B Professionals', end: 200, suffix: 'K+', icon: Target },
   { label: 'Healthcare Experts', end: 30, suffix: 'K+', icon: Award },
+  { label: 'Consumer Panelists', end: 1, suffix: 'M+', icon: Users },
 
 ];
 
@@ -405,7 +406,7 @@ const PanelNetworkSection = () => (
         whileInView="visible"
         viewport={{ once: true }}
         variants={staggerContainer}
-        className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12"
+        className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12"
       >
         {PANEL_STATS.map((stat) => {
           const IconComponent = stat.icon;
