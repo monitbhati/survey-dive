@@ -79,4 +79,7 @@ module.exports = {
   	}
   },
   plugins: [require("tailwindcss-animate")],
+  fontFamily: {
+  sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+},
 };

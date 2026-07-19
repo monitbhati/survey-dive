@@ -6,21 +6,20 @@ import { FaLinkedin } from 'react-icons/fa';
 
 export const Footer = () => {
   return (
-    <footer className="bg-gradient-to-b from-[#1A252E] to-[#0F172A] text-white py-12 px-4 sm:px-6 lg:px-8 border-t border-[#3E4F59]">
+    <footer className="bg-gradient-to-b from-[#2A1345] to-[#140A22] text-white py-12 px-4 sm:px-6 lg:px-8 border-t border-[#3D2960]">
       <div className="container mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-start gap-8 mb-10">
           {/* Left Side - Logo and Content */}
           <div className="flex-1">
             <div className="mb-6">
-              {/* The white box is completely removed here */}
               <div className="inline-block">
                 <Logo />
               </div>
             </div>
-            <p className="text-[#A8ADB8] mb-2 text-base font-medium leading-relaxed">
+            <p className="text-gray-200 mb-2 text-base font-medium leading-relaxed">
               {mockData.company.tagline}
             </p>
-            <p className="text-[#A8ADB8] text-sm leading-relaxed max-w-md">
+            <p className="text-gray-400 text-sm leading-relaxed max-w-md">
               Transforming market complexity into strategic clarity through precision research methodologies.
             </p>
           </div>
@@ -28,31 +27,31 @@ export const Footer = () => {
           {/* Right Side - LinkedIn Button and Address */}
           <div className="flex flex-col md:items-end gap-5">
             <a 
-              href="https://www.linkedin.com/company/factum-research" 
+              href="https://www.linkedin.com/company/survey-dive" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-gradient-to-r from-yellow-500 to-pink-700 hover:from-yellow-600 hover:to-pink-800 text-white px-6 py-3 rounded-lg transition-all duration-300 font-medium shadow-[0_0_15px_rgba(190,24,93,0.3)] hover:shadow-[0_0_25px_rgba(190,24,93,0.5)] hover:-translate-y-1"
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-[#4B1E73] to-[#E69B57] hover:from-[#5C2690] hover:to-[#F0AC6E] text-white px-6 py-3 rounded-lg transition-all duration-300 font-medium shadow-[0_0_15px_rgba(75,30,115,0.4)] hover:shadow-[0_0_25px_rgba(230,155,87,0.4)] hover:-translate-y-1"
             >
               <FaLinkedin size={20} />
               Follow us on LinkedIn
             </a>
-            <div className="md:text-right text-[#A8ADB8] text-sm">
+            <div className="md:text-right text-gray-400 text-sm">
               <p>{mockData.company.address}</p>
             </div>
           </div>
         </div>
 
-        <div className="border-t border-[#3E4F59] pt-6 text-center">
+        <div className="border-t border-[#3D2960] pt-6 text-center">
           <div className="flex flex-wrap justify-center gap-4 mb-4">
-            <Link to="/privacy-policy" className="text-[#A8ADB8] hover:text-white text-sm transition-colors">
+            <Link to="/privacy-policy" className="text-gray-400 hover:text-white text-sm transition-colors">
               Privacy Policy
             </Link>
-            <span className="text-[#3E4F59]">•</span>
-            <Link to="/terms-conditions" className="text-[#A8ADB8] hover:text-white text-sm transition-colors">
+            <span className="text-[#3D2960]">•</span>
+            <Link to="/terms-conditions" className="text-gray-400 hover:text-white text-sm transition-colors">
               Terms & Conditions
             </Link>
           </div>
-          <p className="text-[#A8ADB8] text-sm tracking-wide">
+          <p className="text-gray-400 text-sm tracking-wide">
             &copy; {new Date().getFullYear()} {mockData.company.name}. All rights reserved.
           </p>
         </div>

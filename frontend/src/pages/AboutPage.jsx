@@ -1,61 +1,44 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import CountUp from 'react-countup';
-import { Button } from '../components/ui/button';
-import { Card, CardContent } from '../components/ui/card';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
-import { 
-  Globe, 
-  Users, 
-  CheckCircle, 
-  Target, 
-  Shield, 
-  Cpu, 
-  Award,
-  ArrowRight
-} from 'lucide-react';
-import { BsGraphUp } from 'react-icons/bs';
+import { Globe, Users, CheckCircle2, Target, ShieldCheck, Award, BarChart3, Layers } from 'lucide-react';
 
-// ---------------------------------------------------------------------------
-// Static data
-// ---------------------------------------------------------------------------
-
+// Static Data
 const PANEL_STATS = [
-  { label: 'Countries Covered', end: 50, suffix: '+', icon: Globe },
-  { label: 'B2B Professionals', end: 200, suffix: 'K+', icon: Target },
-  { label: 'Healthcare Experts', end: 30, suffix: 'K+', icon: Award },
-  { label: 'Consumer Panelists', end: 1, suffix: 'M+', icon: Users },
-
+  { label: 'Global Markets Covered', end: 50, suffix: '+', icon: Globe, sub: 'Verified active panels' },
+  { label: 'B2B Decision Makers', end: 200, suffix: 'K+', icon: Target, sub: 'Vetted C-suite & management' },
+  { label: 'Healthcare Professionals', end: 30, suffix: 'K+', icon: Award, sub: 'Specialists & clinical leaders' },
+  { label: 'Consumer Panelists', end: 1, suffix: 'M+', icon: Users, sub: 'Highly calibrated demographics' },
 ];
 
 const REGION_BREAKDOWN = [
-  { label: 'North America', end: 35, suffix: '%', colorClass: 'text-[#DE7823]' },
-  { label: 'Europe', end: 30, suffix: '%', colorClass: 'text-[#BF4A3B]' },
-  { label: 'Asia Pacific', end: 20, suffix: '%', colorClass: 'text-[#A8294B]' },
-  { label: 'Latin America', end: 10, suffix: '%', colorClass: 'text-[#A31E52]' },
-  { label: 'Middle East & Africa', end: 5, suffix: '%', colorClass: 'text-[#A31E52]' }
+  { region: 'North America', share: 35, suffix: '%', focus: 'Enterprise Tech & Healthcare', color: 'text-[#4B1E73]' },
+  { region: 'Europe', share: 30, suffix: '%', focus: 'Financial Services & Industrial', color: 'text-[#E69B57]' },
+  { region: 'Asia Pacific', share: 20, suffix: '%', focus: 'Consumer Goods & Emerging Tech', color: 'text-[#4B1E73]' },
+  { region: 'Latin America', share: 10, suffix: '%', focus: 'Retail & Telecommunications', color: 'text-[#E69B57]' },
+  { region: 'Middle East & Africa', share: 5, suffix: '%', focus: 'Energy & Infrastructure', color: 'text-[#4B1E73]' }
 ];
 
 const TEAM = [
   {
     name: 'Anuj Kumar',
-    position: 'Founder',
+    position: 'Founder & Managing Director',
     image: '/team/founder.png',
     objectPosition: 'center center',
     quote: 'Our mission is to revolutionize market research by delivering authentic insights that drive meaningful business decisions. Quality and integrity are at the heart of everything we do.'
   },
   {
     name: 'Ayush Bhatnagar',
-    position: 'Sales and Business Development',
+    position: 'Head of Sales & Business Development',
     image: '/team/client-services.png',
     objectPosition: '60% center',
     quote: "Building lasting partnerships is what drives us. We believe in understanding our clients' unique challenges and delivering tailored research solutions that exceed expectations."
   },
   {
     name: 'Anand Yadav',
-    position: 'Operations Head',
+    position: 'Head of Global Operations',
     image: '/team/operations-head.jpeg',
     objectPosition: 'center center',
     quote: 'Excellence in execution is our standard. From project inception to final delivery, our team ensures every detail meets the highest quality benchmarks through rigorous processes.'
@@ -69,35 +52,25 @@ const TEAM = [
   }
 ];
 
-// ---------------------------------------------------------------------------
-// Helpers
-// ---------------------------------------------------------------------------
-
-const noiseTexture = (rgb, alpha) =>
-  `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 ${rgb.r}  0 0 0 0 ${rgb.g}  0 0 0 0 ${rgb.b}  0 0 0 ${alpha} 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`;
-
 const TeamAvatar = ({ name, image, objectPosition }) => {
-  const [failed, setFailed] = React.useState(false);
-  const initials = name
-    .split(' ')
-    .map((part) => part[0])
-    .join('');
+  const [failed, setFailed] = useState(false);
+  const initials = name.split(' ').map((part) => part[0]).join('');
 
   if (failed) {
     return (
-      <div className="w-24 h-24 rounded-full flex-shrink-0 border-4 border-[#BF4A3B] shadow-lg bg-[#3E4F59] flex items-center justify-center text-white text-xl font-bold">
+      <div className="w-20 h-20 rounded-md flex-shrink-0 border border-gray-200 bg-gray-100 flex items-center justify-center text-gray-700 text-lg font-bold font-mono tracking-wider">
         {initials}
       </div>
     );
   }
 
   return (
-    <div className="w-24 h-24 rounded-full overflow-hidden flex-shrink-0 border-4 border-[#BF4A3B] shadow-lg">
+    <div className="w-20 h-20 rounded-md overflow-hidden flex-shrink-0 border border-gray-200 bg-gray-100">
       <img
         src={image}
         alt={name}
         loading="lazy"
-        className="w-full h-full object-cover"
+        className="w-full h-full object-cover contrast-105 group-hover:scale-105 transition-all duration-300"
         style={{ objectPosition }}
         onError={() => setFailed(true)}
       />
@@ -105,472 +78,237 @@ const TeamAvatar = ({ name, image, objectPosition }) => {
   );
 };
 
-// ---------------------------------------------------------------------------
-// Animation Variants for Framer Motion
-// ---------------------------------------------------------------------------
-const fadeInUp = {
-  hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
-};
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2
-    }
-  }
-};
-
-// ---------------------------------------------------------------------------
-// Section Components
-// ---------------------------------------------------------------------------
-
-const HeroSection = () => (
-  <section
-    className="pt-32 pb-16 px-4 sm:px-6 lg:px-8 animate-gradient"
-    style={{
-      backgroundImage: `${noiseTexture({ r: 1, g: 0.55, b: 0.15 }, 0.3)}, linear-gradient(135deg, rgba(222,120,35,0.88) 0%, rgba(191,74,59,0.88) 50%, rgba(163,30,82,0.88) 100%)`,
-    }}
-  >
-    <div className="container mx-auto">
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="max-w-4xl mx-auto text-center"
-      >
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">About Us</h1>
-        <p className="text-lg sm:text-xl text-white/90 leading-relaxed">
-          A premier market research consultancy transforming complex market dynamics into strategic clarity through precision methodologies and actionable intelligence.
-        </p>
-      </motion.div>
-    </div>
-  </section>
-);
-
-const MissionVisionSection = () => (
-  <section className="py-20 px-4 sm:px-6 lg:px-8 bg-transparent overflow-hidden">
-    <div className="container mx-auto max-w-6xl">
-      <div className="grid md:grid-cols-2 gap-12">
-        <motion.div 
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="bg-[#2E3D47] p-10 rounded-2xl border border-[#3E4F59] shadow-xl hover:-translate-y-2 hover:shadow-[0_10px_40px_-15px_rgba(191,74,59,0.3)] hover:border-[#BF4A3B] transition-all duration-300"
-        >
-          <h2 className="text-3xl font-bold text-white mb-4">Our Mission</h2>
-          <p className="text-[#A8ADB8] leading-relaxed">
-            To deliver quality data with speed and efficiency, minimizing complexity while maximizing accuracy. We believe in streamlined processes that provide you with reliable insights when you need them most.
-          </p>
-        </motion.div>
-        
-        <motion.div 
-          initial={{ opacity: 0, x: 50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="bg-[#2E3D47] p-10 rounded-2xl border border-[#3E4F59] shadow-xl hover:-translate-y-2 hover:shadow-[0_10px_40px_-15px_rgba(191,74,59,0.3)] hover:border-[#BF4A3B] transition-all duration-300"
-        >
-          <h2 className="text-3xl font-bold text-white mb-4">Our Vision</h2>
-          <p className="text-[#A8ADB8] leading-relaxed">
-            To expand our reach across markets and establish ourselves as the trusted and reliable research partner for life. We envision long-term partnerships built on consistent quality, transparency, and unwavering commitment to your success.
-          </p>
-        </motion.div>
-      </div>
-    </div>
-  </section>
-);
-
-const ExpertiseSection = () => (
-  <section className="py-20 px-4 sm:px-6 lg:px-8 bg-transparent">
-    <div className="container mx-auto max-w-6xl">
-      <motion.div 
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={fadeInUp}
-        className="text-center mb-12"
-      >
-        <h2 className="text-4xl font-bold text-white mb-4">Our Expertise</h2>
-        <p className="text-lg text-[#A8ADB8]">Specialized capabilities that set us apart</p>
-      </motion.div>
-
-      <motion.div 
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={staggerContainer}
-        className="grid md:grid-cols-2 gap-8"
-      >
-        <motion.div variants={fadeInUp}>
-          <Card className="border border-[#3E4F59] bg-[#2E3D47] hover:-translate-y-2 hover:shadow-[0_10px_40px_-15px_rgba(222,120,35,0.3)] hover:border-[#DE7823] transition-all duration-300">
-            <CardContent className="pt-8 pb-8">
-              <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-6 bg-gradient-to-br from-[#DE7823] to-[#BF4A3B]">
-                <Users className="text-white" size={28} aria-hidden="true" />
-              </div>
-              <h3 className="text-2xl font-bold text-white mb-3">Quantitative Research</h3>
-              <p className="text-[#A8ADB8] mb-4 leading-relaxed">
-                Comprehensive quantitative research solutions across diverse audience segments, delivering precise targeting and high-quality respondent engagement.
-              </p>
-              <ul className="space-y-2">
-                <li className="flex items-center text-[#A8ADB8]">
-                  <CheckCircle className="text-[#BF4A3B] mr-2 flex-shrink-0" size={18} aria-hidden="true" />
-                  <span className="text-sm">B2B Professional Sampling</span>
-                </li>
-                <li className="flex items-center text-[#A8ADB8]">
-                  <CheckCircle className="text-[#BF4A3B] mr-2 flex-shrink-0" size={18} aria-hidden="true" />
-                  <span className="text-sm">B2C Consumer Research</span>
-                </li>
-                <li className="flex items-center text-[#A8ADB8]">
-                  <CheckCircle className="text-[#BF4A3B] mr-2 flex-shrink-0" size={18} aria-hidden="true" />
-                  <span className="text-sm">Healthcare Specialized Panels</span>
-                </li>
-              </ul>
-            </CardContent>
-          </Card>
-        </motion.div>
-
-        <motion.div variants={fadeInUp}>
-          <Card className="border border-[#3E4F59] bg-[#2E3D47] hover:-translate-y-2 hover:shadow-[0_10px_40px_-15px_rgba(163,30,82,0.3)] hover:border-[#A31E52] transition-all duration-300">
-            <CardContent className="pt-8 pb-8">
-              <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-6 bg-gradient-to-br from-[#A8294B] to-[#A31E52]">
-                <Target className="text-white" size={28} aria-hidden="true" />
-              </div>
-              <h3 className="text-2xl font-bold text-white mb-3">Qualitative Research</h3>
-              <p className="text-[#A8ADB8] mb-4 leading-relaxed">
-                Deep-dive qualitative methodologies that uncover insights beyond numbers, revealing the 'why' behind consumer behaviors and market trends.
-              </p>
-              <ul className="space-y-2">
-                <li className="flex items-center text-[#A8ADB8]">
-                  <CheckCircle className="text-[#A31E52] mr-2 flex-shrink-0" size={18} aria-hidden="true" />
-                  <span className="text-sm">In-Depth Interviews (IDI)</span>
-                </li>
-                <li className="flex items-center text-[#A8ADB8]">
-                  <CheckCircle className="text-[#A31E52] mr-2 flex-shrink-0" size={18} aria-hidden="true" />
-                  <span className="text-sm">Focus Group Discussions</span>
-                </li>
-                <li className="flex items-center text-[#A8ADB8]">
-                  <CheckCircle className="text-[#A31E52] mr-2 flex-shrink-0" size={18} aria-hidden="true" />
-                  <span className="text-sm">Ethnographic Studies</span>
-                </li>
-              </ul>
-            </CardContent>
-          </Card>
-        </motion.div>
-      </motion.div>
-    </div>
-  </section>
-);
-
-const UniqueStrengthsSection = () => (
-  <section className="py-20 px-4 sm:px-6 lg:px-8 bg-transparent">
-    <div className="container mx-auto max-w-6xl">
-      <motion.div 
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={fadeInUp}
-        className="text-center mb-12"
-      >
-        <h2 className="text-4xl font-bold text-white mb-4">What Makes Us Unique</h2>
-        <p className="text-lg text-[#A8ADB8]">Distinctive advantages that define our approach</p>
-      </motion.div>
-      
-      <motion.div 
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={staggerContainer}
-        className="grid md:grid-cols-3 gap-8"
-      >
-        <motion.div variants={fadeInUp} className="text-center bg-[#2E3D47] p-8 rounded-2xl border border-[#3E4F59] shadow-xl hover:-translate-y-2 hover:border-[#DE7823] transition-all duration-300">
-          <div className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 bg-gradient-to-br from-[#DE7823] to-[#BF4A3B]">
-            <Target className="text-white" size={32} aria-hidden="true" />
-          </div>
-          <h3 className="text-xl font-bold text-white mb-3">Niche Audience Access</h3>
-          <p className="text-[#A8ADB8] leading-relaxed">
-            Exclusive access to hard-to-reach professionals and specialized audience segments that others struggle to find.
-          </p>
-        </motion.div>
-
-        <motion.div variants={fadeInUp} className="text-center bg-[#2E3D47] p-8 rounded-2xl border border-[#3E4F59] shadow-xl hover:-translate-y-2 hover:border-[#BF4A3B] transition-all duration-300">
-          <div className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 bg-gradient-to-br from-[#BF4A3B] to-[#A8294B]">
-            <Globe className="text-white" size={32} aria-hidden="true" />
-          </div>
-          <h3 className="text-xl font-bold text-white mb-3">Global Reach</h3>
-          <p className="text-[#A8ADB8] leading-relaxed">
-            Pan-global panel network spanning 50+ countries with verified panelists across all major markets.
-          </p>
-        </motion.div>
-
-        <motion.div variants={fadeInUp} className="text-center bg-[#2E3D47] p-8 rounded-2xl border border-[#3E4F59] shadow-xl hover:-translate-y-2 hover:border-[#A31E52] transition-all duration-300">
-          <div className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 bg-gradient-to-br from-[#A8294B] to-[#A31E52]">
-            <Shield className="text-white" size={32} aria-hidden="true" />
-          </div>
-          <h3 className="text-xl font-bold text-white mb-3">Strict Quality Checks</h3>
-          <p className="text-[#A8ADB8] leading-relaxed">
-            Multi-layered quality assurance protocols ensuring every data point meets the highest standards of accuracy and reliability.
-          </p>
-        </motion.div>
-      </motion.div>
-    </div>
-  </section>
-);
-
-const SampleQualitySection = () => (
-  <section className="py-20 px-4 sm:px-6 lg:px-8 bg-transparent">
-    <div className="container mx-auto max-w-6xl">
-      <motion.div 
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={fadeInUp}
-        className="text-center mb-12"
-      >
-        <h2 className="text-4xl font-bold text-white mb-4">What Makes Our Sample Quality Better</h2>
-        <p className="text-lg text-[#A8ADB8]">Three pillars of excellence</p>
-      </motion.div>
-
-      <motion.div 
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={staggerContainer}
-        className="grid md:grid-cols-3 gap-8"
-      >
-        <motion.div variants={fadeInUp}>
-          <Card className="border border-[#3E4F59] hover:-translate-y-2 hover:shadow-[0_10px_40px_-15px_rgba(222,120,35,0.3)] hover:border-[#DE7823] transition-all duration-300 bg-[#2E3D47]">
-            <CardContent className="pt-8 pb-8 text-center">
-              <div className="w-14 h-14 rounded-xl flex items-center justify-center mx-auto mb-4 bg-gradient-to-br from-[#DE7823] to-[#BF4A3B]">
-                <Shield className="text-white" size={28} aria-hidden="true" />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3">Rigorous QC Protocols</h3>
-              <p className="text-[#A8ADB8] leading-relaxed">
-                Real-time quality monitoring, behavioral validation, and fraud detection systems ensure pristine data integrity.
-              </p>
-            </CardContent>
-          </Card>
-        </motion.div>
-
-        <motion.div variants={fadeInUp}>
-          <Card className="border border-[#3E4F59] hover:-translate-y-2 hover:shadow-[0_10px_40px_-15px_rgba(191,74,59,0.3)] hover:border-[#BF4A3B] transition-all duration-300 bg-[#2E3D47]">
-            <CardContent className="pt-8 pb-8 text-center">
-              <div className="w-14 h-14 rounded-xl flex items-center justify-center mx-auto mb-4 bg-gradient-to-br from-[#BF4A3B] to-[#A8294B]">
-                <Users className="text-white" size={28} aria-hidden="true" />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3">Expert Recruitment Team</h3>
-              <p className="text-[#A8ADB8] leading-relaxed">
-                Specialized panel recruitment professionals who source and verify niche audiences across industries and demographics.
-              </p>
-            </CardContent>
-          </Card>
-        </motion.div>
-
-        <motion.div variants={fadeInUp}>
-          <Card className="border border-[#3E4F59] hover:-translate-y-2 hover:shadow-[0_10px_40px_-15px_rgba(163,30,82,0.3)] hover:border-[#A31E52] transition-all duration-300 bg-[#2E3D47]">
-            <CardContent className="pt-8 pb-8 text-center">
-              <div className="w-14 h-14 rounded-xl flex items-center justify-center mx-auto mb-4 bg-gradient-to-br from-[#A8294B] to-[#A31E52]">
-                <Cpu className="text-white" size={28} aria-hidden="true" />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3">Advanced Technology</h3>
-              <p className="text-[#A8ADB8] leading-relaxed">
-                Cutting-edge sampling platforms, AI-powered quality checks, and automated validation systems for superior accuracy.
-              </p>
-            </CardContent>
-          </Card>
-        </motion.div>
-      </motion.div>
-    </div>
-  </section>
-);
-
-const PanelNetworkSection = () => (
-  <section className="py-20 px-4 sm:px-6 lg:px-8 bg-transparent">
-    <div className="container mx-auto max-w-6xl">
-      <motion.div 
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={fadeInUp}
-        className="text-center mb-12"
-      >
-        <h2 className="text-4xl font-bold text-white mb-4">Our Global Panelist Network</h2>
-        <p className="text-lg text-[#A8ADB8]">Connecting you with the right audience, anywhere in the world</p>
-      </motion.div>
-
-      <motion.div 
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        variants={staggerContainer}
-        className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12"
-      >
-        {PANEL_STATS.map((stat) => {
-          const IconComponent = stat.icon;
-          return (
-            <motion.div key={stat.label} variants={fadeInUp}>
-              <Card className="border border-[#3E4F59] bg-[#2E3D47] hover:border-[#BF4A3B] hover:-translate-y-2 transition-all duration-300">
-                <CardContent className="pt-6 pb-6 text-center">
-                  <div className="w-12 h-12 rounded-lg flex items-center justify-center mx-auto mb-3 bg-gradient-to-br from-[#DE7823] to-[#A31E52]">
-                    <IconComponent className="text-white" size={24} aria-hidden="true" />
-                  </div>
-                  <div className="text-3xl font-bold text-white mb-1 bg-gradient-to-r from-[#DE7823] to-[#A31E52] bg-clip-text text-transparent">
-                    <CountUp end={stat.end} duration={2.5} suffix={stat.suffix} enableScrollSpy scrollSpyOnce />
-                  </div>
-                  <div className="text-sm text-[#A8ADB8]">{stat.label}</div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          );
-        })}
-      </motion.div>
-
-      <motion.div 
-        initial={{ opacity: 0, scale: 0.95 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-        className="bg-[#2E3D47] p-8 rounded-2xl border border-[#3E4F59] mb-8"
-      >
-        <div className="text-center mb-6">
-          <h3 className="text-2xl font-bold text-white mb-2">Truly Global Presence</h3>
-          <p className="text-[#A8ADB8]">Our panelists span across continents, industries, and demographics</p>
-        </div>
-        <div className="grid md:grid-cols-5 gap-4 text-center">
-          {REGION_BREAKDOWN.map((region) => (
-            <div key={region.label}>
-              <div className={`text-2xl font-bold mb-1 ${region.colorClass}`}>
-                <CountUp end={region.end} duration={2.5} suffix={region.suffix} enableScrollSpy scrollSpyOnce />
-              </div>
-              <div className="text-sm text-[#A8ADB8]">{region.label}</div>
-            </div>
-          ))}
-        </div>
-      </motion.div>
-
-      <div className="text-center">
-        <a href="/panel-reach-presentation.html" target="_blank" rel="noopener noreferrer">
-        </a>
-      </div>
-    </div>
-  </section>
-);
-
-const LeadershipSection = () => (
-  <section className="py-20 px-4 sm:px-6 lg:px-8 bg-transparent">
-    <div className="container mx-auto max-w-6xl">
-      <motion.div 
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={fadeInUp}
-        className="text-center mb-12"
-      >
-        <h2 className="text-4xl font-bold text-white mb-4">Meet Our Leadership Team</h2>
-        <p className="text-lg text-[#A8ADB8]">Experienced professionals driving excellence</p>
-      </motion.div>
-
-      <motion.div 
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-50px" }}
-        variants={staggerContainer}
-        className="grid md:grid-cols-2 gap-8"
-      >
-        {TEAM.map((member) => (
-          <motion.div key={member.name} variants={fadeInUp}>
-            <Card className="border border-[#3E4F59] bg-[#2E3D47] hover:border-[#BF4A3B] transition-colors duration-300 h-full">
-              <CardContent className="pt-8 pb-8 h-full flex flex-col justify-center">
-                <div className="flex items-start gap-4">
-                  <TeamAvatar
-                    name={member.name}
-                    image={member.image}
-                    objectPosition={member.objectPosition}
-                  />
-                  <div className="flex-1">
-                    <h3 className="text-xl font-bold text-white mb-1">{member.name}</h3>
-                    <p className="text-sm text-[#BF4A3B] font-semibold mb-3">{member.position}</p>
-                    <p className="text-[#A8ADB8] text-sm leading-relaxed italic">&ldquo;{member.quote}&rdquo;</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
-        ))}
-      </motion.div>
-    </div>
-  </section>
-);
-
-const CtaSection = () => (
-  <section
-    className="py-20 px-4 sm:px-6 lg:px-8 animate-gradient"
-    style={{
-      backgroundImage: `${noiseTexture({ r: 0.55, g: 0.3, b: 0.1 }, 0.35)}, linear-gradient(135deg, #DE7823 0%, #BF4A3B 50%, #A31E52 100%)`,
-    }}
-  >
-    <motion.div 
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.7 }}
-      className="container mx-auto text-center"
-    >
-      <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
-        Ready to Work Together?
-      </h2>
-      <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
-        Let's discuss how we can support your research objectives
-      </p>
-      <Link to="/contact">
-        <Button size="lg" className="bg-[#26323A] hover:bg-[#2E3D47] text-white text-lg px-8 h-14 shadow-2xl hover:scale-105 transition-transform duration-300">
-          Contact Us Today
-        </Button>
-      </Link>
-    </motion.div>
-  </section>
-);
-
-// ---------------------------------------------------------------------------
-// Page
-// ---------------------------------------------------------------------------
+const fadeInUp = { hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } } };
+const staggerContainer = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.12 } } };
 
 export const AboutPage = () => {
   return (
-    <div className="min-h-screen bg-[#26323A] relative">
-      <div className="fixed inset-0 z-0">
-        <img
-          src="https://images.pexels.com/photos/2129796/pexels-photo-2129796.png?auto=compress&cs=tinysrgb&w=1920"
-          alt="Business Analytics"
-          className="w-full h-full object-cover"
-          width={1920}
-          height={1280}
-          fetchPriority="high"
-        />
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `${noiseTexture({ r: 0.15, g: 0.19, b: 0.22 }, 0.5)}, linear-gradient(180deg, rgba(38,50,58,0.94) 0%, rgba(38,50,58,0.9) 50%, rgba(38,50,58,0.96) 100%)`,
-            backgroundRepeat: 'repeat, no-repeat'
-          }}
-        ></div>
-      </div>
+    <div className="min-h-screen bg-white text-gray-900 font-sans antialiased selection:bg-[#4B1E73] selection:text-white">
+      <Header />
+      <main className="pt-40 pb-20">
+        
+        {/* --- ABOUT HERO SECTION WITH IMAGE BG --- */}
+        <section className="relative px-4 sm:px-6 lg:px-8 border-b border-gray-200 pb-20 overflow-hidden">
+          
+          {/* 1. BACKGROUND IMAGE LAYER */}
+          <div className="absolute inset-0 z-0">
+            <img
+              src="https://images.pexels.com/photos/7948039/pexels-photo-7948039.jpeg" /* <-- PASTE YOUR IMAGE LINK HERE */
+              alt="Corporate Background"
+              className="w-full h-full object-cover grayscale opacity-40 blur-[2px]"
+            />
+            {/* Brand Tint & Frosted Fade */}
+            <div className="absolute inset-0 bg-gradient-to-r from-[#E69B57]/10 to-[#4B1E73]/10 mix-blend-multiply" />
+            <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-white/85 to-white backdrop-blur-[1px]" />
+          </div>
 
-      <div className="relative z-10">
-        <Header />
-        <HeroSection />
-        <MissionVisionSection />
-        <ExpertiseSection />
-        <UniqueStrengthsSection />
-        <SampleQualitySection />
-        <PanelNetworkSection />
-        <LeadershipSection />
-        <CtaSection />
-        <Footer />
-      </div>
+          {/* 2. FOREGROUND CONTENT */}
+          <div className="relative z-10 max-w-7xl mx-auto">
+            <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="max-w-3xl">
+              <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 bg-[#E69B57]/10 text-[#E69B57] border border-[#E69B57]/20 text-xs font-semibold px-3 py-1.5 rounded-md mb-6 tracking-widest uppercase font-mono shadow-2xs">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#E69B57] animate-pulse"></span>
+                Corporate Profile
+              </motion.div>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-[1.1] tracking-tight">
+                Precision methodologies for complex market environments.
+              </h1>
+              <p className="text-lg sm:text-xl text-gray-600 leading-relaxed font-normal">
+                We transform global consumer signals and niche professional data into high-conviction strategic intelligence, built on rigorous quality verification and empirical depth.
+              </p>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* MISSION & VISION */}
+        <section className="py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-100 bg-white">
+          <div className="max-w-7xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-8">
+              <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="bg-gray-50/60 p-8 rounded-lg border border-gray-200/80 flex flex-col justify-between">
+                <div>
+                  <div className="text-xs font-bold text-[#4B1E73] tracking-widest uppercase font-mono mb-3">01 / Operational Mandate</div>
+                  <h2 className="text-2xl font-bold text-gray-900 tracking-tight mb-4">Our Mission</h2>
+                  <p className="text-gray-600 leading-relaxed text-sm">
+                    To deliver empirical market data with uncompromising speed and precision. We eliminate methodological friction and sampling noise, providing enterprise leaders with verified, audit-ready intelligence when strategic stakes are highest.
+                  </p>
+                </div>
+                <div className="pt-6 mt-6 border-t border-gray-200/60 flex items-center gap-2 text-xs font-mono text-gray-600">
+                  <CheckCircle2 size={14} className="text-[#4B1E73]" /> Streamlined execution & live quality validation
+                </div>
+              </motion.div>
+              
+              <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.1 }} className="bg-gray-50/60 p-8 rounded-lg border border-gray-200/80 flex flex-col justify-between">
+                <div>
+                  <div className="text-xs font-bold text-[#E69B57] tracking-widest uppercase font-mono mb-3">02 / Long-Term Trajectory</div>
+                  <h2 className="text-2xl font-bold text-gray-900 tracking-tight mb-4">Our Vision</h2>
+                  <p className="text-gray-600 leading-relaxed text-sm">
+                    To establish our global advisory network as the definitive benchmark for reliability in market research. We build enduring client partnerships rooted in absolute methodological transparency, consistent execution, and scalable global reach.
+                  </p>
+                </div>
+                <div className="pt-6 mt-6 border-t border-gray-200/60 flex items-center gap-2 text-xs font-mono text-gray-600">
+                  <CheckCircle2 size={14} className="text-[#E69B57]" /> Pan-global panel architecture across 50+ countries
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* EXPERTISE SECTION */}
+        <section className="py-24 px-4 sm:px-6 lg:px-8 border-b border-gray-100 bg-white">
+          <div className="max-w-7xl mx-auto">
+            <div className="max-w-3xl mb-16">
+              <h2 className="text-xs font-bold text-[#4B1E73] tracking-widest uppercase font-mono mb-3">Domain Specialization</h2>
+              <p className="text-3xl sm:text-4xl font-bold text-gray-900 tracking-tight leading-tight">
+                Core Research Capabilities
+              </p>
+            </div>
+
+            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="grid md:grid-cols-2 gap-8">
+              <motion.div variants={fadeInUp} className="bg-white p-8 rounded-lg border-t-4 border-gray-200 border-t-[#4B1E73] shadow-sm hover:shadow-md transition-shadow">
+                <div className="flex items-center justify-between mb-6">
+                  <div className="w-10 h-10 rounded-md bg-[#4B1E73]/10 border border-[#4B1E73]/20 flex items-center justify-center text-[#4B1E73]">
+                    <BarChart3 size={20} />
+                  </div>
+                  <span className="text-xs font-mono text-gray-400">QUANT-01</span>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 tracking-tight mb-3">Quantitative Intelligence</h3>
+                <p className="text-sm text-gray-600 mb-6 leading-relaxed">
+                  Large-scale empirical studies engineered for high-granularity audience segmentation. We deploy robust statistical sampling to ensure data stability across global cohorts.
+                </p>
+                <div className="border-t border-gray-100 pt-4 space-y-2.5">
+                  {['B2B Professional Sampling', 'B2C Consumer Tracking', 'Healthcare KOLs'].map((item, i) => (
+                    <div key={i} className="flex items-center gap-2.5 text-xs text-gray-700 font-medium">
+                      <CheckCircle2 className="text-[#4B1E73] shrink-0" size={14} /><span>{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+
+              <motion.div variants={fadeInUp} className="bg-white p-8 rounded-lg border-t-4 border-gray-200 border-t-[#E69B57] shadow-sm hover:shadow-md transition-shadow">
+                <div className="flex items-center justify-between mb-6">
+                  <div className="w-10 h-10 rounded-md bg-[#E69B57]/10 border border-[#E69B57]/20 flex items-center justify-center text-[#E69B57]">
+                    <Layers size={20} />
+                  </div>
+                  <span className="text-xs font-mono text-gray-400">QUAL-02</span>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 tracking-tight mb-3">Qualitative Exploration</h3>
+                <p className="text-sm text-gray-600 mb-6 leading-relaxed">
+                  In-depth exploratory methodologies designed to surface the underlying behavioral drivers, decision-making friction points, and emotional triggers behind market trends.
+                </p>
+                <div className="border-t border-gray-100 pt-4 space-y-2.5">
+                  {['Executive IDIs & Moderations', 'Focus Group Discussions', 'Ethnographic Studies'].map((item, i) => (
+                    <div key={i} className="flex items-center gap-2.5 text-xs text-gray-700 font-medium">
+                      <CheckCircle2 className="text-[#E69B57] shrink-0" size={14} /><span>{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* METRICS & REACH */}
+        <section className="py-24 px-4 sm:px-6 lg:px-8 border-b border-gray-100 bg-gray-50/50">
+          <div className="max-w-7xl mx-auto">
+            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+              {[
+                { label: 'Markets Covered', end: 50, suffix: '+', icon: Globe },
+                { label: 'B2B Decision Makers', end: 200, suffix: 'K+', icon: Target },
+                { label: 'Healthcare Experts', end: 30, suffix: 'K+', icon: Award },
+                { label: 'Consumer Panelists', end: 1, suffix: 'M+', icon: Users },
+              ].map((stat) => {
+                const Icon = stat.icon;
+                return (
+                  <motion.div key={stat.label} variants={fadeInUp} className="bg-white p-6 rounded-lg border border-gray-200/80 shadow-sm hover:shadow-md transition-all">
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="text-xs font-mono text-gray-400 uppercase tracking-wider">Metric</span>
+                      <Icon size={16} className="text-[#4B1E73]" />
+                    </div>
+                    {/* Vibrant Gradient Numbers */}
+                    <div className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#4B1E73] to-[#E69B57] tracking-tight mb-1">
+                      <CountUp end={stat.end} duration={2} suffix={stat.suffix} enableScrollSpy scrollSpyOnce />
+                    </div>
+                    <div className="text-sm font-semibold text-gray-900 tracking-tight">{stat.label}</div>
+                  </motion.div>
+                );
+              })}
+            </motion.div>
+
+            {/* Enterprise Data Table for Regional Breakdown */}
+            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
+              <div className="p-6 border-b border-gray-200 bg-gray-50/50 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div>
+                  <h3 className="text-base font-bold text-gray-900 tracking-tight">Geographic Panel Distribution</h3>
+                  <p className="text-xs text-gray-500">Verified active respondents across primary operational theaters</p>
+                </div>
+                <span className="text-[11px] font-mono bg-white text-gray-600 px-3 py-1 rounded border border-gray-200 shadow-2xs">
+                  Audit Status: Validated Q3
+                </span>
+              </div>
+              <div className="overflow-x-auto">
+                <table className="w-full text-left border-collapse">
+                  <thead>
+                    <tr className="border-b border-gray-200 text-[11px] font-mono uppercase tracking-wider text-gray-500 bg-gray-50">
+                      <th className="py-3.5 px-6 font-medium">Region / Theater</th>
+                      <th className="py-3.5 px-6 font-medium">Panel Share</th>
+                      <th className="py-3.5 px-6 font-medium hidden md:table-cell">Primary Industry Sectors</th>
+                      <th className="py-3.5 px-6 font-medium text-right">Coverage Status</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-200 text-sm font-normal">
+                    {REGION_BREAKDOWN.map((row, idx) => (
+                      <tr key={idx} className="hover:bg-gray-50/80 transition-colors">
+                        <td className="py-4 px-6 font-semibold text-gray-900">{row.region}</td>
+                        <td className={`py-4 px-6 font-mono font-bold ${row.color}`}>
+                          <CountUp end={row.share} duration={2} suffix={row.suffix} enableScrollSpy scrollSpyOnce />
+                        </td>
+                        <td className="py-4 px-6 text-gray-600 hidden md:table-cell text-xs">{row.focus}</td>
+                        <td className="py-4 px-6 text-right font-mono text-xs text-emerald-600 font-semibold">
+                          <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-500 mr-2"></span> Active Fieldwork
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* LEADERSHIP */}
+        <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white">
+          <div className="max-w-7xl mx-auto">
+            <div className="max-w-3xl mb-16">
+              <h2 className="text-xs font-bold text-[#4B1E73] tracking-widest uppercase font-mono mb-3">Executive Leadership</h2>
+              <p className="text-3xl sm:text-4xl font-bold text-gray-900 tracking-tight leading-tight">
+                Advisory & Operations Governance
+              </p>
+            </div>
+
+            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="grid md:grid-cols-2 gap-8">
+              {TEAM.map((member) => (
+                <motion.div key={member.name} variants={fadeInUp} className="group">
+                  <div className="bg-white border border-gray-200 shadow-sm rounded-lg p-6 h-full flex flex-col justify-between hover:border-gray-300 transition-all">
+                    <div className="flex items-start gap-5">
+                      <TeamAvatar name={member.name} image={member.image} objectPosition={member.objectPosition} />
+                      <div className="flex-1">
+                        <h3 className="text-lg font-bold text-gray-900 tracking-tight mb-0.5">{member.name}</h3>
+                        <p className="text-xs font-mono text-[#4B1E73] uppercase tracking-wider font-semibold mb-4">{member.position}</p>
+                        <p className="text-xs text-gray-600 leading-relaxed font-normal">&ldquo;{member.quote}&rdquo;</p>
+                      </div>
+                    </div>
+                    <div className="mt-6 pt-4 border-t border-gray-100 flex justify-between items-center text-[10px] font-mono text-gray-400 uppercase">
+                      <span>Executive Governance</span>
+                      <span>Survey Dive Advisory</span>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </section>
+
+      </main>
+      <Footer />
     </div>
   );
 };
