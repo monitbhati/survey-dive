@@ -85,10 +85,10 @@ export const AboutPage = () => {
   return (
     <div className="min-h-screen bg-white text-gray-900 font-sans antialiased selection:bg-[#4B1E73] selection:text-white">
       <Header />
-      <main className="pt-40 pb-20">
+      <main className="pb-20">
         
         {/* --- ABOUT HERO SECTION WITH IMAGE BG --- */}
-        <section className="relative px-4 sm:px-6 lg:px-8 border-b border-gray-200 pb-20 overflow-hidden">
+        <section className="relative pt-40 pb-20 px-4 sm:px-6 lg:px-8 border-b border-gray-200 overflow-hidden">
           
           {/* 1. BACKGROUND IMAGE LAYER */}
           <div className="absolute inset-0 z-0">
