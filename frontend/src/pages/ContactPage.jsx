@@ -44,7 +44,7 @@ export const ContactPage = () => {
     <div className="min-h-screen bg-white text-gray-900 font-sans antialiased selection:bg-[#4B1E73] selection:text-white flex flex-col relative">
       <Header />
 
-      <main className="flex-grow pb-24 relative z-10">
+      <main className="flex-grow pt-40 pb-24 relative z-10">
         
         {/* --- CONTACT HERO SECTION WITH IMAGE BG --- */}
         <section className="relative px-4 sm:px-6 lg:px-8 mb-20 border-b border-gray-200 pb-16 overflow-hidden">
@@ -52,7 +52,7 @@ export const ContactPage = () => {
           {/* 1. BACKGROUND IMAGE LAYER */}
           <div className="absolute inset-0 z-0">
             <img
-              src="https://images.pexels.com/photos/5561910/pexels-photo-5561910.jpeg" /* <-- PASTE YOUR IMAGE LINK HERE */
+              src="" /* <-- PASTE YOUR IMAGE LINK HERE */
               alt="Advisory Contact Background"
               className="w-full h-full object-cover grayscale opacity-30 blur-[2px]"
             />
@@ -90,7 +90,7 @@ export const ContactPage = () => {
         </section>
 
         {/* FORMS & CHANNELS */}
-        <section className="relative pt-40 pb-20 px-4 sm:px-6 lg:px-8 border-b border-gray-200 overflow-hidden">
+        <section className="px-4 sm:px-6 lg:px-8 mb-24 relative z-10">
           <div className="max-w-7xl mx-auto">
             <div className="grid lg:grid-cols-12 gap-12 items-start">
               
