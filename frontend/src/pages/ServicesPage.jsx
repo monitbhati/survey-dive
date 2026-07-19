@@ -74,15 +74,16 @@ export const ServicesPage = () => {
     <div className="min-h-screen bg-white text-gray-900 font-sans antialiased selection:bg-[#4B1E73] selection:text-white flex flex-col relative">
       <Header />
 
-      <main className="flex-grow pt-40 pb-20 relative z-10">
+      {/* Notice pt-40 is removed from main here! */}
+      <main className="flex-grow pb-20 relative z-10">
         
-        {/* --- SERVICES HERO SECTION WITH IMAGE BG --- */}
-        <section className="relative px-4 sm:px-6 lg:px-8 mb-20 border-b border-gray-200 pb-20 overflow-hidden">
+        {/* --- SERVICES HERO SECTION WITH pt-40 APPLIED HERE --- */}
+        <section className="relative pt-40 px-4 sm:px-6 lg:px-8 mb-20 border-b border-gray-200 pb-20 overflow-hidden">
           
           {/* 1. BACKGROUND IMAGE LAYER */}
           <div className="absolute inset-0 z-0">
             <img
-              src="https://www.pexels.com/photo/close-up-shot-of-a-paper-with-market-research-7947854/" /* <-- PASTE YOUR IMAGE LINK HERE */
+              src="https://images.pexels.com/photos/7948039/pexels-photo-7948039.jpeg" /* <-- PASTE YOUR IMAGE LINK HERE */
               alt="Methodologies Background"
               className="w-full h-full object-cover grayscale opacity-40 blur-[2px]"
             />

@@ -27,9 +27,16 @@ export const ContactPage = () => {
     e.preventDefault();
     setLoading(true);
     try {
+      // --- TEMPORARY DEMO MODE (No Backend Required for now) ---
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      toast.success('Project briefing received! Our advisory team will reach out shortly.');
+      setFormData({ name: '', email: '', company: '', message: '' });
+      
+      /* --- UNCOMMENT THIS WHEN YOUR BACKEND IS LIVE ---
       const response = await axios.post(`${API}/contact/submit`, formData);
       toast.success(response.data.message || 'Inquiry submitted successfully.');
       setFormData({ name: '', email: '', company: '', message: '' });
+      -------------------------------------------------- */
     } catch (error) {
       console.error('Contact form error:', error);
       toast.error('Failed to submit inquiry. Please try again.');
@@ -44,15 +51,16 @@ export const ContactPage = () => {
     <div className="min-h-screen bg-white text-gray-900 font-sans antialiased selection:bg-[#4B1E73] selection:text-white flex flex-col relative">
       <Header />
 
-      <main className="flex-grow pt-40 pb-24 relative z-10">
+      {/* Notice pt-40 is removed from main here! */}
+      <main className="flex-grow pb-24 relative z-10">
         
-        {/* --- CONTACT HERO SECTION WITH IMAGE BG --- */}
-        <section className="relative px-4 sm:px-6 lg:px-8 mb-20 border-b border-gray-200 pb-16 overflow-hidden">
+        {/* --- CONTACT HERO SECTION WITH pt-40 APPLIED HERE --- */}
+        <section className="relative pt-40 px-4 sm:px-6 lg:px-8 mb-20 border-b border-gray-200 pb-16 overflow-hidden">
           
           {/* 1. BACKGROUND IMAGE LAYER */}
           <div className="absolute inset-0 z-0">
             <img
-              src="" /* <-- PASTE YOUR IMAGE LINK HERE */
+              src="https://images.pexels.com/photos/5561910/pexels-photo-5561910.jpeg" /* <-- PASTE YOUR IMAGE LINK HERE */
               alt="Advisory Contact Background"
               className="w-full h-full object-cover grayscale opacity-30 blur-[2px]"
             />
