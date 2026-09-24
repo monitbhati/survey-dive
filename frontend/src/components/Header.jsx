@@ -33,7 +33,7 @@ export const Header = () => {
             <Link to="/services" className={navLinkClass('/services')}>Services</Link>
             <Link to="/join-us" className={navLinkClass('/join-us')}>Join Us</Link>
             <Link to="/contact">
-              <Button className="bg-gradient-to-r from-[#4B1E73] to-[#E69B57] hover:from-[#401A62] hover:to-[#C4844A] px-6 rounded-lg text-white border-0">
+              <Button className="bg-[#4B1E73] hover:bg-[#3A165A] px-6 rounded-full text-white border-0">
                 Contact
               </Button>
             </Link>
@@ -57,7 +57,7 @@ export const Header = () => {
               <Link to="/services" className="text-left text-gray-600 hover:text-[#4B1E73] transition-colors py-2 font-medium" onClick={() => setMobileMenuOpen(false)}>Services</Link>
               <Link to="/join-us" className="text-left text-gray-600 hover:text-[#4B1E73] transition-colors py-2 font-medium" onClick={() => setMobileMenuOpen(false)}>Join Us</Link>
               <Link to="/contact" onClick={() => setMobileMenuOpen(false)} className="pt-2">
-                <Button className="bg-gradient-to-r from-[#4B1E73] to-[#E69B57] hover:from-[#401A62] hover:to-[#C4844A] w-full rounded-lg text-white border-0">
+                <Button className="bg-[#4B1E73] hover:bg-[#3A165A] w-full rounded-full text-white border-0">
                   Contact
                 </Button>
               </Link>

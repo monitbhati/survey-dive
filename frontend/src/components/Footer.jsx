@@ -6,7 +6,7 @@ import { FaLinkedin } from 'react-icons/fa';
 
 export const Footer = () => {
   return (
-    <footer className="bg-gradient-to-b from-[#2A1345] to-[#140A22] text-white py-12 px-4 sm:px-6 lg:px-8 border-t border-[#3D2960]">
+    <footer className="bg-[#0E0519] text-white py-12 px-4 sm:px-6 lg:px-8 border-t border-white/5">
       <div className="container mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-start gap-8 mb-10">
           {/* Left Side - Logo and Content */}
@@ -30,7 +30,7 @@ export const Footer = () => {
               href="https://www.linkedin.com/company/survey-dive" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-gradient-to-r from-[#4B1E73] to-[#E69B57] hover:from-[#5C2690] hover:to-[#F0AC6E] text-white px-6 py-3 rounded-lg transition-all duration-300 font-medium shadow-[0_0_15px_rgba(75,30,115,0.4)] hover:shadow-[0_0_25px_rgba(230,155,87,0.4)] hover:-translate-y-1"
+              className="inline-flex items-center gap-2 border border-white/20 text-white px-6 py-3 rounded-full transition-colors font-medium hover:bg-white/10"
             >
               <FaLinkedin size={20} />
               Follow us on LinkedIn
