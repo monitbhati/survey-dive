@@ -2,3 +2,22 @@
 
 .home-root { font-family: 'Inter', system-ui, sans-serif; }
 .font-display { font-family: 'Manrope', 'Inter', system-ui, sans-serif; }
+
+/* Survey Dive logo colours as a text gradient */
+.text-brand-gradient {
+  background: linear-gradient(90deg, #B07BEA 0%, #D98BC0 45%, #F0A45E 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Endless horizontal scroll (sample 2 industries strip) */
+@keyframes sd-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.sd-marquee { animation: sd-marquee 40s linear infinite; }
+.sd-outline { color: transparent; -webkit-text-stroke: 1px rgba(255, 255, 255, 0.45); }
+@media (prefers-reduced-motion: reduce) {
+  .sd-marquee { animation: none; }
+}

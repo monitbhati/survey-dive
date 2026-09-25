@@ -18,6 +18,8 @@ import LogoShowcase from "./pages/LogoShowcase";
 import { Toaster } from "./components/ui/sonner";
 import { ScrollToTop } from "./components/ScrollToTop";
 import { Sample1Page } from "./pages/samples/Sample1Page";
+import { Sample2Page } from "./pages/samples/Sample2Page";
+import { Sample3Page } from "./pages/samples/Sample3Page";
 
 function App() {
   return (
@@ -41,6 +43,8 @@ function App() {
           <Route path="/admin/login" element={<AdminLoginPage />} />
           <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
           <Route path="/sample-1" element={<Sample1Page />} />
+          <Route path="/sample-2" element={<Sample2Page />} />
+          <Route path="/sample-3" element={<Sample3Page />} />
         </Routes>
       </BrowserRouter>
       <Toaster position="top-right" />

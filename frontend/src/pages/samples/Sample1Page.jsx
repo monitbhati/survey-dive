@@ -176,21 +176,6 @@ const FadeLine = ({ children }) => {
   );
 };
 
-const ScrollDown = () => (
-  <button
-    type="button"
-    onClick={() => window.scrollBy({ top: window.innerHeight * 0.9, behavior: 'smooth' })}
-    className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-4 text-white/75 hover:text-white text-[11px] font-semibold tracking-[0.3em]"
-    aria-label="Scroll down"
-  >
-    <span className="hidden sm:inline">SCROLL</span>
-    <span className="relative w-6 h-10 rounded-full border-2 border-current">
-      <span className="absolute left-1/2 top-2 -translate-x-1/2 w-1 h-2 rounded-full bg-current animate-bounce" />
-    </span>
-    <span className="hidden sm:inline">DOWN</span>
-  </button>
-);
-
 const wrap = 'max-w-7xl mx-auto px-5 sm:px-8';
 
 /* =====================================================================
@@ -201,7 +186,7 @@ export const Sample1Page = () => {
   const reduce = useReducedMotion();
 
   return (
-    <div className="home-root relative min-h-screen text-white antialiased selection:bg-[#E69B57] selection:text-[#140A22]">
+    <div className="home-root relative isolate min-h-screen bg-[#0B0612] text-white antialiased selection:bg-[#E69B57] selection:text-[#140A22]">
       <BackgroundVideo />
       <HomeHeader />
 
@@ -216,7 +201,7 @@ export const Sample1Page = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.9, delay: 0.3 + i * 0.3, ease: [0.22, 1, 0.36, 1] }}
                 className={`block text-[34px] leading-[1.12] sm:text-6xl lg:text-[80px] font-bold tracking-tight ${
-                  i === 1 ? 'text-[#E69B57]' : 'text-white'
+                  i === 1 ? 'text-brand-gradient' : 'text-white'
                 }`}
               >
                 {line}
@@ -241,7 +226,6 @@ export const Sample1Page = () => {
             <Link to="/join-us" className={btnGhost}>Join our panel</Link>
           </motion.div>
         </div>
-        <ScrollDown />
       </section>
 
       {/* ---------- 2. SCROLL STATEMENT ---------- */}
