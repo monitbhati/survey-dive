@@ -1,14 +1,10 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Button } from '../components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
-import { Input } from '../components/ui/input';
-import { Label } from '../components/ui/label';
-import { toast } from 'sonner';
-import { Header } from '../components/Header';
-import { Footer } from '../components/Footer';
-import { Shield } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { toast } from 'sonner';
+import { Lock, ArrowLeft } from 'lucide-react';
+import { btnPrimary, fieldClass, labelClass } from '../components/site/ui';
+import '../components/home/home.css';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
@@ -16,89 +12,73 @@ const API = `${BACKEND_URL}/api`;
 export const AdminLoginPage = () => {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
+  // Same request as before: POST /api/admin/login, then store the token
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
-    
+    setError('');
     try {
       const response = await axios.post(`${API}/admin/login`, { password });
-      
-      // Store admin token
       localStorage.setItem('admin_token', response.data.access_token);
-      
       toast.success('Admin access granted');
       navigate('/admin/dashboard');
-    } catch (error) {
-      console.error('Admin login error:', error);
-      toast.error('Invalid admin password');
+    } catch (err) {
+      console.error('Admin login error:', err);
+      setError('That password is not correct.');
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen bg-white">
-      <Header />
+    <div className="home-root relative isolate min-h-screen bg-[#120822] text-white antialiased flex items-center justify-center px-5 py-16 overflow-hidden">
+      <div className="absolute -top-40 -left-32 w-[520px] h-[520px] rounded-full bg-[#6B2FA8]/40 blur-[120px]" aria-hidden="true" />
+      <div className="absolute -bottom-48 -right-20 w-[480px] h-[480px] rounded-full bg-[#E69B57]/15 blur-[120px]" aria-hidden="true" />
 
-      {/* Page Header */}
-      <section className="pt-32 pb-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-slate-50 to-white">
-        <div className="container mx-auto">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="w-16 h-16 bg-slate-800 rounded-xl flex items-center justify-center mx-auto mb-6">
-              <Shield className="text-white" size={32} />
+      <div className="relative w-full max-w-md">
+        <Link to="/" className="inline-flex items-center gap-2 text-sm text-white/60 hover:text-white mb-10">
+          <ArrowLeft size={16} /> Back to website
+        </Link>
+
+        <div className="border border-white/15 bg-[#160A28]/80 backdrop-blur-xl p-8 sm:p-10">
+          <img src="/surveydive-logo.png" alt="Survey Dive" className="h-12 w-auto object-contain" />
+          <div className="mt-8 flex items-center gap-3">
+            <span className="w-10 h-10 flex items-center justify-center bg-[#E69B57]/15">
+              <Lock size={18} className="text-[#E69B57]" />
+            </span>
+            <div>
+              <h1 className="font-display text-2xl font-extrabold tracking-tight">Admin access</h1>
+              <p className="text-sm text-white/55">For Survey Dive staff only</p>
             </div>
-            <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-              Admin Access
-            </h1>
-            <p className="text-lg text-gray-600 leading-relaxed">
-              Enter admin password to access the dashboard
-            </p>
           </div>
+
+          <form onSubmit={handleLogin} className="mt-8 space-y-5">
+            <div>
+              <label htmlFor="password" className={labelClass}>Admin password</label>
+              <input
+                id="password"
+                name="password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                autoComplete="current-password"
+                required
+                autoFocus
+                className={`${fieldClass} h-14`}
+              />
+            </div>
+            {error && (
+              <p role="alert" className="border border-red-400/40 bg-red-500/10 text-red-200 px-4 py-3 text-sm">{error}</p>
+            )}
+            <button type="submit" disabled={loading} className={`${btnPrimary} w-full`}>
+              {loading ? 'Checking...' : 'Open dashboard'}
+            </button>
+          </form>
         </div>
-      </section>
-
-      {/* Login Form */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
-        <div className="container mx-auto">
-          <div className="max-w-md mx-auto">
-            <Card className="border-2 border-gray-100">
-              <CardHeader>
-                <CardTitle className="text-2xl">Admin Login</CardTitle>
-                <CardDescription className="text-base">Secure access for administrators only</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <form onSubmit={handleLogin} className="space-y-5">
-                  <div>
-                    <Label htmlFor="password" className="text-sm font-semibold text-gray-700 mb-2">Admin Password *</Label>
-                    <Input
-                      id="password"
-                      name="password"
-                      type="password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      placeholder="Enter admin password"
-                      className="h-12"
-                      required
-                    />
-                  </div>
-
-                  <Button 
-                    type="submit" 
-                    className="w-full bg-slate-800 hover:bg-slate-900 h-12 text-base"
-                    disabled={loading}
-                  >
-                    {loading ? 'Verifying...' : 'Access Dashboard'}
-                  </Button>
-                </form>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      <Footer />
+      </div>
     </div>
   );
 };

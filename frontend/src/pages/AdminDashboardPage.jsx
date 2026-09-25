@@ -1,369 +1,295 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { Button } from '../components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
-import { toast } from 'sonner';
-import { Header } from '../components/Header';
-import { Footer } from '../components/Footer';
-import { Users, Mail, BarChart3, Download, LogOut } from 'lucide-react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { toast } from 'sonner';
+import { Users, Mail, Inbox, Download, LogOut, Search, UserPlus } from 'lucide-react';
+import '../components/home/home.css';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
-// ---------------------------------------------------------------------------
-// Helpers & Animation Variants
-// ---------------------------------------------------------------------------
-const noiseTexture = (rgb, alpha) =>
-  `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 ${rgb.r}  0 0 0 0 ${rgb.g}  0 0 0 0 ${rgb.b}  0 0 0 ${alpha} 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`;
+// Panel sign-ups from the Join Our Panel page arrive as contacts with this company value
+const PANEL_TAG = 'Panel sign-up';
 
-const fadeInUp = {
-  hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+// Wrap every value in quotes so commas and line breaks don't break the CSV
+const toCsv = (rows) =>
+  rows.map((row) => row.map((v) => `"${String(v ?? '').replace(/"/g, '""')}"`).join(',')).join('\n');
+
+const download = (csv, name) => {
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8' });
+  const url = window.URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `${name}_${new Date().toISOString().split('T')[0]}.csv`;
+  a.click();
+  window.URL.revokeObjectURL(url);
 };
 
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.2 }
-  }
+const formatDate = (d) => {
+  if (!d) return '';
+  const date = new Date(d);
+  return Number.isNaN(date.getTime()) ? '' : date.toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' });
 };
+
+const StatTile = ({ icon: Icon, label, value }) => (
+  <div className="border border-white/10 bg-[#160A28] p-6 flex items-center justify-between gap-4">
+    <div>
+      <p className="text-sm text-white/55">{label}</p>
+      <p className="font-display mt-1 text-4xl font-extrabold tabular-nums">{value}</p>
+    </div>
+    <span className="w-12 h-12 flex items-center justify-center bg-[#E69B57]/15">
+      <Icon size={22} className="text-[#E69B57]" />
+    </span>
+  </div>
+);
 
 export const AdminDashboardPage = () => {
   const [stats, setStats] = useState({ total_users: 0, total_contacts: 0, new_contacts: 0 });
   const [users, setUsers] = useState([]);
   const [contacts, setContacts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [tab, setTab] = useState('contacts');
+  const [filter, setFilter] = useState('all');
+  const [query, setQuery] = useState('');
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const token = localStorage.getItem('admin_token');
-    if (!token) {
+  const logout = useCallback(
+    (message = 'Logged out') => {
+      localStorage.removeItem('admin_token');
+      toast.success(message);
       navigate('/admin/login');
-      return;
-    }
-    loadData();
-  }, [navigate]);
+    },
+    [navigate]
+  );
 
-  const loadData = async () => {
+  const loadData = useCallback(async () => {
+    const token = localStorage.getItem('admin_token');
+    // The admin token is now sent with every request
+    const config = { headers: { Authorization: `Bearer ${token}` } };
     try {
       const [statsRes, usersRes, contactsRes] = await Promise.all([
-        axios.get(`${API}/admin/stats`),
-        axios.get(`${API}/admin/users`),
-        axios.get(`${API}/admin/contacts`)
+        axios.get(`${API}/admin/stats`, config),
+        axios.get(`${API}/admin/users`, config),
+        axios.get(`${API}/admin/contacts`, config),
       ]);
-      
-      setStats(statsRes.data);
-      setUsers(usersRes.data);
-      setContacts(contactsRes.data);
+      setStats(statsRes.data || {});
+      setUsers(Array.isArray(usersRes.data) ? usersRes.data : []);
+      setContacts(Array.isArray(contactsRes.data) ? contactsRes.data : []);
     } catch (error) {
       console.error('Error loading data:', error);
+      const status = error?.response?.status;
+      if (status === 401 || status === 403) {
+        logout('Your session has expired. Please log in again.');
+        return;
+      }
       toast.error('Failed to load dashboard data');
     } finally {
       setLoading(false);
     }
-  };
+  }, [logout]);
 
-  const handleLogout = () => {
-    localStorage.removeItem('admin_token');
-    toast.success('Logged out successfully');
-    navigate('/admin/login');
-  };
+  useEffect(() => {
+    if (!localStorage.getItem('admin_token')) {
+      navigate('/admin/login');
+      return;
+    }
+    loadData();
+  }, [navigate, loadData]);
+
+  const q = query.trim().toLowerCase();
+  const matches = (values) => !q || values.some((v) => String(v ?? '').toLowerCase().includes(q));
+
+  const visibleContacts = useMemo(
+    () =>
+      contacts
+        .filter((c) => (filter === 'panel' ? c.company === PANEL_TAG : filter === 'enquiries' ? c.company !== PANEL_TAG : true))
+        .filter((c) => matches([c.name, c.email, c.company, c.message])),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [contacts, filter, q]
+  );
+
+  const visibleUsers = useMemo(
+    () => users.filter((u) => matches([u.name, u.surname, u.email, u.country, u.profession])),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [users, q]
+  );
+
+  const panelCount = contacts.filter((c) => c.company === PANEL_TAG).length;
 
   const exportUsers = () => {
-    const csv = [
-      ['ID', 'Name', 'Surname', 'Email', 'Age', 'Country', 'Profession', 'Gender'],
-      ...users.map(u => [u.id, u.name, u.surname, u.email, u.age, u.country, u.profession, u.gender])
-    ].map(row => row.join(',')).join('\n');
-    
-    const blob = new Blob([csv], { type: 'text/csv' });
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `users_${new Date().toISOString().split('T')[0]}.csv`;
-    a.click();
-    toast.success('Users data exported successfully');
+    download(
+      toCsv([
+        ['ID', 'Name', 'Surname', 'Email', 'Age', 'Country', 'Profession', 'Gender'],
+        ...visibleUsers.map((u) => [u.id, u.name, u.surname, u.email, u.age, u.country, u.profession, u.gender]),
+      ]),
+      'users'
+    );
+    toast.success('Users exported');
   };
 
   const exportContacts = () => {
-    const csv = [
-      ['ID', 'Name', 'Email', 'Company', 'Message', 'Date', 'Status'],
-      ...contacts.map(c => [
-        c.id, 
-        c.name, 
-        c.email, 
-        c.company || 'N/A', 
-        `"${c.message.replace(/"/g, '""')}"`, 
-        new Date(c.created_at).toLocaleString(),
-        c.status
-      ])
-    ].map(row => row.join(',')).join('\n');
-    
-    const blob = new Blob([csv], { type: 'text/csv' });
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `contacts_${new Date().toISOString().split('T')[0]}.csv`;
-    a.click();
-    toast.success('Contact submissions exported successfully');
+    download(
+      toCsv([
+        ['ID', 'Name', 'Email', 'Company', 'Message', 'Date', 'Status'],
+        ...visibleContacts.map((c) => [c.id, c.name, c.email, c.company || 'N/A', c.message, c.created_at ? new Date(c.created_at).toLocaleString() : '', c.status]),
+      ]),
+      filter === 'panel' ? 'panel_signups' : 'contacts'
+    );
+    toast.success('Contacts exported');
   };
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#26323A] flex items-center justify-center relative">
-        <div className="text-center z-10">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#BF4A3B] mx-auto"></div>
-          <p className="mt-4 text-[#A8ADB8] font-medium">Loading dashboard...</p>
+      <div className="home-root min-h-screen bg-[#120822] flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-10 w-10 border-2 border-white/15 border-t-[#E69B57] mx-auto" />
+          <p className="mt-4 text-white/60">Loading dashboard...</p>
         </div>
       </div>
     );
   }
 
+  const tabBtn = (key, label, count) => (
+    <button
+      onClick={() => setTab(key)}
+      className={`font-display px-5 h-11 text-[15px] font-semibold border-b-2 transition-colors ${
+        tab === key ? 'border-[#E69B57] text-white' : 'border-transparent text-white/55 hover:text-white'
+      }`}
+    >
+      {label} <span className="ml-1 text-white/40 tabular-nums">{count}</span>
+    </button>
+  );
+
+  const chip = (key, label) => (
+    <button
+      onClick={() => setFilter(key)}
+      className={`px-4 h-9 text-sm border transition-colors ${
+        filter === key ? 'bg-[#E69B57] border-[#E69B57] text-[#140A22] font-semibold' : 'border-white/20 text-white/75 hover:border-white/50'
+      }`}
+    >
+      {label}
+    </button>
+  );
+
   return (
-    <div className="min-h-screen bg-[#26323A] relative">
-      {/* Global Background Layer */}
-      <div className="fixed inset-0 z-0">
-        <img
-          src="https://images.pexels.com/photos/2129796/pexels-photo-2129796.png?auto=compress&cs=tinysrgb&w=1920"
-          alt="Business Analytics"
-          className="w-full h-full object-cover opacity-20"
-          width={1920}
-          height={1280}
-        />
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `${noiseTexture({ r: 0.15, g: 0.19, b: 0.22 }, 0.5)}, linear-gradient(180deg, rgba(38,50,58,0.94) 0%, rgba(38,50,58,0.9) 50%, rgba(38,50,58,0.96) 100%)`,
-            backgroundRepeat: 'repeat, no-repeat'
-          }}
-        ></div>
-      </div>
+    <div className="home-root min-h-screen bg-[#120822] text-white antialiased">
+      {/* ---------- TOP BAR ---------- */}
+      <header className="sticky top-0 z-40 bg-[#160A28]/90 backdrop-blur-xl border-b border-white/10">
+        <div className="max-w-[1400px] mx-auto px-5 sm:px-8 h-16 flex items-center gap-4">
+          <Link to="/"><img src="/surveydive-logo.png" alt="Survey Dive" className="h-10 w-auto object-contain" /></Link>
+          <span className="hidden sm:inline text-white/30">/</span>
+          <span className="hidden sm:inline font-display font-semibold">Admin dashboard</span>
+          <button onClick={() => logout()} className="ml-auto inline-flex items-center gap-2 h-10 px-4 border border-white/20 text-sm text-white/80 hover:bg-white/10">
+            <LogOut size={16} /> Log out
+          </button>
+        </div>
+      </header>
 
-      <div className="relative z-10">
-        <Header />
+      <main className="max-w-[1400px] mx-auto px-5 sm:px-8 py-10">
+        {/* ---------- STATS ---------- */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <StatTile icon={Users} label="Registered users" value={stats.total_users ?? users.length} />
+          <StatTile icon={Mail} label="All contact submissions" value={stats.total_contacts ?? contacts.length} />
+          <StatTile icon={Inbox} label="New submissions" value={stats.new_contacts ?? 0} />
+          <StatTile icon={UserPlus} label="Panel sign-ups" value={panelCount} />
+        </div>
 
-        {/* Dashboard Header */}
-        <section className="pt-32 pb-8 px-4 sm:px-6 lg:px-8 bg-transparent">
-          <div className="container mx-auto max-w-7xl">
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4"
-            >
-              <div>
-                <h1 className="text-4xl font-bold text-white mb-2">Admin Dashboard</h1>
-                <p className="text-lg text-[#A8ADB8]">Manage users and contact submissions</p>
+        {/* ---------- TABS + SEARCH ---------- */}
+        <div className="mt-10 flex flex-col lg:flex-row lg:items-end justify-between gap-4 border-b border-white/10">
+          <div className="flex">
+            {tabBtn('contacts', 'Contact submissions', contacts.length)}
+            {tabBtn('users', 'Registered users', users.length)}
+          </div>
+          <div className="relative pb-3 lg:pb-2 lg:w-80">
+            <Search size={16} className="absolute left-3 top-3 text-white/40" />
+            <input
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Search name, email, message..."
+              aria-label="Search"
+              className="w-full h-10 pl-9 pr-3 bg-white/[0.06] border border-white/15 text-sm placeholder:text-white/40 focus:outline-none focus:border-[#E69B57]"
+            />
+          </div>
+        </div>
+
+        {tab === 'contacts' ? (
+          <section className="mt-6">
+            <div className="flex flex-wrap items-center gap-2 justify-between">
+              <div className="flex flex-wrap gap-2">
+                {chip('all', 'All')}
+                {chip('enquiries', 'Business enquiries')}
+                {chip('panel', 'Panel sign-ups')}
               </div>
-              <Button onClick={handleLogout} variant="outline" className="border border-[#3E4F59] bg-[#2E3D47] text-white hover:bg-[#3E4F59] hover:text-white transition-colors">
-                <LogOut className="mr-2" size={18} />
-                Logout
-              </Button>
-            </motion.div>
-          </div>
-        </section>
+              <button onClick={exportContacts} disabled={!visibleContacts.length} className="inline-flex items-center gap-2 h-9 px-4 bg-[#E69B57] text-[#140A22] text-sm font-semibold hover:bg-[#F2AE70] disabled:opacity-40">
+                <Download size={16} /> Export {visibleContacts.length} to CSV
+              </button>
+            </div>
 
-        {/* Dashboard Content */}
-        <section className="py-8 px-4 sm:px-6 lg:px-8 bg-transparent min-h-[60vh]">
-          <div className="container mx-auto max-w-7xl">
-            
-            {/* Stats Cards */}
-            <motion.div 
-              initial="hidden"
-              animate="visible"
-              variants={staggerContainer}
-              className="grid md:grid-cols-3 gap-6 mb-10"
-            >
-              <motion.div variants={fadeInUp}>
-                <Card className="bg-[#2E3D47] border border-[#3E4F59] hover:-translate-y-2 hover:border-[#DE7823] hover:shadow-[0_10px_40px_-15px_rgba(222,120,35,0.3)] transition-all duration-300">
-                  <CardContent className="pt-6">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <p className="text-sm font-medium text-[#A8ADB8] mb-1">Total Users</p>
-                        <p className="text-3xl font-bold text-white">{stats.total_users}</p>
-                      </div>
-                      <div className="w-14 h-14 bg-gradient-to-br from-[#DE7823] to-[#BF4A3B] rounded-xl flex items-center justify-center">
-                        <Users className="text-white" size={26} />
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-
-              <motion.div variants={fadeInUp}>
-                <Card className="bg-[#2E3D47] border border-[#3E4F59] hover:-translate-y-2 hover:border-[#BF4A3B] hover:shadow-[0_10px_40px_-15px_rgba(191,74,59,0.3)] transition-all duration-300">
-                  <CardContent className="pt-6">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <p className="text-sm font-medium text-[#A8ADB8] mb-1">Total Contacts</p>
-                        <p className="text-3xl font-bold text-white">{stats.total_contacts}</p>
-                      </div>
-                      <div className="w-14 h-14 bg-gradient-to-br from-[#BF4A3B] to-[#A8294B] rounded-xl flex items-center justify-center">
-                        <Mail className="text-white" size={26} />
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-
-              <motion.div variants={fadeInUp}>
-                <Card className="bg-[#2E3D47] border border-[#3E4F59] hover:-translate-y-2 hover:border-[#A31E52] hover:shadow-[0_10px_40px_-15px_rgba(163,30,82,0.3)] transition-all duration-300">
-                  <CardContent className="pt-6">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <p className="text-sm font-medium text-[#A8ADB8] mb-1">New Submissions</p>
-                        <p className="text-3xl font-bold text-white">{stats.new_contacts}</p>
-                      </div>
-                      <div className="w-14 h-14 bg-gradient-to-br from-[#A8294B] to-[#A31E52] rounded-xl flex items-center justify-center">
-                        <BarChart3 className="text-white" size={26} />
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            </motion.div>
-
-            {/* Data Tables */}
-            <motion.div
-              initial="hidden"
-              animate="visible"
-              variants={fadeInUp}
-            >
-              <Tabs defaultValue="users" className="w-full">
-                <TabsList className="mb-6 bg-[#2E3D47] border border-[#3E4F59] p-1 rounded-lg">
-                  <TabsTrigger 
-                    value="users" 
-                    className="px-8 py-3 text-[#A8ADB8] data-[state=active]:bg-[#26323A] data-[state=active]:text-white data-[state=active]:shadow-md rounded-md transition-all"
-                  >
-                    <Users className="mr-2" size={18} />
-                    Registered Users ({users.length})
-                  </TabsTrigger>
-                  <TabsTrigger 
-                    value="contacts" 
-                    className="px-8 py-3 text-[#A8ADB8] data-[state=active]:bg-[#26323A] data-[state=active]:text-white data-[state=active]:shadow-md rounded-md transition-all"
-                  >
-                    <Mail className="mr-2" size={18} />
-                    Contact Submissions ({contacts.length})
-                  </TabsTrigger>
-                </TabsList>
-
-                {/* Users Tab */}
-                <TabsContent value="users">
-                  <Card className="bg-[#2E3D47] border border-[#3E4F59] shadow-xl overflow-hidden">
-                    <CardHeader className="border-b border-[#3E4F59] bg-[#2E3D47]/50 pb-6">
-                      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                        <div>
-                          <CardTitle className="text-2xl text-white">Registered Users</CardTitle>
-                          <CardDescription className="text-base text-[#A8ADB8]">All users who signed up on the platform</CardDescription>
-                        </div>
-                        <Button 
-                          onClick={exportUsers} 
-                          className="bg-gradient-to-r from-[#BF4A3B] to-[#A31E52] hover:from-[#A8294B] hover:to-[#A31E52] text-white border-0 shadow-lg"
-                        >
-                          <Download className="mr-2" size={18} />
-                          Export CSV
-                        </Button>
-                      </div>
-                    </CardHeader>
-                    <CardContent className="p-0">
-                      <div className="overflow-x-auto">
-                        <table className="w-full">
-                          <thead>
-                            <tr className="bg-[#26323A]/50 border-b border-[#3E4F59]">
-                              <th className="text-left py-4 px-6 font-semibold text-[#A8ADB8]">Name</th>
-                              <th className="text-left py-4 px-6 font-semibold text-[#A8ADB8]">Email</th>
-                              <th className="text-left py-4 px-6 font-semibold text-[#A8ADB8]">Age</th>
-                              <th className="text-left py-4 px-6 font-semibold text-[#A8ADB8]">Country</th>
-                              <th className="text-left py-4 px-6 font-semibold text-[#A8ADB8]">Profession</th>
-                              <th className="text-left py-4 px-6 font-semibold text-[#A8ADB8]">Gender</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            {users.map((user) => (
-                              <tr key={user.id} className="border-b border-[#3E4F59]/50 hover:bg-[#26323A] transition-colors">
-                                <td className="py-4 px-6 text-white font-medium">{user.name} {user.surname}</td>
-                                <td className="py-4 px-6 text-[#A8ADB8]">{user.email}</td>
-                                <td className="py-4 px-6 text-[#A8ADB8]">{user.age}</td>
-                                <td className="py-4 px-6 text-[#A8ADB8]">{user.country}</td>
-                                <td className="py-4 px-6 text-[#A8ADB8]">{user.profession}</td>
-                                <td className="py-4 px-6 text-[#A8ADB8] capitalize">{user.gender}</td>
-                              </tr>
-                            ))}
-                          </tbody>
-                        </table>
-                        {users.length === 0 && (
-                          <div className="text-center py-16 text-[#A8ADB8]">
-                            No users registered yet
-                          </div>
+            <div className="mt-6 space-y-3">
+              {visibleContacts.map((c) => (
+                <article key={c.id} className="border border-white/10 bg-[#160A28] p-5 sm:p-6 hover:border-white/25 transition-colors">
+                  <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
+                    <div>
+                      <div className="flex flex-wrap items-center gap-2">
+                        <h3 className="font-display text-lg font-bold">{c.name}</h3>
+                        {c.company === PANEL_TAG && (
+                          <span className="text-[11px] font-bold uppercase tracking-wider px-2 py-0.5 bg-[#8E4FD1]/25 text-[#D4B5F5]">Panel</span>
                         )}
                       </div>
-                    </CardContent>
-                  </Card>
-                </TabsContent>
-
-                {/* Contacts Tab */}
-                <TabsContent value="contacts">
-                  <Card className="bg-[#2E3D47] border border-[#3E4F59] shadow-xl overflow-hidden">
-                    <CardHeader className="border-b border-[#3E4F59] bg-[#2E3D47]/50 pb-6">
-                      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                        <div>
-                          <CardTitle className="text-2xl text-white">Contact Submissions</CardTitle>
-                          <CardDescription className="text-base text-[#A8ADB8]">Messages from the contact form</CardDescription>
-                        </div>
-                        <Button 
-                          onClick={exportContacts} 
-                          className="bg-gradient-to-r from-[#BF4A3B] to-[#A31E52] hover:from-[#A8294B] hover:to-[#A31E52] text-white border-0 shadow-lg"
-                        >
-                          <Download className="mr-2" size={18} />
-                          Export CSV
-                        </Button>
-                      </div>
-                    </CardHeader>
-                    <CardContent className="p-6">
-                      <div className="space-y-4">
-                        {contacts.map((contact) => (
-                          <div key={contact.id} className="bg-[#26323A] border border-[#3E4F59] rounded-xl p-5 hover:border-[#BF4A3B] transition-colors duration-300">
-                            <div className="flex justify-between items-start mb-4">
-                              <div>
-                                <h4 className="font-bold text-white text-lg">{contact.name}</h4>
-                                <p className="text-sm text-[#BF4A3B] font-medium">{contact.email}</p>
-                                {contact.company && (
-                                  <p className="text-sm text-[#A8ADB8] mt-1">{contact.company}</p>
-                                )}
-                              </div>
-                              <div className="text-right flex flex-col items-end gap-2">
-                                <span className="inline-block px-3 py-1 bg-[#2E3D47] border border-[#DE7823]/30 text-[#DE7823] text-xs font-semibold tracking-wide rounded-full">
-                                  {contact.status}
-                                </span>
-                                <p className="text-xs text-[#A8ADB8]">
-                                  {new Date(contact.created_at).toLocaleDateString()}
-                                </p>
-                              </div>
-                            </div>
-                            <div className="bg-[#2E3D47] border border-[#3E4F59]/50 p-4 rounded-lg">
-                              <p className="text-sm text-[#A8ADB8] leading-relaxed">{contact.message}</p>
-                            </div>
-                          </div>
-                        ))}
-                        {contacts.length === 0 && (
-                          <div className="text-center py-12 text-[#A8ADB8]">
-                            No contact submissions yet
-                          </div>
-                        )}
-                      </div>
-                    </CardContent>
-                  </Card>
-                </TabsContent>
-              </Tabs>
-            </motion.div>
-          </div>
-        </section>
-
-        <Footer />
-      </div>
+                      <a href={`mailto:${c.email}`} className="text-sm text-[#E69B57] hover:underline break-all">{c.email}</a>
+                      {c.company && c.company !== PANEL_TAG && <p className="text-sm text-white/55 mt-0.5">{c.company}</p>}
+                    </div>
+                    <div className="flex sm:flex-col items-center sm:items-end gap-2 shrink-0">
+                      {c.status && <span className="text-xs font-semibold px-2.5 py-1 border border-[#E69B57]/40 text-[#E69B57] capitalize">{c.status}</span>}
+                      <span className="text-xs text-white/45">{formatDate(c.created_at)}</span>
+                    </div>
+                  </div>
+                  <p className="mt-4 text-[15px] text-white/75 leading-relaxed whitespace-pre-line bg-white/[0.03] border border-white/5 p-4">{c.message}</p>
+                </article>
+              ))}
+              {visibleContacts.length === 0 && (
+                <p className="text-center py-16 text-white/50 border border-dashed border-white/15">
+                  {q || filter !== 'all' ? 'Nothing matches this filter.' : 'No contact submissions yet.'}
+                </p>
+              )}
+            </div>
+          </section>
+        ) : (
+          <section className="mt-6">
+            <div className="flex justify-end">
+              <button onClick={exportUsers} disabled={!visibleUsers.length} className="inline-flex items-center gap-2 h-9 px-4 bg-[#E69B57] text-[#140A22] text-sm font-semibold hover:bg-[#F2AE70] disabled:opacity-40">
+                <Download size={16} /> Export {visibleUsers.length} to CSV
+              </button>
+            </div>
+            <div className="mt-6 border border-white/10 overflow-x-auto">
+              <table className="w-full min-w-[760px] text-left">
+                <thead>
+                  <tr className="bg-[#160A28] text-sm text-white/55">
+                    {['Name', 'Email', 'Age', 'Country', 'Profession', 'Gender'].map((h) => (
+                      <th key={h} className="py-4 px-5 font-semibold">{h}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {visibleUsers.map((u) => (
+                    <tr key={u.id} className="border-t border-white/10 hover:bg-white/[0.03]">
+                      <td className="py-4 px-5 font-medium">{u.name} {u.surname}</td>
+                      <td className="py-4 px-5 text-white/70">{u.email}</td>
+                      <td className="py-4 px-5 text-white/70 tabular-nums">{u.age}</td>
+                      <td className="py-4 px-5 text-white/70">{u.country}</td>
+                      <td className="py-4 px-5 text-white/70">{u.profession}</td>
+                      <td className="py-4 px-5 text-white/70 capitalize">{u.gender}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              {visibleUsers.length === 0 && (
+                <p className="text-center py-16 text-white/50">{q ? 'Nothing matches this search.' : 'No users registered yet.'}</p>
+              )}
+            </div>
+          </section>
+        )}
+      </main>
     </div>
   );
 };
