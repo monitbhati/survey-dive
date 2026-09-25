@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'sonner';
@@ -99,20 +99,12 @@ export const AdminDashboardPage = () => {
   const q = query.trim().toLowerCase();
   const matches = (values) => !q || values.some((v) => String(v ?? '').toLowerCase().includes(q));
 
-  const visibleContacts = useMemo(
-    () =>
-      contacts
-        .filter((c) => (filter === 'panel' ? c.company === PANEL_TAG : filter === 'enquiries' ? c.company !== PANEL_TAG : true))
-        .filter((c) => matches([c.name, c.email, c.company, c.message])),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [contacts, filter, q]
-  );
+  // Small lists, so filtering on every render is fine
+  const visibleContacts = contacts
+    .filter((c) => (filter === 'panel' ? c.company === PANEL_TAG : filter === 'enquiries' ? c.company !== PANEL_TAG : true))
+    .filter((c) => matches([c.name, c.email, c.company, c.message]));
 
-  const visibleUsers = useMemo(
-    () => users.filter((u) => matches([u.name, u.surname, u.email, u.country, u.profession])),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [users, q]
-  );
+  const visibleUsers = users.filter((u) => matches([u.name, u.surname, u.email, u.country, u.profession]));
 
   const panelCount = contacts.filter((c) => c.company === PANEL_TAG).length;
 
