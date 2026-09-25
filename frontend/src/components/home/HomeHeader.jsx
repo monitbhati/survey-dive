@@ -31,8 +31,7 @@ export const HomeHeader = () => {
     >
       <div className="max-w-7xl mx-auto px-5 sm:px-8 h-20 flex items-center justify-between">
         <Link to="/" aria-label="Survey Dive home">
-          {/* brightness-0 invert = white logo. Swap for a light logo file when the client sends one. */}
-          <img src="/surveydive-logo.png" alt="Survey Dive" className="h-11 md:h-12 w-auto object-contain brightness-0 invert" />
+          <img src="/surveydive-logo.png" alt="Survey Dive" className="h-11 md:h-12 w-auto object-contain" />
         </Link>
 
         <nav className="hidden md:flex items-center gap-9">
