@@ -32,8 +32,11 @@ export const ParticleHeadline = ({ className = '' }) => {
 
     const build = () => {
       const rect = wrap.getBoundingClientRect();
-      w = rect.width;
-      h = rect.height;
+      // whole pixels only: fractional sizes (DevTools open, browser zoom, some phones)
+      // would break the pixel lookup below and make the text disappear
+      w = Math.floor(rect.width);
+      h = Math.floor(rect.height);
+      if (w < 10 || h < 10) return;
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
       canvas.width = w * dpr;
       canvas.height = h * dpr;
