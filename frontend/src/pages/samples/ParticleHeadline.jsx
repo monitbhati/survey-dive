@@ -6,9 +6,9 @@ import React, { useEffect, useRef } from 'react';
    settle back. Colours run purple to orange, as in the logo. */
 
 // Headline text. Two short lines work best.
-const LINES = ['Real people.', 'Real answers.'];
+const LINES = ['Dive Deep.', 'Think Beyond.'];
 // On phones the words stack into four lines so the dots stay big enough
-const LINES_MOBILE = ['Real', 'people.', 'Real', 'answers.'];
+const LINES_MOBILE = ['Dive', 'Deep.', 'Think', 'Beyond.'];
 
 const COLORS = ['#A56DE0', '#B477DA', '#C381CF', '#D18BBF', '#DC94A8', '#E59C8C', '#EBA372', '#F0A45E'];
 
