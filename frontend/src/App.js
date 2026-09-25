@@ -17,6 +17,7 @@ import { TermsConditionsPage } from "./pages/TermsConditionsPage";
 import LogoShowcase from "./pages/LogoShowcase";
 import { Toaster } from "./components/ui/sonner";
 import { ScrollToTop } from "./components/ScrollToTop";
+import { Sample1Page } from "./pages/samples/Sample1Page";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
           <Route path="/logo-showcase" element={<LogoShowcase />} />
           <Route path="/admin/login" element={<AdminLoginPage />} />
           <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
+          <Route path="/sample-1" element={<Sample1Page />} />
         </Routes>
       </BrowserRouter>
       <Toaster position="top-right" />
