@@ -1,532 +1,464 @@
-import React, { useState, useEffect } from 'react';
+import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
+import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
 import {
-  motion,
-  AnimatePresence,
-  useScroll,
-  useTransform,
-  useReducedMotion,
-} from 'framer-motion';
-import CountUp from 'react-countup';
-import {
-  TrendingUp, ShieldCheck, Award, Target,
-  ClipboardList, Phone, Users, ChevronDown, Check,
+  Users, ShieldCheck, MapPin, UserCheck,
+  ClipboardList, BarChart3, PhoneCall, MessagesSquare,
+  ArrowUpRight, Quote,
 } from 'lucide-react';
-import { mockData } from '../mock';
-import { Header } from '../components/Header';
-import { Footer } from '../components/Footer';
+import { BackgroundVideo } from '../../components/home/BackgroundVideo';
+import { HomeHeader } from '../../components/home/HomeHeader';
+import { Footer } from '../../components/Footer';
+import '../../components/home/home.css';
 
-const iconMap = { TrendingUp, ShieldCheck, Award, Target, ClipboardList, Phone, Users };
+/* =====================================================================
+   CONTENT
+   Everything in [square brackets] is a placeholder for the client to
+   confirm or replace. Edit the text here; the layout below uses it.
+   ===================================================================== */
 
-// Headings use Sora, body stays on Inter (both loaded in public/index.html)
-const display = { fontFamily: "'Sora', 'Inter', sans-serif" };
-
-const MAX_DEPTH = 240;
-
-/* ------------------------------------------------------------------ */
-/* Depth gauge: thin scale on the left edge that descends with scroll  */
-/* ------------------------------------------------------------------ */
-const DepthGauge = () => {
-  const { scrollYProgress } = useScroll();
-  const top = useTransform(scrollYProgress, [0, 1], ['0%', '100%']);
-  const depth = useTransform(scrollYProgress, (v) => `${Math.round(v * MAX_DEPTH)} m`);
-
-  return (
-    <div
-      aria-hidden="true"
-      className="hidden min-[1440px]:block fixed left-8 top-1/2 -translate-y-1/2 h-[56vh] w-10 z-40 pointer-events-none"
-    >
-      <div className="absolute left-0 top-0 bottom-0 w-px bg-[#9B8AB0]/50" />
-      {[0, 0.25, 0.5, 0.75, 1].map((t) => (
-        <div
-          key={t}
-          className="absolute left-0 w-2 h-px bg-[#9B8AB0]/70"
-          style={{ top: `${t * 100}%` }}
-        />
-      ))}
-      <motion.div className="absolute left-0 -translate-y-1/2 flex items-center gap-2" style={{ top }}>
-        <span className="block w-3 h-3 -ml-[5.5px] rounded-full bg-[#E69B57] ring-4 ring-[#E69B57]/20" />
-        <motion.span className="text-[11px] font-medium tabular-nums text-[#9B8AB0] whitespace-nowrap">
-          {depth}
-        </motion.span>
-      </motion.div>
-    </div>
-  );
+const hero = {
+  lines: ['Designed With Precision', 'Answered By Real People', 'Delivered As Insight'],
+  sub: 'Market research and data collection for teams that need answers they can stand behind.',
 };
 
-/* Small depth marker used above each section heading */
-const DepthMark = ({ m, dark = false }) => (
-  <div className={`flex items-center gap-3 mb-5 text-sm font-medium ${dark ? 'text-[#E69B57]' : 'text-[#B06A2E]'}`}>
-    <span className={`h-px w-8 ${dark ? 'bg-[#E69B57]' : 'bg-[#B06A2E]'}`} />
-    {m} m below the surface
-  </div>
-);
-
-/* ------------------------------------------------------------------ */
-/* Hero dashboard: chart, logo, chart, logo                            */
-/* ------------------------------------------------------------------ */
-const preferenceData = [
-  { label: 'Brand A', before: 42, after: 35 },
-  { label: 'Brand B', before: 31, after: 38 },
-  { label: 'Brand C', before: 18, after: 20 },
-  { label: 'Others', before: 9, after: 7 },
+const statement = [
+  'Big decisions deserve better than guesswork.',
+  'Yet too much research is rushed,',
+  'asked of the wrong people,',
+  'and never properly checked.',
+  'We do it the other way round:',
+  'the right questions, the right respondents,',
+  'and every response verified before it reaches you.',
 ];
 
-const trendPoints = [12, 18, 16, 27, 31, 29, 42, 48, 46, 58, 66, 71];
-
-const ComparisonSlide = ({ active }) => (
-  <div className="h-full flex flex-col">
-    <div className="flex items-start justify-between gap-4 mb-6">
-      <div>
-        <p className="text-base font-semibold text-[#1C1530]" style={display}>Brand preference by quarter</p>
-        <p className="text-sm text-[#6B5F80]">Share of respondents, sample data</p>
-      </div>
-      <div className="flex gap-4 text-xs text-[#6B5F80] shrink-0">
-        <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-sm bg-[#C9B8E0]" />Q1</span>
-        <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-sm bg-[#4B1E73]" />Q2</span>
-      </div>
-    </div>
-    <div className="flex-1 flex flex-col justify-center gap-4">
-      {preferenceData.map((row, i) => (
-        <div key={row.label} className="grid grid-cols-[72px_1fr_40px] items-center gap-3">
-          <span className="text-sm text-[#3D3352]">{row.label}</span>
-          <div className="space-y-1">
-            <motion.div
-              className="h-2.5 rounded-full bg-[#C9B8E0]"
-              initial={{ width: 0 }}
-              animate={{ width: active ? `${row.before * 2}%` : 0 }}
-              transition={{ duration: 0.7, delay: i * 0.08, ease: 'easeOut' }}
-            />
-            <motion.div
-              className="h-2.5 rounded-full bg-[#4B1E73]"
-              initial={{ width: 0 }}
-              animate={{ width: active ? `${row.after * 2}%` : 0 }}
-              transition={{ duration: 0.7, delay: 0.1 + i * 0.08, ease: 'easeOut' }}
-            />
-          </div>
-          <span className="text-sm font-semibold tabular-nums text-[#1C1530] text-right">{row.after}%</span>
-        </div>
-      ))}
-    </div>
-  </div>
-);
-
-const TrendSlide = ({ active }) => {
-  const w = 520;
-  const h = 180;
-  const max = 80;
-  const step = w / (trendPoints.length - 1);
-  const coords = trendPoints.map((v, i) => [i * step, h - (v / max) * h]);
-  const line = coords.map(([x, y], i) => `${i ? 'L' : 'M'}${x.toFixed(1)},${y.toFixed(1)}`).join(' ');
-  const area = `${line} L${w},${h} L0,${h} Z`;
-  const [lx, ly] = coords[coords.length - 1];
-
-  return (
-    <div className="h-full flex flex-col">
-      <div className="flex items-start justify-between gap-4 mb-4">
-        <div>
-          <p className="text-base font-semibold text-[#1C1530]" style={display}>Completed interviews, live fieldwork</p>
-          <p className="text-sm text-[#6B5F80]">Thousands per week, sample data</p>
-        </div>
-        <span className="flex items-center gap-1.5 text-xs font-medium text-[#1F7A4D] bg-[#E6F4EC] px-2.5 py-1 rounded-full shrink-0">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#1F7A4D]" />
-          In field
-        </span>
-      </div>
-      <div className="flex-1 flex items-center">
-        <svg viewBox={`0 0 ${w} ${h + 10}`} className="w-full h-auto" role="img" aria-label="Line chart of completed interviews rising over twelve weeks">
-          <defs>
-            <linearGradient id="sd-area" x1="0" x2="0" y1="0" y2="1">
-              <stop offset="0%" stopColor="#4B1E73" stopOpacity="0.18" />
-              <stop offset="100%" stopColor="#4B1E73" stopOpacity="0" />
-            </linearGradient>
-          </defs>
-          {[0.25, 0.5, 0.75].map((t) => (
-            <line key={t} x1="0" x2={w} y1={h * t} y2={h * t} stroke="#EAE3F2" strokeWidth="1" />
-          ))}
-          <motion.path
-            d={area}
-            fill="url(#sd-area)"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: active ? 1 : 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          />
-          <motion.path
-            d={line}
-            fill="none"
-            stroke="#4B1E73"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            initial={{ pathLength: 0 }}
-            animate={{ pathLength: active ? 1 : 0 }}
-            transition={{ duration: 1.2, ease: 'easeInOut' }}
-          />
-          <motion.circle
-            cx={lx}
-            cy={ly}
-            r="5"
-            fill="#E69B57"
-            initial={{ scale: 0 }}
-            animate={{ scale: active ? 1 : 0 }}
-            transition={{ delay: 1.1 }}
-          />
-        </svg>
-      </div>
-    </div>
-  );
-};
-
-const LogoSlide = ({ caption }) => (
-  <div className="h-full flex flex-col items-center justify-center text-center">
-    <img src="/surveydive-logo.png" alt="Survey Dive" className="h-28 sm:h-32 w-auto object-contain mb-5" />
-    <p className="text-sm text-[#6B5F80] max-w-xs">{caption}</p>
-  </div>
-);
-
-const slides = [
-  { id: 'compare', label: 'Brand preference chart' },
-  { id: 'logo-1', label: 'Survey Dive logo' },
-  { id: 'trend', label: 'Live fieldwork chart' },
-  { id: 'logo-2', label: 'Survey Dive logo' },
+const stats = [
+  { value: '[250+]', label: 'Studies delivered' },
+  { value: '[40+]', label: 'Cities covered' },
+  { value: '[12]', label: 'Languages' },
+  { value: '[50,000+]', label: 'Panel members' },
 ];
 
-const HeroDashboard = () => {
-  const [index, setIndex] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const reduceMotion = useReducedMotion();
-
-  useEffect(() => {
-    if (paused || reduceMotion) return undefined;
-    const t = setInterval(() => setIndex((i) => (i + 1) % slides.length), 5500);
-    return () => clearInterval(t);
-  }, [paused, reduceMotion]);
-
-  const renderSlide = (id) => {
-    switch (id) {
-      case 'compare': return <ComparisonSlide active />;
-      case 'trend': return <TrendSlide active />;
-      case 'logo-1': return <LogoSlide caption={mockData.company.tagline} />;
-      default: return <LogoSlide caption={`${mockData.stats.projectsCompleted}+ studies delivered across ${mockData.stats.industriesServed}+ industries`} />;
-    }
-  };
-
-  return (
-    <div
-      className="relative mx-auto max-w-3xl"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-      onFocus={() => setPaused(true)}
-      onBlur={() => setPaused(false)}
-    >
-      <div className="rounded-[28px] bg-white border border-[#E4DAF0] p-6 sm:p-8 shadow-[0_30px_60px_-30px_rgba(75,30,115,0.35)]">
-        <div className="relative h-[300px] sm:h-[280px]">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={slides[index].id}
-              className="absolute inset-0"
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.35 }}
-            >
-              {renderSlide(slides[index].id)}
-            </motion.div>
-          </AnimatePresence>
-        </div>
-      </div>
-      <div className="flex justify-center gap-2 mt-5">
-        {slides.map((s, i) => (
-          <button
-            key={s.id}
-            onClick={() => setIndex(i)}
-            aria-label={`Show ${s.label}`}
-            aria-current={i === index}
-            className={`h-2 rounded-full transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4B1E73] focus-visible:ring-offset-2 ${
-              i === index ? 'w-8 bg-[#4B1E73]' : 'w-2 bg-[#CFC2E0] hover:bg-[#A895C4]'
-            }`}
-          />
-        ))}
-      </div>
-    </div>
-  );
-};
-
-/* ------------------------------------------------------------------ */
-/* Stats as one sentence instead of four boxes                         */
-/* ------------------------------------------------------------------ */
-const Num = ({ value, suffix }) => {
-  const reduceMotion = useReducedMotion();
-  return (
-    <span className="text-[#4B1E73] tabular-nums">
-      {reduceMotion ? (
-        `${value}${suffix}`
-      ) : (
-        <CountUp end={parseInt(value, 10)} duration={2} suffix={suffix} enableScrollSpy scrollSpyOnce />
-      )}
-    </span>
-  );
-};
-
-/* ------------------------------------------------------------------ */
-/* Process steps                                                        */
-/* ------------------------------------------------------------------ */
-const processSteps = [
-  { title: 'Design', text: 'We shape the questionnaire around the decision you need to make, then pilot it before launch.' },
-  { title: 'Field', text: 'Surveys, phone interviews, and discussions run with live quality checks on every response.' },
-  { title: 'Analyse', text: 'Responses are cleaned, weighted, and coded so the patterns hold up to scrutiny.' },
-  { title: 'Deliver', text: 'You get a clear report, the raw data, and a walkthrough with the researchers who ran it.' },
+const pillars = [
+  {
+    icon: Users,
+    title: 'Real people',
+    text: 'Every respondent is recruited, profiled, and verified. No bots, no duplicates, no professional survey-takers.',
+  },
+  {
+    icon: ShieldCheck,
+    title: 'Verified data',
+    text: 'Each response passes [multi-stage] quality checks before it enters your dataset.',
+  },
+  {
+    icon: MapPin,
+    title: 'Local reach',
+    text: 'Fieldwork across [cities and regions] in [languages], by interviewers who understand local context.',
+  },
+  {
+    icon: UserCheck,
+    title: 'Senior researchers',
+    text: 'Your study is run by experienced researchers, not passed down the line. You speak to the people doing the work.',
+  },
 ];
 
-/* ------------------------------------------------------------------ */
-/* FAQ (dark)                                                          */
-/* ------------------------------------------------------------------ */
-const FAQList = () => {
-  const [openId, setOpenId] = useState(mockData.faqs[0]?.id ?? null);
+const services = [
+  {
+    icon: ClipboardList,
+    title: 'Survey design',
+    text: 'Questionnaires built around the decision you need to make, tested before they go live.',
+    to: '/services/survey-designing',
+  },
+  {
+    icon: BarChart3,
+    title: 'Quantitative research',
+    text: 'Structured studies at scale, with sampling and weighting that make the numbers hold.',
+    to: '/services/quantitative-research',
+  },
+  {
+    icon: PhoneCall,
+    title: 'CATI',
+    text: 'Telephone interviews by trained callers, with live supervision on every shift.',
+    to: '/services/cati-excellence',
+  },
+  {
+    icon: MessagesSquare,
+    title: 'Qualitative research',
+    text: 'Focus groups and in-depth interviews that uncover the reasons behind the numbers.',
+    to: '/services/qualitative-deep-dives',
+  },
+];
 
-  return (
-    <div className="divide-y divide-white/10 border-y border-white/10">
-      {mockData.faqs.map((faq) => {
-        const isOpen = openId === faq.id;
-        return (
-          <div key={faq.id}>
-            <button
-              onClick={() => setOpenId(isOpen ? null : faq.id)}
-              aria-expanded={isOpen}
-              className="w-full py-5 flex items-center justify-between gap-6 text-left text-white font-medium hover:text-[#F2C49B] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#E69B57] rounded-sm"
-            >
-              <span>{faq.question}</span>
-              <ChevronDown
-                size={18}
-                className={`shrink-0 text-[#E69B57] transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
-              />
-            </button>
-            <AnimatePresence initial={false}>
-              {isOpen && (
-                <motion.div
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: 'auto', opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.25, ease: 'easeInOut' }}
-                  className="overflow-hidden"
-                >
-                  <p className="pb-6 pr-10 text-[15px] leading-relaxed text-[#C8BBDA]">{faq.answer}</p>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-        );
-      })}
-    </div>
-  );
-};
+// [Client to confirm which of these Survey Dive offers]
+const engagements = [
+  { title: 'End-to-end studies', text: 'From questionnaire to final report, we run the whole project.' },
+  { title: 'Fieldwork only', text: 'You design the study. We collect clean data, on time.' },
+  { title: 'Single services', text: 'Just CATI, just recruitment, or just analysis. Pick what you need.' },
+];
 
-/* ------------------------------------------------------------------ */
-/* Page                                                                 */
-/* ------------------------------------------------------------------ */
+const steps = [
+  { title: 'Brief', text: 'We start with the decision you are facing, not a template.' },
+  { title: 'Design', text: 'Questionnaire, sample plan, and timeline, agreed with you before launch.' },
+  { title: 'Field', text: 'Data collection with daily progress updates and live quality checks.' },
+  { title: 'Deliver', text: 'Clean data, clear findings, and a walkthrough with the team who ran it.' },
+];
+
+// [Client to confirm sectors and client types]
+const industries = [
+  'FMCG', 'Healthcare and pharma', 'Automotive', 'Banking and finance',
+  'Technology and telecom', 'Retail and e-commerce', 'Media', 'Public sector',
+];
+const clientTypes = [
+  'Market research agencies', 'Brand and marketing teams', 'Consulting firms',
+  'Government and NGOs', 'Academic researchers',
+];
+
+const testimonials = [
+  { quote: '[Client testimonial. One or two sentences about the result they got.]', name: '[Name]', role: '[Role, Company]', tag: 'Client' },
+  { quote: '[Client testimonial. What working with Survey Dive was like.]', name: '[Name]', role: '[Role, Company]', tag: 'Client' },
+  { quote: '[Panel member testimonial. Why they enjoy taking part.]', name: '[First name]', role: 'Panel member', tag: 'Panel' },
+];
+
+/* =====================================================================
+   BUILDING BLOCKS
+   ===================================================================== */
+
+const glass =
+  'bg-[#1A0E2A]/55 backdrop-blur-md border border-white/10 rounded-2xl';
+
 const btnPrimary =
-  'inline-flex items-center justify-center h-12 px-7 rounded-full bg-[#4B1E73] text-white font-semibold text-[15px] hover:bg-[#3A165A] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4B1E73] focus-visible:ring-offset-2';
-const btnSecondary =
-  'inline-flex items-center justify-center h-12 px-7 rounded-full border border-[#CFC2E0] bg-white text-[#3D3352] font-semibold text-[15px] hover:border-[#4B1E73] hover:text-[#4B1E73] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4B1E73] focus-visible:ring-offset-2';
+  'font-display inline-flex items-center justify-center gap-2 h-12 px-7 bg-[#E69B57] text-[#140A22] text-[13px] font-bold uppercase tracking-[0.14em] hover:bg-[#F2AE70] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-white';
+const btnGhost =
+  'font-display inline-flex items-center justify-center gap-2 h-12 px-7 border border-white/60 text-white text-[13px] font-bold uppercase tracking-[0.14em] hover:bg-white hover:text-[#140A22] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-white';
 
-export const HomePage = () => {
-  const [lead, ...rest] = mockData.services;
-  const { stats } = mockData;
+const Reveal = ({ children, delay = 0, className = '' }) => {
+  const reduce = useReducedMotion();
+  return (
+    <motion.div
+      className={className}
+      initial={reduce ? false : { opacity: 0, y: 28 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-80px' }}
+      transition={{ duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] }}
+    >
+      {children}
+    </motion.div>
+  );
+};
+
+const Label = ({ children }) => (
+  <p className="font-display flex items-center gap-3 text-xs font-bold uppercase tracking-[0.22em] text-[#C4A6E6] mb-5">
+    <span className="w-8 h-[2px] bg-[#E69B57]" />
+    {children}
+  </p>
+);
+
+const Heading = ({ children, className = '' }) => (
+  <h2 className={`font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.12] text-white ${className}`}>
+    {children}
+  </h2>
+);
+
+// A line of the scroll statement: brightest in the middle of the screen
+const FadeLine = ({ children }) => {
+  const ref = useRef(null);
+  const reduce = useReducedMotion();
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] });
+  const opacity = useTransform(scrollYProgress, [0, 0.25, 0.45, 0.55, 0.75, 0.9], [0, 0.25, 1, 1, 0.25, 0]);
+  return (
+    <motion.p
+      ref={ref}
+      style={{ opacity: reduce ? 1 : opacity }}
+      className="font-display text-[26px] leading-snug sm:text-4xl lg:text-[46px] font-semibold tracking-tight text-white"
+    >
+      {children}
+    </motion.p>
+  );
+};
+
+const wrap = 'max-w-7xl mx-auto px-5 sm:px-8';
+
+/* =====================================================================
+   PAGE
+   ===================================================================== */
+
+export const Sample1Page = () => {
+  const reduce = useReducedMotion();
 
   return (
-    <div className="min-h-screen bg-white text-[#1C1530] antialiased selection:bg-[#4B1E73] selection:text-white">
-      <Header />
-      <DepthGauge />
+    <div className="home-root relative isolate min-h-screen bg-[#0B0612] text-white antialiased selection:bg-[#E69B57] selection:text-[#140A22]">
+      <BackgroundVideo />
+      <HomeHeader />
 
-      {/* ---------- SURFACE: hero ---------- */}
-      <section className="relative pt-36 sm:pt-44 pb-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white via-white to-[#F7F3FB] overflow-hidden">
-        {/* soft light from above, like sunlight on water */}
-        <div
-          aria-hidden="true"
-          className="absolute -top-40 left-1/2 -translate-x-1/2 w-[900px] h-[500px] rounded-full bg-[#E69B57]/10 blur-3xl"
-        />
-        <div className="relative max-w-7xl mx-auto">
-          <div className="text-center max-w-4xl mx-auto mb-16">
-            <h1
-              className="text-[42px] leading-[1.05] sm:text-6xl lg:text-7xl font-semibold tracking-[-0.03em] text-[#1C1530] mb-6"
-              style={display}
-            >
-              {mockData.company.tagline}
-            </h1>
-            <p className="text-lg sm:text-xl text-[#5A4F6E] leading-relaxed max-w-2xl mx-auto mb-10">
-              {mockData.company.description}
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <Link to="/contact" className={btnPrimary}>Plan a study with us</Link>
-              <Link to="/services" className={btnSecondary}>See our methods</Link>
-            </div>
-          </div>
-
-          <HeroDashboard />
-        </div>
-      </section>
-
-      {/* ---------- 20 m: track record ---------- */}
-      <section className="py-24 sm:py-28 px-4 sm:px-6 lg:px-8 bg-[#F7F3FB]">
-        <div className="max-w-5xl mx-auto">
-          <DepthMark m={20} />
-          <p className="text-2xl sm:text-4xl lg:text-[44px] leading-[1.25] font-medium tracking-[-0.02em] text-[#2A2140]" style={display}>
-            <Num value={stats.projectsCompleted} suffix="+" /> studies delivered across{' '}
-            <Num value={stats.industriesServed} suffix="+" /> industries.{' '}
-            <Num value={stats.clientSatisfaction} suffix="%" /> of our clients come back for their next project, and
-            we have been in the field for <Num value={stats.yearsExperience} suffix="+" /> years.
-          </p>
-        </div>
-      </section>
-
-      {/* ---------- 60 m: services bento ---------- */}
-      <section className="py-24 sm:py-28 px-4 sm:px-6 lg:px-8 bg-[#EEE6F7]">
-        <div className="max-w-7xl mx-auto">
-          <div className="max-w-2xl mb-12">
-            <DepthMark m={60} />
-            <h2 className="text-3xl sm:text-5xl font-semibold tracking-[-0.025em] leading-[1.1] text-[#1C1530]" style={display}>
-              Three ways we get to the answer
-            </h2>
-          </div>
-
-          <div className="grid lg:grid-cols-3 gap-5">
-            {lead && (() => {
-              const LeadIcon = iconMap[lead.icon] || ClipboardList;
-              return (
-                <div className="lg:col-span-2 lg:row-span-2 rounded-[28px] bg-[#4B1E73] text-white p-8 sm:p-10 flex flex-col">
-                  <LeadIcon size={28} className="text-[#E69B57] mb-8" strokeWidth={1.75} />
-                  <h3 className="text-2xl sm:text-3xl font-semibold tracking-[-0.02em] mb-4" style={display}>{lead.title}</h3>
-                  <p className="text-[#D9CDEA] leading-relaxed max-w-xl mb-10">{lead.description}</p>
-                  <ul className="mt-auto grid sm:grid-cols-2 gap-x-8 gap-y-3">
-                    {lead.features.map((f) => (
-                      <li key={f} className="flex items-start gap-3 text-[15px] text-white/90">
-                        <Check size={16} className="text-[#E69B57] mt-1 shrink-0" />
-                        {f}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              );
-            })()}
-
-            {rest.map((service) => {
-              const Icon = iconMap[service.icon] || ClipboardList;
-              return (
-                <div key={service.id} className="rounded-2xl bg-white border border-[#E1D6EE] p-7 flex flex-col">
-                  <Icon size={22} className="text-[#4B1E73] mb-6" strokeWidth={1.75} />
-                  <h3 className="text-xl font-semibold tracking-[-0.015em] mb-3" style={display}>{service.title}</h3>
-                  <p className="text-[15px] text-[#5A4F6E] leading-relaxed">{service.description}</p>
-                </div>
-              );
-            })}
-
-            <div className="lg:col-span-3 rounded-2xl border border-dashed border-[#B9A6D3] p-7 flex flex-col sm:flex-row sm:items-center justify-between gap-5">
-              <p className="text-lg text-[#2A2140]">
-                Not sure which method fits your question? A researcher can help you choose.
-              </p>
-              <Link to="/contact" className={`${btnPrimary} shrink-0`}>Talk to a researcher</Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* transition from light water into deep water */}
-      <div aria-hidden="true" className="h-40 bg-gradient-to-b from-[#EEE6F7] to-[#3A1766]" />
-
-      {/* ---------- 110 m: process ---------- */}
-      <section className="pb-28 pt-4 px-4 sm:px-6 lg:px-8 bg-[#3A1766] text-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="max-w-2xl mb-16">
-            <DepthMark m={110} dark />
-            <h2 className="text-3xl sm:text-5xl font-semibold tracking-[-0.025em] leading-[1.1]" style={display}>
-              From first question to final insight
-            </h2>
-          </div>
-
-          <ol className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
-            {processSteps.map((step, i) => (
-              <li
-                key={step.title}
-                className="relative border-t border-white/20 pt-6 lg:mt-[var(--offset)]"
-                style={{ '--offset': `${i * 40}px` }}
+      {/* ---------- 1. HERO ---------- */}
+      <section className="relative h-screen min-h-[640px] flex items-center justify-center px-5 text-center">
+        <div>
+          <h1 className="font-display space-y-1 sm:space-y-2">
+            {hero.lines.map((line, i) => (
+              <motion.span
+                key={line}
+                initial={reduce ? false : { opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.9, delay: 0.3 + i * 0.3, ease: [0.22, 1, 0.36, 1] }}
+                className={`block text-[34px] leading-[1.12] sm:text-6xl lg:text-[80px] font-bold tracking-tight ${
+                  i === 1 ? 'text-brand-gradient' : 'text-white'
+                }`}
               >
-                <div>
-                  <span className="flex items-center justify-center w-9 h-9 rounded-full bg-[#E69B57] text-[#2A0F4C] font-semibold text-sm mb-5 tabular-nums">
-                    {i + 1}
-                  </span>
-                  <h3 className="text-xl font-semibold mb-3" style={display}>{step.title}</h3>
-                  <p className="text-[15px] leading-relaxed text-[#D2C4E6]">{step.text}</p>
+                {line}
+              </motion.span>
+            ))}
+          </h1>
+          <motion.p
+            initial={reduce ? false : { opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 1.3 }}
+            className="mt-8 text-base sm:text-lg text-white/80 max-w-xl mx-auto leading-relaxed"
+          >
+            {hero.sub}
+          </motion.p>
+          <motion.div
+            initial={reduce ? false : { opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 1.5 }}
+            className="mt-10 flex flex-col sm:flex-row gap-3 justify-center"
+          >
+            <Link to="/contact" className={btnPrimary}>Start a project</Link>
+            <Link to="/join-us" className={btnGhost}>Join our panel</Link>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ---------- 2. SCROLL STATEMENT ---------- */}
+      <section className="max-w-5xl mx-auto px-5 text-center pt-[10vh] pb-[20vh] space-y-3 sm:space-y-5">
+        {statement.map((line) => (
+          <FadeLine key={line}>{line}</FadeLine>
+        ))}
+      </section>
+
+      {/* ---------- 3. AT A GLANCE ---------- */}
+      <section className={`${wrap} py-20 sm:py-28`}>
+        <div className="grid lg:grid-cols-12 gap-12 items-end">
+          <Reveal className="lg:col-span-6">
+            <Label>Survey Dive at a glance</Label>
+            <Heading>A research partner built on reach and rigour.</Heading>
+          </Reveal>
+          <Reveal delay={0.1} className="lg:col-span-6">
+            <p className="text-lg leading-relaxed text-white/75">
+              Survey Dive is a [city]-based market research and data collection company. We design studies,
+              reach the right people across [regions], and deliver data you can defend in any meeting.
+            </p>
+          </Reveal>
+        </div>
+        <div className="mt-16 grid grid-cols-2 lg:grid-cols-4 border-t border-white/15">
+          {stats.map((s, i) => (
+            <Reveal key={s.label} delay={i * 0.08} className="pt-8 pb-2 pr-4 lg:border-r lg:last:border-r-0 border-white/15 lg:pl-8 lg:first:pl-0">
+              <p className="font-display text-4xl sm:text-5xl font-extrabold tracking-tight text-white">{s.value}</p>
+              <p className="mt-2 text-sm uppercase tracking-[0.14em] text-white/60">{s.label}</p>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      {/* ---------- 4. WHY SURVEY DIVE ---------- */}
+      <section className={`${wrap} py-20 sm:py-28`}>
+        <Reveal className="max-w-2xl mb-14">
+          <Label>Why Survey Dive</Label>
+          <Heading>Four reasons clients trust our numbers.</Heading>
+        </Reveal>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {pillars.map((p, i) => (
+            <Reveal key={p.title} delay={i * 0.08}>
+              <div className={`${glass} h-full p-7 transition-all duration-300 hover:border-[#E69B57]/50 hover:-translate-y-1`}>
+                <div className="w-12 h-12 rounded-xl bg-[#E69B57]/15 flex items-center justify-center mb-6">
+                  <p.icon size={22} className="text-[#E69B57]" strokeWidth={1.8} />
                 </div>
-              </li>
+                <h3 className="font-display text-xl font-bold mb-3">{p.title}</h3>
+                <p className="text-[15px] leading-relaxed text-white/70">{p.text}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      {/* ---------- 5. SERVICES ---------- */}
+      <section className={`${wrap} py-20 sm:py-28`}>
+        <div className="grid lg:grid-cols-12 gap-8 mb-14">
+          <Reveal className="lg:col-span-7">
+            <Label>What we do</Label>
+            <Heading>Research built around your question.</Heading>
+          </Reveal>
+          <Reveal delay={0.1} className="lg:col-span-5 lg:self-end">
+            <p className="text-lg leading-relaxed text-white/75">
+              Four methods, used on their own or combined in one project, depending on what you need to find out.
+            </p>
+          </Reveal>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-5">
+          {services.map((s, i) => (
+            <Reveal key={s.title} delay={i * 0.06}>
+              <Link
+                to={s.to}
+                className={`${glass} group flex gap-6 p-7 sm:p-8 h-full transition-all duration-300 hover:border-[#E69B57]/50 hover:bg-[#1A0E2A]/70`}
+              >
+                <s.icon size={30} className="shrink-0 text-[#C4A6E6] mt-1" strokeWidth={1.6} />
+                <div className="flex-1">
+                  <div className="flex items-start justify-between gap-4">
+                    <h3 className="font-display text-2xl font-bold">{s.title}</h3>
+                    <ArrowUpRight size={22} className="shrink-0 text-white/40 group-hover:text-[#E69B57] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                  </div>
+                  <p className="mt-3 text-[15px] leading-relaxed text-white/70">{s.text}</p>
+                </div>
+              </Link>
+            </Reveal>
+          ))}
+        </div>
+
+        <Reveal className="mt-14">
+          <p className="font-display text-sm font-bold uppercase tracking-[0.18em] text-white/60 mb-6">
+            Research the way you need it
+          </p>
+          <div className="grid md:grid-cols-3 border-y border-white/15 md:divide-x divide-white/15">
+            {engagements.map((e) => (
+              <div key={e.title} className="py-7 md:px-8 md:first:pl-0 border-b md:border-b-0 border-white/15 last:border-b-0">
+                <h4 className="font-display text-lg font-bold text-[#E69B57]">{e.title}</h4>
+                <p className="mt-2 text-[15px] leading-relaxed text-white/70">{e.text}</p>
+              </div>
+            ))}
+          </div>
+        </Reveal>
+      </section>
+
+      {/* ---------- 6. HOW WE WORK ---------- */}
+      <section className={`${wrap} py-20 sm:py-28`}>
+        <Reveal className="max-w-2xl mb-16">
+          <Label>How we work</Label>
+          <Heading>From first question to final insight.</Heading>
+        </Reveal>
+        <div className="relative">
+          <div className="hidden lg:block absolute top-6 left-6 right-6 h-px bg-gradient-to-r from-[#E69B57] via-white/30 to-white/10" aria-hidden="true" />
+          <ol className="relative grid sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
+            {steps.map((s, i) => (
+              <motion.li
+                key={s.title}
+                initial={reduce ? false : { opacity: 0, y: 28 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-80px' }}
+                transition={{ duration: 0.7, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <span className="font-display relative z-10 flex items-center justify-center w-12 h-12 rounded-full bg-[#0E0718] border-2 border-[#E69B57] text-[#E69B57] font-bold">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <h3 className="font-display mt-6 text-xl font-bold">{s.title}</h3>
+                <p className="mt-3 text-[15px] leading-relaxed text-white/70">{s.text}</p>
+              </motion.li>
             ))}
           </ol>
         </div>
       </section>
 
-      {/* ---------- 160 m: why us ---------- */}
-      <section className="py-24 sm:py-28 px-4 sm:px-6 lg:px-8 bg-[#2A0F4C] text-white">
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-12 gap-12">
-          <div className="lg:col-span-5">
-            <DepthMark m={160} dark />
-            <h2 className="text-3xl sm:text-5xl font-semibold tracking-[-0.025em] leading-[1.1]" style={display}>
-              Why teams trust our numbers
-            </h2>
-          </div>
-          <div className="lg:col-span-7 grid sm:grid-cols-2 gap-x-10 gap-y-12">
-            {mockData.whyChooseUs.map((item) => {
-              const Icon = iconMap[item.icon] || Target;
-              return (
-                <div key={item.id}>
-                  <Icon size={22} className="text-[#E69B57] mb-4" strokeWidth={1.75} />
-                  <h3 className="text-lg font-semibold mb-2" style={display}>{item.title}</h3>
-                  <p className="text-[15px] leading-relaxed text-[#C8BBDA]">{item.description}</p>
-                </div>
-              );
-            })}
-          </div>
+      {/* ---------- 7. WHO WE WORK WITH ---------- */}
+      <section className={`${wrap} py-20 sm:py-28`}>
+        <div className={`${glass} p-8 sm:p-12 lg:p-14 grid lg:grid-cols-12 gap-12`}>
+          <Reveal className="lg:col-span-5">
+            <Label>Who we work with</Label>
+            <Heading className="!text-3xl sm:!text-4xl">Built for teams that decide with data.</Heading>
+            <ul className="mt-8 space-y-3">
+              {clientTypes.map((c) => (
+                <li key={c} className="flex items-center gap-3 text-white/80">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#E69B57]" />
+                  {c}
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+          <Reveal delay={0.1} className="lg:col-span-7">
+            <p className="font-display text-sm font-bold uppercase tracking-[0.18em] text-white/60 mb-6">Industries</p>
+            <div className="flex flex-wrap gap-3">
+              {industries.map((ind) => (
+                <span
+                  key={ind}
+                  className="px-5 py-3 rounded-full border border-white/20 text-[15px] text-white/85 hover:border-[#E69B57] hover:text-white transition-colors"
+                >
+                  {ind}
+                </span>
+              ))}
+            </div>
+          </Reveal>
         </div>
       </section>
 
-      {/* ---------- 210 m: FAQ ---------- */}
-      <section className="py-24 sm:py-28 px-4 sm:px-6 lg:px-8 bg-[#1D0A36] text-white">
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-12 gap-12">
-          <div className="lg:col-span-4">
-            <DepthMark m={210} dark />
-            <h2 className="text-3xl sm:text-4xl font-semibold tracking-[-0.025em] leading-[1.15] mb-5" style={display}>
-              Questions clients ask us
-            </h2>
-            <p className="text-[#C8BBDA] leading-relaxed mb-8">
-              Anything else you want to know before starting a project? Ask us directly.
+      {/* ---------- 8. JOIN OUR PANEL ---------- */}
+      <section className={`${wrap} py-20 sm:py-28`}>
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <Reveal>
+            <Label>Join our panel</Label>
+            <Heading>Your opinion shapes the products you use.</Heading>
+            <p className="mt-6 text-lg leading-relaxed text-white/75 max-w-xl">
+              Join [50,000+] people across India who share their views on brands, services, and everyday life.
+              Take short surveys, earn rewards, and see your voice make a difference.
             </p>
-            <Link
-              to="/contact"
-              className="inline-flex items-center justify-center h-12 px-7 rounded-full border border-white/25 text-white font-semibold text-[15px] hover:bg-white/10 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#E69B57]"
-            >
-              Ask a question
-            </Link>
-          </div>
-          <div className="lg:col-span-8">
-            <FAQList />
-          </div>
+            <ul className="mt-8 space-y-3 text-white/80">
+              <li className="flex gap-3"><span className="text-[#E69B57] font-bold">01</span> Short surveys that fit into your day</li>
+              <li className="flex gap-3"><span className="text-[#E69B57] font-bold">02</span> [Rewards] for every completed survey</li>
+              <li className="flex gap-3"><span className="text-[#E69B57] font-bold">03</span> Your personal details always stay private</li>
+            </ul>
+            <div className="mt-10">
+              <Link to="/join-us" className={btnPrimary}>Join the panel</Link>
+            </div>
+          </Reveal>
+          <Reveal delay={0.15}>
+            <div className={`${glass} p-8 sm:p-10`}>
+              <Quote size={34} className="text-[#E69B57]" />
+              <p className="font-display mt-6 text-2xl sm:text-3xl font-semibold leading-snug">
+                [Panel member quote about why they enjoy taking part in Survey Dive surveys.]
+              </p>
+              <p className="mt-8 text-sm text-white/60">[First name], panel member since [year]</p>
+            </div>
+          </Reveal>
         </div>
       </section>
 
-      {/* ---------- 240 m: closing CTA ---------- */}
-      <section className="py-24 sm:py-32 px-4 sm:px-6 lg:px-8 bg-[#140626] text-white">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl sm:text-6xl font-semibold tracking-[-0.03em] leading-[1.05] mb-6" style={display}>
-            Ready to go deeper?
-          </h2>
-          <p className="text-lg text-[#C8BBDA] leading-relaxed max-w-xl mx-auto mb-10">
-            Tell us what you need to find out. We will come back with a method, a timeline, and a quote.
-          </p>
-          <Link
-            to="/contact"
-            className="inline-flex items-center justify-center h-12 px-8 rounded-full bg-[#E69B57] text-[#1C0A30] font-semibold text-[15px] hover:bg-[#F0AE72] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#E69B57] focus-visible:ring-offset-2 focus-visible:ring-offset-[#140626]"
-          >
-            Plan a study with us
-          </Link>
+      {/* ---------- 9. TESTIMONIALS ---------- */}
+      <section className={`${wrap} py-20 sm:py-28`}>
+        <Reveal className="max-w-2xl mb-14">
+          <Label>What people say</Label>
+          <Heading>Trusted by teams who can't afford bad data.</Heading>
+        </Reveal>
+        <div className="grid md:grid-cols-3 gap-5">
+          {testimonials.map((t, i) => (
+            <Reveal key={i} delay={i * 0.08}>
+              <figure className={`${glass} h-full p-7 flex flex-col`}>
+                <span className="self-start text-[11px] font-bold uppercase tracking-[0.18em] px-3 py-1 rounded-full bg-white/10 text-[#C4A6E6]">
+                  {t.tag}
+                </span>
+                <blockquote className="mt-6 flex-1 text-[17px] leading-relaxed text-white/85">“{t.quote}”</blockquote>
+                <figcaption className="mt-8 pt-6 border-t border-white/10">
+                  <p className="font-display font-bold">{t.name}</p>
+                  <p className="text-sm text-white/55">{t.role}</p>
+                </figcaption>
+              </figure>
+            </Reveal>
+          ))}
         </div>
+      </section>
+
+      {/* ---------- 10. FINAL CALL TO ACTION ---------- */}
+      <section className={`${wrap} py-24 sm:py-36 text-center`}>
+        <Reveal>
+          <h2 className="font-display text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05]">
+            What do you need
+            <br />
+            <span className="text-[#E69B57]">to find out?</span>
+          </h2>
+          <p className="mt-8 text-lg text-white/75 max-w-xl mx-auto leading-relaxed">
+            Tell us about your project. We will come back within [one working day] with an approach, a timeline, and a quote.
+          </p>
+          <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
+            <Link to="/contact" className={btnPrimary}>Start a project</Link>
+            <Link to="/services" className={btnGhost}>Explore services</Link>
+          </div>
+        </Reveal>
       </section>
 
       <Footer />
