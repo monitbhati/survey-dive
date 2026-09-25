@@ -22,6 +22,9 @@ import { Sample3Page } from "./pages/samples/Sample3Page";
 import { CareersPage } from "./pages/CareersPage";
 import { QualityPage } from "./pages/QualityPage";
 import { PanelFaqPage } from "./pages/PanelFaqPage";
+import { Sample4Page } from "./pages/samples/Sample4Page";
+import { Sample5Page } from "./pages/samples/Sample5Page";
+import { Sample6Page } from "./pages/samples/Sample6Page";
 
 function App() {
   return (
@@ -50,6 +53,9 @@ function App() {
           <Route path="/careers" element={<CareersPage />} />
           <Route path="/quality" element={<QualityPage />} />
           <Route path="/panel-faq" element={<PanelFaqPage />} />
+          <Route path="/sample-4" element={<Sample4Page />} />
+          <Route path="/sample-5" element={<Sample5Page />} />
+          <Route path="/sample-6" element={<Sample6Page />} />
         </Routes>
       </BrowserRouter>
       <Toaster position="top-right" />

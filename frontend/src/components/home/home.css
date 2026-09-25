@@ -1,11 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap');
 
 .home-root { font-family: 'Inter', system-ui, sans-serif; }
 .font-display { font-family: 'Manrope', 'Inter', system-ui, sans-serif; }
+/* Editorial serif for headings (sample 5) */
+.font-serif-display { font-family: 'Newsreader', Georgia, 'Times New Roman', serif; }
 
 /* Survey Dive logo colours as a text gradient */
 .text-brand-gradient {
   background: linear-gradient(90deg, #B07BEA 0%, #D98BC0 45%, #F0A45E 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Deeper version of the logo gradient, readable on light backgrounds */
+.text-brand-gradient-deep {
+  background: linear-gradient(90deg, #5B2396 0%, #A8458F 50%, #D9822B 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;

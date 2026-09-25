@@ -11,10 +11,23 @@ const POSTER =
 // Video fixed behind the whole page, with a deep purple shade on top.
 // The shade gets stronger as you scroll so the content further down stays readable.
 // start / end = how dark the shade is at the top and further down the page.
-export const BackgroundVideo = ({ start = 0.5, end = 0.8 }) => {
+export const BackgroundVideo = ({ start = 0.5, end = 0.8, light = false }) => {
   const { scrollYProgress } = useScroll();
   const reduce = useReducedMotion();
   const shade = useTransform(scrollYProgress, [0, 0.08, 1], [start, end - 0.06, end]);
+
+  // light = a soft white-lavender wash over the video instead of a dark shade
+  if (light) {
+    return (
+      <div className="fixed inset-0 -z-10 bg-[#F7F3FC]" aria-hidden="true">
+        <video className="w-full h-full object-cover" autoPlay muted loop playsInline preload="auto" poster={POSTER}>
+          <source src={VIDEO} type="video/mp4" />
+        </video>
+        <motion.div className="absolute inset-0 bg-[#F7F3FC]" style={{ opacity: reduce ? end : shade }} />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#EDE3F8]/40 via-transparent to-[#F3E6DA]/40" />
+      </div>
+    );
+  }
 
   return (
     <div className="fixed inset-0 -z-10 bg-[#120822]" aria-hidden="true">

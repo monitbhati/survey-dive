@@ -58,7 +58,44 @@ const timeline = {
 
 const letters = ['A', 'B', 'C', 'D'];
 
-export const ProjectFinder = () => {
+// Colours for the dark (default) and light versions
+const themes = {
+  dark: {
+    panel: 'bg-[#130822]/90 backdrop-blur-sm',
+    muted: 'text-white/60',
+    faint: 'text-white/45',
+    track: 'bg-white/10',
+    option: 'border-white/15 hover:border-white/50 hover:bg-white/[0.05]',
+    badge: 'bg-white/10 text-white/80 group-hover:bg-white/20',
+    optText: 'text-white/90',
+    rule: 'divide-white/10 border-white/10',
+    value: 'text-white/90',
+    note: 'text-white/55',
+    ghost: 'border-white/40 hover:bg-white/10',
+    link: 'hover:text-white',
+    gradient: 'text-brand-gradient',
+    accent: 'text-[#E69B57]',
+  },
+  light: {
+    panel: 'bg-white/90 backdrop-blur-sm text-[#1E1230]',
+    muted: 'text-[#1E1230]/60',
+    faint: 'text-[#1E1230]/45',
+    track: 'bg-[#4B1E73]/10',
+    option: 'border-[#4B1E73]/15 hover:border-[#4B1E73]/50 hover:bg-[#4B1E73]/[0.04]',
+    badge: 'bg-[#4B1E73]/10 text-[#4B1E73] group-hover:bg-[#4B1E73]/20',
+    optText: 'text-[#1E1230]/90',
+    rule: 'divide-[#4B1E73]/10 border-[#4B1E73]/10',
+    value: 'text-[#1E1230]/90',
+    note: 'text-[#1E1230]/55',
+    ghost: 'border-[#4B1E73]/40 text-[#4B1E73] hover:bg-[#4B1E73]/5',
+    link: 'hover:text-[#4B1E73]',
+    gradient: 'text-brand-gradient-deep',
+    accent: 'text-[#B55F1C]',
+  },
+};
+
+export const ProjectFinder = ({ light = false }) => {
+  const t = light ? themes.light : themes.dark;
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState([]);
   const [inView, setInView] = useState(false);
@@ -101,13 +138,13 @@ export const ProjectFinder = () => {
 
   return (
     <div ref={ref} className="rounded-[28px] p-[1.5px] bg-gradient-to-br from-[#A56DE0] via-[#D18BBF] to-[#F0A45E]">
-      <div className="rounded-[27px] bg-[#130822]/90 backdrop-blur-sm p-7 sm:p-12 min-h-[480px] flex flex-col">
+      <div className={`rounded-[27px] ${t.panel} p-7 sm:p-12 min-h-[480px] flex flex-col`}>
         {/* progress */}
         <div className="flex items-center justify-between gap-6 mb-10">
-          <p className="font-display text-sm font-semibold text-white/60 tabular-nums">
+          <p className={`font-display text-sm font-semibold tabular-nums ${t.muted}`}>
             {done ? 'Your brief is ready' : `Question ${step + 1} of ${questions.length}`}
           </p>
-          <div className="flex-1 max-w-xs h-1.5 rounded-full bg-white/10 overflow-hidden">
+          <div className={`flex-1 max-w-xs h-1.5 rounded-full overflow-hidden ${t.track}`}>
             <motion.div
               className="h-full rounded-full bg-gradient-to-r from-[#A56DE0] to-[#F0A45E]"
               animate={{ width: `${progress}%` }}
@@ -139,25 +176,25 @@ export const ProjectFinder = () => {
                       className={`group flex items-center gap-4 text-left p-4 sm:p-5 rounded-xl border transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#E69B57] ${
                         picked
                           ? 'border-[#E69B57] bg-[#E69B57]/15'
-                          : 'border-white/15 hover:border-white/50 hover:bg-white/[0.05]'
+                          : t.option
                       }`}
                     >
                       <span
                         className={`font-display shrink-0 w-9 h-9 rounded-lg flex items-center justify-center text-sm font-bold transition-colors ${
-                          picked ? 'bg-[#E69B57] text-[#140A22]' : 'bg-white/10 text-white/80 group-hover:bg-white/20'
+                          picked ? 'bg-[#E69B57] text-[#140A22]' : t.badge
                         }`}
                       >
                         {picked ? <Check size={16} /> : letters[i]}
                       </span>
-                      <span className="text-[16px] sm:text-[17px] text-white/90">{o.label}</span>
+                      <span className={`text-[16px] sm:text-[17px] ${t.optText}`}>{o.label}</span>
                     </button>
                   );
                 })}
               </div>
-              <div className="mt-8 flex items-center justify-between text-sm text-white/45">
+              <div className={`mt-8 flex items-center justify-between text-sm ${t.faint}`}>
                 <span className="hidden sm:inline">Tip: press A, B, C or D to answer</span>
                 {step > 0 && (
-                  <button onClick={() => setStep((s) => s - 1)} className="hover:text-white underline underline-offset-4">
+                  <button onClick={() => setStep((s) => s - 1)} className={`underline underline-offset-4 ${t.link}`}>
                     Back
                   </button>
                 )}
@@ -172,9 +209,9 @@ export const ProjectFinder = () => {
               className="flex-1 flex flex-col"
             >
               <h3 className="font-display text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight">
-                Here is how we would <span className="text-brand-gradient">approach it.</span>
+                Here is how we would <span className={t.gradient}>approach it.</span>
               </h3>
-              <dl className="mt-10 divide-y divide-white/10 border-y border-white/10">
+              <dl className={`mt-10 divide-y border-y ${t.rule}`}>
                 {[
                   ['Method', method[answers[0]]],
                   ['Fieldwork', fieldwork[answers[1]]],
@@ -187,12 +224,12 @@ export const ProjectFinder = () => {
                     transition={{ delay: 0.2 + i * 0.15 }}
                     className="grid sm:grid-cols-[160px_1fr] gap-1 sm:gap-6 py-5"
                   >
-                    <dt className="font-display text-sm font-bold text-[#E69B57]">{k}</dt>
-                    <dd className="text-lg text-white/90">{v}</dd>
+                    <dt className={`font-display text-sm font-bold ${t.accent}`}>{k}</dt>
+                    <dd className={`text-lg ${t.value}`}>{v}</dd>
                   </motion.div>
                 ))}
               </dl>
-              <p className="mt-6 text-white/55">
+              <p className={`mt-6 ${t.note}`}>
                 This is a starting point. A researcher will refine it with you on a short call.
               </p>
               <div className="mt-auto pt-10 flex flex-col sm:flex-row gap-3">
@@ -204,7 +241,7 @@ export const ProjectFinder = () => {
                 </Link>
                 <button
                   onClick={restart}
-                  className="font-display inline-flex items-center justify-center gap-2 h-14 px-8 border border-white/40 font-bold hover:bg-white/10 transition-colors"
+                  className={`font-display inline-flex items-center justify-center gap-2 h-14 px-8 border font-bold transition-colors ${t.ghost}`}
                 >
                   <RotateCcw size={16} /> Start again
                 </button>
