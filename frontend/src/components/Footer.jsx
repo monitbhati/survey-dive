@@ -1,59 +1,87 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Logo } from './Logo';
-import { mockData } from '../mock';
 import { FaLinkedin } from 'react-icons/fa';
+import { company, isReal } from './site/siteContent';
+
+const columns = [
+  {
+    title: 'Company',
+    links: [
+      { to: '/about', label: 'About' },
+      { to: '/quality', label: 'Quality and methodology' },
+      { to: '/careers', label: 'Careers' },
+      { to: '/contact', label: 'Contact' },
+    ],
+  },
+  {
+    title: 'Services',
+    links: [
+      { to: '/services/survey-designing', label: 'Survey design' },
+      { to: '/services/quantitative-research', label: 'Quantitative research' },
+      { to: '/services/cati-excellence', label: 'CATI' },
+      { to: '/services/qualitative-deep-dives', label: 'Qualitative research' },
+    ],
+  },
+  {
+    title: 'Panel',
+    links: [
+      { to: '/join-us', label: 'Join our panel' },
+      { to: '/panel-faq', label: 'Panel FAQ' },
+    ],
+  },
+];
 
 export const Footer = () => {
+  const year = new Date().getFullYear();
   return (
-    <footer className="bg-[#0E0519] text-white py-12 px-4 sm:px-6 lg:px-8 border-t border-white/5">
-      <div className="container mx-auto">
-        <div className="flex flex-col md:flex-row justify-between items-start gap-8 mb-10">
-          {/* Left Side - Logo and Content */}
-          <div className="flex-1">
-            <div className="mb-6">
-              <div className="inline-block">
-                <Logo />
-              </div>
-            </div>
-            <p className="text-gray-200 mb-2 text-base font-medium leading-relaxed">
-              {mockData.company.tagline}
+    <footer className="bg-[#0C0517] text-white border-t border-white/10">
+      <div className="max-w-[1400px] mx-auto px-5 sm:px-8 pt-16 pb-10">
+        <div className="grid gap-12 lg:grid-cols-12">
+          <div className="lg:col-span-4">
+            <img src="/surveydive-logo.png" alt="Survey Dive" className="h-14 w-auto object-contain" />
+            <p className="mt-5 text-white/65 max-w-xs leading-relaxed">
+              Market research and data collection. Real people, real answers.
             </p>
-            <p className="text-gray-400 text-sm leading-relaxed max-w-md">
-              Transforming market complexity into strategic clarity through precision research methodologies.
-            </p>
+            <a
+              href={company.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-6 inline-flex items-center gap-2 text-white/80 hover:text-[#E69B57] transition-colors"
+            >
+              <FaLinkedin size={20} /> LinkedIn
+            </a>
           </div>
 
-          {/* Right Side - LinkedIn Button and Address */}
-          <div className="flex flex-col md:items-end gap-5">
-            <a 
-              href="https://www.linkedin.com/company/survey-dive" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 border border-white/20 text-white px-6 py-3 rounded-full transition-colors font-medium hover:bg-white/10"
-            >
-              <FaLinkedin size={20} />
-              Follow us on LinkedIn
-            </a>
-            <div className="md:text-right text-gray-400 text-sm">
-              <p>{mockData.company.address}</p>
+          <div className="lg:col-span-8 grid grid-cols-2 sm:grid-cols-4 gap-8">
+            {columns.map((col) => (
+              <div key={col.title}>
+                <p className="font-display text-sm font-bold text-white mb-4">{col.title}</p>
+                <ul className="space-y-3">
+                  {col.links.map((l) => (
+                    <li key={l.to}>
+                      <Link to={l.to} className="text-white/60 hover:text-white transition-colors">{l.label}</Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+            <div>
+              <p className="font-display text-sm font-bold text-white mb-4">Get in touch</p>
+              <ul className="space-y-3 text-white/60">
+                <li>{isReal(company.email) ? <a href={`mailto:${company.email}`} className="hover:text-white">{company.email}</a> : company.email}</li>
+                <li>{isReal(company.phone) ? <a href={`tel:${company.phone.replace(/\s/g, '')}`} className="hover:text-white">{company.phone}</a> : company.phone}</li>
+                <li className="leading-relaxed">{company.address}</li>
+              </ul>
             </div>
           </div>
         </div>
 
-        <div className="border-t border-[#3D2960] pt-6 text-center">
-          <div className="flex flex-wrap justify-center gap-4 mb-4">
-            <Link to="/privacy-policy" className="text-gray-400 hover:text-white text-sm transition-colors">
-              Privacy Policy
-            </Link>
-            <span className="text-[#3D2960]">•</span>
-            <Link to="/terms-conditions" className="text-gray-400 hover:text-white text-sm transition-colors">
-              Terms & Conditions
-            </Link>
+        <div className="mt-14 pt-8 border-t border-white/10 flex flex-col sm:flex-row gap-4 justify-between text-sm text-white/45">
+          <p>© {year} Survey Dive. All rights reserved.</p>
+          <div className="flex gap-6">
+            <Link to="/privacy-policy" className="hover:text-white">Privacy policy</Link>
+            <Link to="/terms-conditions" className="hover:text-white">Terms and conditions</Link>
           </div>
-          <p className="text-gray-400 text-sm tracking-wide">
-            &copy; {new Date().getFullYear()} {mockData.company.name}. All rights reserved.
-          </p>
         </div>
       </div>
     </footer>

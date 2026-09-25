@@ -1,0 +1,14 @@
+// Survey Dive's contact details, used across the site.
+// Replace the [bracketed] values once the client confirms them.
+export const company = {
+  email: '[hello@surveydive.in]',
+  phone: '[+91 00000 00000]',
+  address: '[Office address, City, State, PIN]',
+  hours: '[Monday to Friday, 9:30 am to 6:30 pm]',
+  careersEmail: '[careers@surveydive.in]',
+  panelEmail: '[panel@surveydive.in]',
+  linkedin: 'https://www.linkedin.com/company/survey-dive',
+};
+
+// true only when the value above has been filled in (no brackets left)
+export const isReal = (value) => Boolean(value) && !value.includes('[');

@@ -20,6 +20,9 @@ import { ScrollToTop } from "./components/ScrollToTop";
 import { Sample1Page } from "./pages/samples/Sample1Page";
 import { Sample2Page } from "./pages/samples/Sample2Page";
 import { Sample3Page } from "./pages/samples/Sample3Page";
+import { CareersPage } from "./pages/CareersPage";
+import { QualityPage } from "./pages/QualityPage";
+import { PanelFaqPage } from "./pages/PanelFaqPage";
 
 function App() {
   return (
@@ -45,6 +48,9 @@ function App() {
           <Route path="/sample-1" element={<Sample1Page />} />
           <Route path="/sample-2" element={<Sample2Page />} />
           <Route path="/sample-3" element={<Sample3Page />} />
+          <Route path="/careers" element={<CareersPage />} />
+          <Route path="/quality" element={<QualityPage />} />
+          <Route path="/panel-faq" element={<PanelFaqPage />} />
         </Routes>
       </BrowserRouter>
       <Toaster position="top-right" />

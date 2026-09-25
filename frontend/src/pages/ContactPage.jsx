@@ -1,206 +1,170 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Button } from '../components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../components/ui/card';
-import { Input } from '../components/ui/input';
-import { Textarea } from '../components/ui/textarea';
-import { Mail, Zap, MessageSquare, ArrowRight, ShieldCheck, Building2, Clock } from 'lucide-react';
-import { mockData } from '../mock';
-import { toast } from 'sonner';
-import { Header } from '../components/Header';
-import { Footer } from '../components/Footer';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { toast } from 'sonner';
+import { Mail, Phone, MapPin, Clock, CheckCircle2, Users, ChevronDown } from 'lucide-react';
+import { SiteLayout } from '../components/site/SiteLayout';
+import { PageBanner } from '../components/site/PageBanner';
+import { wrap, Reveal, Label, btnPrimary, fieldClass, labelClass } from '../components/site/ui';
+import { company, isReal } from '../components/site/siteContent';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
-const fadeInUp = { hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } } };
-const staggerContainer = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.12 } } };
+const enquiryTypes = ['A new research project', 'Fieldwork or CATI only', 'A quote for an existing brief', 'Something else'];
+
+const empty = { name: '', email: '', company: '', type: enquiryTypes[0], message: '' };
 
 export const ContactPage = () => {
-  const [formData, setFormData] = useState({ name: '', email: '', company: '', message: '' });
+  const [form, setForm] = useState(empty);
   const [loading, setLoading] = useState(false);
+  const [sent, setSent] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleInputChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
+  const onChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
-  const handleSubmit = async (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    setError('');
     try {
-      // --- TEMPORARY DEMO MODE (No Backend Required for now) ---
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      toast.success('Project briefing received! Our advisory team will reach out shortly.');
-      setFormData({ name: '', email: '', company: '', message: '' });
-      
-      /* --- UNCOMMENT THIS WHEN YOUR BACKEND IS LIVE ---
-      const response = await axios.post(`${API}/contact/submit`, formData);
-      toast.success(response.data.message || 'Inquiry submitted successfully.');
-      setFormData({ name: '', email: '', company: '', message: '' });
-      -------------------------------------------------- */
-    } catch (error) {
-      console.error('Contact form error:', error);
-      toast.error('Failed to submit inquiry. Please try again.');
+      // Same four fields the backend already accepts. The enquiry type goes at the top of the message.
+      await axios.post(`${API}/contact/submit`, {
+        name: form.name,
+        email: form.email,
+        company: form.company,
+        message: `[Enquiry: ${form.type}]\n\n${form.message}`,
+      });
+      setSent(true);
+      setForm(empty);
+      toast.success('Message sent. We will be in touch soon.');
+    } catch (err) {
+      console.error('Contact form error:', err);
+      setError('Your message could not be sent. Please try again, or email us directly.');
     } finally {
       setLoading(false);
     }
   };
 
-  const inputClasses = "w-full h-12 px-4 rounded-md border border-gray-300 bg-gray-50/50 text-gray-900 placeholder:text-gray-400 focus:bg-white focus:border-[#4B1E73] focus:ring-1 focus:ring-[#4B1E73] text-sm transition-all";
+  const details = [
+    { icon: Mail, label: 'Email', value: company.email, href: isReal(company.email) ? `mailto:${company.email}` : null },
+    { icon: Phone, label: 'Phone', value: company.phone, href: isReal(company.phone) ? `tel:${company.phone.replace(/\s/g, '')}` : null },
+    { icon: MapPin, label: 'Office', value: company.address },
+    { icon: Clock, label: 'Hours', value: company.hours },
+  ];
 
   return (
-    <div className="min-h-screen bg-white text-gray-900 font-sans antialiased selection:bg-[#4B1E73] selection:text-white flex flex-col relative">
-      <Header />
+    <SiteLayout>
+      <PageBanner
+        label="Contact"
+        title="Tell us what you need"
+        highlight="to find out."
+        intro="Share a few details about your project. A researcher will reply within [one working day] with questions, an approach, or a quote."
+      />
 
-      {/* Notice pt-40 is removed from main here! */}
-      <main className="flex-grow pb-24 relative z-10">
-        
-        {/* --- CONTACT HERO SECTION WITH pt-40 APPLIED HERE --- */}
-        <section className="relative pt-40 px-4 sm:px-6 lg:px-8 mb-20 border-b border-gray-200 pb-16 overflow-hidden">
-          
-          {/* 1. BACKGROUND IMAGE LAYER */}
-          <div className="absolute inset-0 z-0">
-            <img
-              src="https://images.pexels.com/photos/5561910/pexels-photo-5561910.jpeg" /* <-- PASTE YOUR IMAGE LINK HERE */
-              alt="Advisory Contact Background"
-              className="w-full h-full object-cover grayscale opacity-30 blur-[2px]"
-            />
-            {/* Brand Tint & Frosted Fade */}
-            <div className="absolute inset-0 bg-gradient-to-r from-[#4B1E73]/10 via-transparent to-[#E69B57]/10 mix-blend-multiply" />
-            <div className="absolute inset-0 bg-gradient-to-b from-white/70 via-white/90 to-white backdrop-blur-[1px]" />
-          </div>
-
-          {/* 2. FOREGROUND CONTENT */}
-          <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="relative z-10 max-w-7xl mx-auto">
-            <div className="max-w-3xl">
-              <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 bg-[#4B1E73]/10 text-[#4B1E73] border border-[#4B1E73]/20 text-xs font-semibold px-3 py-1.5 rounded-md mb-6 tracking-widest uppercase font-mono shadow-2xs">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#4B1E73]"></span>
-                01 / Advisory & Operations Inquiries
-              </motion.div>
-              <motion.h1 variants={fadeInUp} className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-[1.1] tracking-tight">
-                Initiate a Strategic Dialogue.
-              </motion.h1>
-              <motion.p variants={fadeInUp} className="text-lg sm:text-xl text-gray-600 leading-relaxed font-normal mb-8">
-                Connect with our research directors to discuss custom questionnaire architecture, global sampling incidence rates, or enterprise reporting requirements.
-              </motion.p>
-
-              <motion.div variants={fadeInUp} className="flex flex-wrap gap-4 pt-4 border-t border-gray-200/80">
-                <div className="flex items-center gap-2.5 bg-white border border-gray-200 px-4 py-2 rounded-md shadow-2xs">
-                  <Zap className="text-[#4B1E73]" size={16} />
-                  <span className="text-xs font-mono font-semibold text-gray-700 uppercase tracking-wider">Response SLA: &lt; 24 Hours</span>
-                </div>
-                <div className="flex items-center gap-2.5 bg-white border border-gray-200 px-4 py-2 rounded-md shadow-2xs">
-                  <ShieldCheck className="text-[#E69B57]" size={16} />
-                  <span className="text-xs font-mono font-semibold text-gray-700 uppercase tracking-wider">Strict NDA & Privacy Protocols</span>
-                </div>
-              </motion.div>
+      <section className={`${wrap} py-20 sm:py-28 grid lg:grid-cols-12 gap-14`}>
+        {/* ---------- FORM ---------- */}
+        <Reveal className="lg:col-span-7">
+          {sent ? (
+            <div className="border border-white/15 p-10 sm:p-14">
+              <CheckCircle2 size={44} className="text-[#E69B57]" />
+              <h2 className="font-display mt-6 text-3xl sm:text-4xl font-extrabold tracking-tight">Thank you. Your message is with us.</h2>
+              <p className="mt-4 text-lg text-white/70 leading-relaxed">
+                A member of our research team will reply within [one working day].
+              </p>
+              <button onClick={() => setSent(false)} className="mt-8 font-semibold text-[#E69B57] underline underline-offset-4">
+                Send another message
+              </button>
             </div>
-          </motion.div>
-        </section>
-
-        {/* FORMS & CHANNELS */}
-        <section className="px-4 sm:px-6 lg:px-8 mb-24 relative z-10">
-          <div className="max-w-7xl mx-auto">
-            <div className="grid lg:grid-cols-12 gap-12 items-start">
-              
-              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} className="lg:col-span-7">
-                <Card className="bg-white border border-gray-200 shadow-sm rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300">
-                  <div className="h-1.5 bg-gradient-to-r from-[#4B1E73] to-[#E69B57]" />
-                  <CardHeader className="bg-gray-50/50 border-b border-gray-200 p-8">
-                    <div className="flex items-center justify-between mb-2">
-                      <CardTitle className="text-2xl font-bold text-gray-900 tracking-tight">Commission Research Scoping</CardTitle>
-                      <span className="text-xs font-mono text-gray-400 uppercase tracking-wider">FORM // REF-01</span>
-                    </div>
-                    <CardDescription className="text-sm text-gray-600 font-normal">
-                      Provide project specifics or general inquiry details below. Our intelligence team will review feasibility immediately upon receipt.
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="p-8">
-                    <form onSubmit={handleSubmit} className="space-y-6">
-                      <div>
-                        <label htmlFor="name" className="block text-xs font-mono uppercase tracking-wider text-gray-500 font-semibold mb-2">Full Name *</label>
-                        <Input id="name" name="name" value={formData.name} onChange={handleInputChange} placeholder="Dr. Jane Doe or Executive Leader" className={inputClasses} required />
-                      </div>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                          <label htmlFor="email" className="block text-xs font-mono uppercase tracking-wider text-gray-500 font-semibold mb-2">Corporate Email *</label>
-                          <Input id="email" name="email" type="email" value={formData.email} onChange={handleInputChange} placeholder="j.doe@enterprise.com" className={inputClasses} required />
-                        </div>
-                        <div>
-                          <label htmlFor="company" className="block text-xs font-mono uppercase tracking-wider text-gray-500 font-semibold mb-2">Organization</label>
-                          <Input id="company" name="company" value={formData.company} onChange={handleInputChange} placeholder="Global Analytics Corp" className={inputClasses} />
-                        </div>
-                      </div>
-                      <div>
-                        <label htmlFor="message" className="block text-xs font-mono uppercase tracking-wider text-gray-500 font-semibold mb-2">Research Requirements & Objectives *</label>
-                        <Textarea id="message" name="message" value={formData.message} onChange={handleInputChange} placeholder="Detail your target demographics, sample incidence requirements, geographic scope, or methodology preference (Quant/Qual/CATI)..." rows={6} className="w-full p-4 rounded-md border border-gray-300 bg-gray-50/50 text-gray-900 focus:bg-white focus:border-[#4B1E73] focus:ring-1 focus:ring-[#4B1E73] text-sm resize-none" required />
-                      </div>
-                      <div className="pt-2">
-                        <Button type="submit" disabled={loading} className="w-full h-12 bg-gradient-to-r from-[#4B1E73] to-[#3D1860] hover:opacity-95 text-white font-semibold text-sm rounded-md shadow-md transition-all flex items-center justify-center gap-2">
-                          {loading ? 'Transmitting Briefing...' : <>Submit Project Briefing <ArrowRight size={16} /></>}
-                        </Button>
-                      </div>
-                    </form>
-                  </CardContent>
-                </Card>
-              </motion.div>
-
-              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }} className="lg:col-span-5 space-y-6">
-                <div className="border-b border-gray-200 pb-4 mb-2">
-                  <h3 className="text-xs font-mono font-bold text-gray-400 uppercase tracking-widest">Direct Operations Channels</h3>
+          ) : (
+            <form onSubmit={onSubmit} className="space-y-6">
+              <div className="grid sm:grid-cols-2 gap-6">
+                <div>
+                  <label htmlFor="name" className={labelClass}>Your name *</label>
+                  <input id="name" name="name" value={form.name} onChange={onChange} required autoComplete="name" className={`${fieldClass} h-14`} placeholder="Priya Sharma" />
                 </div>
-                
-                <Card className="bg-white border border-gray-200 shadow-xs hover:border-gray-300 transition-all">
-                  <CardContent className="p-6 flex items-start gap-4">
-                    <div className="w-12 h-12 bg-[#4B1E73]/10 border border-[#4B1E73]/20 rounded-md flex items-center justify-center text-[#4B1E73] shrink-0">
-                      <Mail size={22} />
-                    </div>
-                    <div>
-                      <div className="text-xs font-mono uppercase tracking-wider text-gray-400 font-semibold mb-1">Electronic Correspondence</div>
-                      <div className="font-bold text-gray-900 text-base mb-1">General & Advisory Inquiries</div>
-                      <a href={`mailto:${mockData.company.email}`} className="text-sm font-semibold text-[#4B1E73] hover:underline break-all">
-                        {mockData.company.email}
-                      </a>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card className="bg-white border border-gray-200 shadow-xs hover:border-gray-300 transition-all">
-                  <CardContent className="p-6 flex items-start gap-4">
-                    <div className="w-12 h-12 bg-[#E69B57]/10 border border-[#E69B57]/20 rounded-md flex items-center justify-center text-[#E69B57] shrink-0">
-                      <Building2 size={22} />
-                    </div>
-                    <div>
-                      <div className="text-xs font-mono uppercase tracking-wider text-gray-400 font-semibold mb-1">Physical Infrastructure</div>
-                      <div className="font-bold text-gray-900 text-base mb-1">Global Headquarters</div>
-                      <div className="text-sm text-gray-600 leading-relaxed">
-                        {mockData.company.address}
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 space-y-4 mt-8">
-                  <div className="flex items-center gap-2 text-xs font-mono font-bold text-gray-900 uppercase tracking-wider">
-                    <Clock size={16} className="text-[#4B1E73]" /> Global Fieldwork Coverage
-                  </div>
-                  <p className="text-xs text-gray-600 leading-relaxed">
-                    Our CATI call centers, quantitative data science teams, and qualitative moderation leads operate across North American, European, and APAC time zones.
-                  </p>
-                  <div className="pt-3 border-t border-gray-200 flex items-center justify-between text-[11px] font-mono text-gray-500">
-                    <span>Fieldwork Status: Active</span>
-                    <span className="flex items-center gap-1.5 text-emerald-600 font-bold">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" /> Live Operations
-                    </span>
+                <div>
+                  <label htmlFor="email" className={labelClass}>Work email *</label>
+                  <input id="email" name="email" type="email" value={form.email} onChange={onChange} required autoComplete="email" className={`${fieldClass} h-14`} placeholder="priya@company.com" />
+                </div>
+              </div>
+              <div className="grid sm:grid-cols-2 gap-6">
+                <div>
+                  <label htmlFor="company" className={labelClass}>Company</label>
+                  <input id="company" name="company" value={form.company} onChange={onChange} autoComplete="organization" className={`${fieldClass} h-14`} placeholder="Company name" />
+                </div>
+                <div>
+                  <label htmlFor="type" className={labelClass}>What is this about?</label>
+                  <div className="relative">
+                    <select id="type" name="type" value={form.type} onChange={onChange} className={`${fieldClass} h-14 appearance-none pr-12`}>
+                      {enquiryTypes.map((t) => (
+                        <option key={t} value={t} className="bg-[#1A0B30]">{t}</option>
+                      ))}
+                    </select>
+                    <ChevronDown size={18} className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-white/60" />
                   </div>
                 </div>
-              </motion.div>
+              </div>
+              <div>
+                <label htmlFor="message" className={labelClass}>Your project *</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  value={form.message}
+                  onChange={onChange}
+                  required
+                  rows={6}
+                  className={`${fieldClass} py-4 resize-none`}
+                  placeholder="Who do you need to hear from, roughly how many people, which cities, and by when?"
+                />
+              </div>
 
-            </div>
+              {error && (
+                <p role="alert" className="border border-red-400/40 bg-red-500/10 text-red-200 px-4 py-3">
+                  {error} {isReal(company.email) && <a href={`mailto:${company.email}`} className="underline">{company.email}</a>}
+                </p>
+              )}
+
+              <button type="submit" disabled={loading} className={btnPrimary}>
+                {loading ? 'Sending...' : 'Send message'}
+              </button>
+              <p className="text-sm text-white/50">
+                We use your details only to reply to this enquiry. See our <Link to="/privacy-policy" className="underline">privacy policy</Link>.
+              </p>
+            </form>
+          )}
+        </Reveal>
+
+        {/* ---------- DETAILS ---------- */}
+        <Reveal delay={0.1} className="lg:col-span-4 lg:col-start-9 space-y-10">
+          <div>
+            <Label>Contact details</Label>
+            <ul className="border-t border-white/15">
+              {details.map((d) => (
+                <li key={d.label} className="flex gap-4 py-5 border-b border-white/15">
+                  <d.icon size={20} className="shrink-0 text-[#E69B57] mt-0.5" />
+                  <div>
+                    <p className="text-sm text-white/50">{d.label}</p>
+                    {d.href ? (
+                      <a href={d.href} className="text-white hover:text-[#E69B57] break-all">{d.value}</a>
+                    ) : (
+                      <p className="text-white/90">{d.value}</p>
+                    )}
+                  </div>
+                </li>
+              ))}
+            </ul>
           </div>
-        </section>
 
-      </main>
-      <Footer />
-    </div>
+          <div className="bg-[#1A0B30] border border-white/10 p-7">
+            <Users size={22} className="text-[#C9A4F0]" />
+            <p className="font-display mt-4 text-lg font-bold">Are you a panel member?</p>
+            <p className="mt-2 text-white/65 leading-relaxed">
+              For rewards, surveys, or account questions, see the <Link to="/panel-faq" className="text-[#E69B57] underline underline-offset-4">Panel FAQ</Link> or email {company.panelEmail}.
+            </p>
+          </div>
+        </Reveal>
+      </section>
+    </SiteLayout>
   );
 };
