@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useReducedMotion } from 'framer-motion';
-import { ArrowRight, ArrowUpRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { BackgroundVideo } from '../../components/home/BackgroundVideo';
 import { HomeHeader } from '../../components/home/HomeHeader';
 import { Footer } from '../../components/Footer';
@@ -15,15 +15,21 @@ import '../../components/home/home.css';
       Move the cursor through it and the dots scatter, then regroup.
    2. The page asks the visitor three survey questions and builds them a
       research brief from their answers.
-   3. The panel section calls back to the dots: "Be one of the dots."
+   3. The panel section: "Dive In & Be Heard."
    Everything in [square brackets] is for the client to confirm.
    ===================================================================== */
 
-const services = [
-  { title: 'Survey design', to: '/services/survey-designing' },
-  { title: 'Quantitative research', to: '/services/quantitative-research' },
-  { title: 'CATI', to: '/services/cati-excellence' },
-  { title: 'Qualitative research', to: '/services/qualitative-deep-dives' },
+const offerings = [
+  'B2B Research',
+  'Consumer Research',
+  'Healthcare Professionals',
+  'Ailment Audience',
+  'CATI Research',
+  'IDIs',
+  'FGDs',
+  'Community Recruitment',
+  'Panel Recruitment',
+  'Survey Programming',
 ];
 
 const wrap = 'max-w-[1400px] mx-auto px-5 sm:px-8';
@@ -57,26 +63,11 @@ export const Sample3Page = () => {
       <section className="relative min-h-screen flex flex-col items-center justify-center pt-24 pb-16 px-5 text-center">
         <h1 className="sr-only">Real people. Real answers.</h1>
         <ParticleHeadline className="max-w-6xl h-[88vw] sm:h-[44vw] max-h-[380px] min-h-[190px]" />
-        <motion.p {...enter(1.2)} className="font-display mt-4 text-sm sm:text-base font-semibold text-[#C9A4F0]">
-          Every dot is a voice. We make sure each one is real.
+        <motion.p {...enter(1.2)} className="mt-8 text-lg sm:text-xl text-white/80 max-w-3xl leading-relaxed">
+          Survey Dive empowers organizations to make smarter, more confident decisions through high-quality, actionable
+          data intelligence. We connect you with the right people, the right data, and the right insights, helping you
+          uncover what truly matters and turn information into meaningful business decisions.
         </motion.p>
-        <motion.p {...enter(1.4)} className="mt-6 text-lg sm:text-xl text-white/80 max-w-xl leading-relaxed">
-          Market research and data collection across [cities], in [languages], checked response by response.
-        </motion.p>
-        <motion.div {...enter(1.6)} className="mt-10 flex flex-col sm:flex-row gap-3">
-          <a
-            href="#brief"
-            className="font-display inline-flex items-center justify-center gap-3 h-14 px-8 bg-[#E69B57] text-[#140A22] font-bold hover:bg-[#F2AE70] transition-colors"
-          >
-            Build your research brief <ArrowRight size={18} />
-          </a>
-          <Link
-            to="/join-us"
-            className="font-display inline-flex items-center justify-center h-14 px-8 border border-white/60 font-bold hover:bg-white hover:text-[#140A22] transition-colors"
-          >
-            Join our panel
-          </Link>
-        </motion.div>
       </section>
 
       {/* ---------- THE SURVEY ---------- */}
@@ -87,9 +78,6 @@ export const Sample3Page = () => {
             <h2 className="font-display text-4xl sm:text-5xl font-extrabold tracking-[-0.02em] leading-[1.05]">
               Take a 30-second survey. Get a research plan.
             </h2>
-            <p className="mt-6 text-lg text-white/70 leading-relaxed">
-              Answer three questions the way a respondent would. We will turn your answers into a starting brief.
-            </p>
           </Reveal>
           <Reveal delay={0.1} className="lg:col-span-8">
             <ProjectFinder />
@@ -97,27 +85,34 @@ export const Sample3Page = () => {
         </div>
       </section>
 
-      {/* ---------- SERVICES: compact ---------- */}
-      <section className={`${wrap} py-20 sm:py-24`}>
-        <Reveal className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
+      {/* ---------- WHAT WE DO: scrolling strip ---------- */}
+      <section className="py-20 sm:py-24">
+        <Reveal className={`${wrap} mb-10`}>
           <h2 className="font-display text-3xl sm:text-4xl font-extrabold tracking-tight">What we do</h2>
-          <p className="text-white/65 max-w-md">Four methods, often combined in one project.</p>
         </Reveal>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-white/15 border border-white/15">
-          {services.map((s, i) => (
-            <Reveal key={s.title} delay={i * 0.06} className="bg-[#120822]/60">
-              <Link to={s.to} className="group relative flex flex-col justify-between h-44 p-7 overflow-hidden">
-                <span className="absolute inset-0 bg-gradient-to-br from-[#A56DE0] to-[#F0A45E] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <span className="relative font-display text-sm font-bold text-[#E69B57] group-hover:text-[#140A22] tabular-nums">
-                  {String(i + 1).padStart(2, '0')}
-                </span>
-                <span className="relative flex items-end justify-between gap-4">
-                  <span className="font-display text-2xl font-bold group-hover:text-[#140A22]">{s.title}</span>
-                  <ArrowUpRight size={24} className="shrink-0 text-white/50 group-hover:text-[#140A22]" />
-                </span>
-              </Link>
-            </Reveal>
-          ))}
+        <div className="py-10 sm:py-14 border-y border-white/15 overflow-hidden">
+          <ul className="sr-only">
+            {offerings.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+          <div className="sd-marquee flex w-max" style={{ animationDuration: '60s' }} aria-hidden="true">
+            {[0, 1].map((copy) => (
+              <div key={copy} className="flex shrink-0">
+                {offerings.map((item, i) => (
+                  <span
+                    key={item}
+                    className={`font-display text-4xl sm:text-6xl font-extrabold tracking-tight whitespace-nowrap px-6 sm:px-10 ${
+                      i % 2 === 0 ? 'text-white' : 'sd-outline'
+                    }`}
+                  >
+                    {item}
+                    <span className="text-[#E69B57] pl-12 sm:pl-20">•</span>
+                  </span>
+                ))}
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -136,12 +131,8 @@ export const Sample3Page = () => {
             ))}
           </div>
           <h2 className="font-display text-5xl sm:text-7xl lg:text-8xl font-extrabold tracking-[-0.03em] leading-[1]">
-            Be one of <span className="text-brand-gradient">the dots.</span>
+            Dive In &amp; <span className="text-brand-gradient">Be Heard</span>
           </h2>
-          <p className="mt-8 text-lg sm:text-xl text-white/75 max-w-xl mx-auto leading-relaxed">
-            Join [50,000+] people across India who shape what brands build next. Short surveys, [rewards], and your
-            details always stay private.
-          </p>
           <div className="mt-10">
             <Link
               to="/join-us"

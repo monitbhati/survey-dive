@@ -6,17 +6,13 @@ import React, { useEffect, useRef } from 'react';
    settle back. Colours run purple to orange, as in the logo. */
 
 // Headline text. Two short lines work best.
-const LINES = ['Dive Into.', 'What Matters.'];
+const LINES = ['Real people.', 'Real answers.'];
 // On phones the words stack into four lines so the dots stay big enough
-const LINES_MOBILE = ['Dive', 'Into.', 'What', 'Matters.'];
+const LINES_MOBILE = ['Real', 'people.', 'Real', 'answers.'];
 
 const COLORS = ['#A56DE0', '#B477DA', '#C381CF', '#D18BBF', '#DC94A8', '#E59C8C', '#EBA372', '#F0A45E'];
-// Deeper shades of the same gradient, for light backgrounds
-const COLORS_LIGHT = ['#4B1E73', '#5E2590', '#7A2F98', '#963C92', '#B04D82', '#C3616A', '#D27449', '#D9822B'];
 
-export const ParticleHeadline = ({ className = '', light = false }) => {
-  const paletteRef = useRef(light ? COLORS_LIGHT : COLORS);
-  paletteRef.current = light ? COLORS_LIGHT : COLORS;
+export const ParticleHeadline = ({ className = '' }) => {
   const wrapRef = useRef(null);
   const canvasRef = useRef(null);
 
@@ -95,15 +91,14 @@ export const ParticleHeadline = ({ className = '', light = false }) => {
     const draw = () => {
       ctx.clearRect(0, 0, w, h);
       // one path per colour keeps drawing fast even with thousands of dots
-      const palette = paletteRef.current;
-      for (let c = 0; c < palette.length; c++) {
+      for (let c = 0; c < COLORS.length; c++) {
         ctx.beginPath();
         for (const p of particles) {
           if (p.c !== c) continue;
           ctx.moveTo(p.x + p.r, p.y);
           ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
         }
-        ctx.fillStyle = palette[c];
+        ctx.fillStyle = COLORS[c];
         ctx.fill();
       }
     };

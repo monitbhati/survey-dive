@@ -1,9 +1,9 @@
 // Survey Dive's contact details, used across the site.
 // Replace the [bracketed] values once the client confirms them.
 export const company = {
-  email: '[hello@surveydive.in]',
+  email: 'sales@surveydive.com',
   phone: '[+91 00000 00000]',
-  address: '[Office address, City, State, PIN]',
+  address: '540, Tower -3, Golden I, Techzone IV, Greater Noida West U.P. (201318)',
   hours: '[Monday to Friday, 9:30 am to 6:30 pm]',
   careersEmail: '[careers@surveydive.in]',
   panelEmail: '[panel@surveydive.in]',
