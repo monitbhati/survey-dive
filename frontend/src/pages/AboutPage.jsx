@@ -3,6 +3,7 @@ import { motion, animate, useInView, useReducedMotion } from 'framer-motion';
 import { SiteLayout } from '../components/site/SiteLayout';
 import { PageBanner } from '../components/site/PageBanner';
 import { wrap, Reveal, Label, SectionHeading, GradientRule, CTABand } from '../components/site/ui';
+import { worldDots, WORLD_W, WORLD_H } from '../components/site/worldDots';
 
 /* Everything in [square brackets] is for the client to confirm or replace. */
 
@@ -24,12 +25,42 @@ const panelSteps = ['Recruit', 'Profile', 'Verify', 'Engage', 'Quality Check', '
 const stepColors = ['#A56DE0', '#B477DA', '#C381CF', '#DC94A8', '#EBA372', '#F0A45E'];
 
 const coverage = [
-  { region: 'North America', share: 37.3 },
-  { region: 'Europe', share: 22.4 },
-  { region: 'Asia Pacific', share: 16.3 },
-  { region: 'Latin America', share: 13.5 },
-  { region: 'Middle East & Africa', share: 10.4 },
+  { key: 'na', region: 'North America', share: 37.3 },
+  { key: 'europe', region: 'Europe', share: 22.4 },
+  { key: 'apac', region: 'Asia Pacific', share: 16.3 },
+  { key: 'latam', region: 'Latin America', share: 13.5 },
+  { key: 'mea', region: 'Middle East & Africa', share: 10.4 },
 ];
+
+// World map dots per region, coloured purple to orange from west to east
+const mapColors = ['#A56DE0', '#B477DA', '#C381CF', '#D18BBF', '#DC94A8', '#E59C8C', '#EBA372', '#F0A45E'];
+const mapDots = Object.fromEntries(
+  Object.entries(worldDots).map(([key, str]) => [
+    key,
+    str.split(' ').map((p) => {
+      const [x, y] = p.split(',').map(Number);
+      return { x, y, c: mapColors[Math.min(mapColors.length - 1, Math.floor((x / WORLD_W) * mapColors.length))] };
+    }),
+  ])
+);
+const maxShare = Math.max(...coverage.map((c) => c.share));
+
+// Dotted world map: bigger regions glow brighter; hovering a region row highlights it
+const CoverageMap = ({ active }) => (
+  <svg viewBox={`0 0 ${WORLD_W} ${WORLD_H}`} className="w-full h-auto" aria-hidden="true">
+    {coverage.map((c) => {
+      const base = 0.35 + (c.share / maxShare) * 0.65;
+      const opacity = active ? (active === c.key ? 1 : 0.12) : base;
+      return (
+        <g key={c.key} style={{ opacity, transition: 'opacity 0.35s ease' }}>
+          {mapDots[c.key].map((d) => (
+            <circle key={`${d.x},${d.y}`} cx={d.x} cy={d.y} r={0.34} fill={d.c} />
+          ))}
+        </g>
+      );
+    })}
+  </svg>
+);
 
 // Counts up from `from` to `to` the first time it scrolls into view
 const CountUp = ({ from, to, suffix }) => {
@@ -105,21 +136,33 @@ const PanelProcess = () => {
 
 const GlobalCoverage = () => {
   const reduce = useReducedMotion();
+  const [active, setActive] = useState(null);
   return (
     <section className={`${wrap} pb-24 sm:pb-32`}>
-      <div className="grid lg:grid-cols-12 gap-12 border-t border-white/10 pt-24 sm:pt-32">
-        <div className="lg:col-span-4">
+      <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center border-t border-white/10 pt-24 sm:pt-32">
+        <Reveal className="lg:col-span-6">
           <SectionHeading title="Global Coverage" className="!mb-0" />
-        </div>
-        <Reveal delay={0.1} className="lg:col-span-7 lg:col-start-6">
+          <p className="mt-5 text-lg text-white/70 leading-relaxed max-w-md">
+            Panel members in 40+ countries across five regions.
+          </p>
+          <div className="mt-10">
+            <CoverageMap active={active} />
+          </div>
+        </Reveal>
+        <Reveal delay={0.1} className="lg:col-span-6">
           <GradientRule />
           <div className="flex justify-between pt-6 pb-2 font-display text-xs font-bold uppercase tracking-[0.18em] text-white/50">
             <span>Region</span>
             <span>Panel share</span>
           </div>
-          <ul>
+          <ul onMouseLeave={() => setActive(null)}>
             {coverage.map((c, i) => (
-              <li key={c.region} className="py-5">
+              <li
+                key={c.region}
+                className={`py-5 cursor-default transition-opacity duration-300 ${active && active !== c.key ? 'opacity-50' : ''}`}
+                onMouseEnter={() => setActive(c.key)}
+                onClick={() => setActive((a) => (a === c.key ? null : c.key))}
+              >
                 <div className="flex items-baseline justify-between gap-4">
                   <span className="font-display text-lg sm:text-xl font-bold">{c.region}</span>
                   <span className="font-display text-lg sm:text-xl font-bold tabular-nums">{c.share}%</span>
