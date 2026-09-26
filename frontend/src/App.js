@@ -1,7 +1,6 @@
 import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";;
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";;
 import { AboutPage } from "./pages/AboutPage";
-import { ServicesPage } from "./pages/ServicesPage";
 import { ContactPage } from "./pages/ContactPage";
 import { JoinUsPage } from "./pages/JoinUsPage";
 import { AdminLoginPage } from "./pages/AdminLoginPage";
@@ -9,7 +8,6 @@ import { AdminDashboardPage } from "./pages/AdminDashboardPage";
 import { QuantitativeResearchPage } from "./pages/services/QuantitativeResearchPage";
 import { CATIPage } from "./pages/services/CATIPage";
 import { QualitativePage } from "./pages/services/QualitativePage";
-import { SurveyDesigningPage } from "./pages/services/SurveyDesigningPage";
 import { UserDashboardPage } from "./pages/UserDashboardPage";
 import { PrivacyPolicyPage } from "./pages/PrivacyPolicyPage";
 import { TermsConditionsPage } from "./pages/TermsConditionsPage";
@@ -34,11 +32,11 @@ function App() {
         <Routes>
           <Route path="/" element={<Sample3Page />} />
           <Route path="/about" element={<AboutPage />} />
-          <Route path="/services" element={<ServicesPage />} />
+          <Route path="/services" element={<Navigate to="/" replace />} />
           <Route path="/services/quantitative-research" element={<QuantitativeResearchPage />} />
           <Route path="/services/cati-excellence" element={<CATIPage />} />
           <Route path="/services/qualitative-deep-dives" element={<QualitativePage />} />
-          <Route path="/services/survey-designing" element={<SurveyDesigningPage />} />
+          <Route path="/services/survey-designing" element={<Navigate to="/" replace />} />
           <Route path="/join-us" element={<JoinUsPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/dashboard" element={<UserDashboardPage />} />

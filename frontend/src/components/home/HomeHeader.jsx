@@ -3,10 +3,9 @@ import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown } from 'lucide-react';
 
 const serviceLinks = [
-  { to: '/services/survey-designing', label: 'Survey design' },
   { to: '/services/quantitative-research', label: 'Quantitative research' },
-  { to: '/services/cati-excellence', label: 'CATI' },
   { to: '/services/qualitative-deep-dives', label: 'Qualitative research' },
+  { to: '/services/cati-excellence', label: 'CATI' },
 ];
 
 const linkBase =
@@ -52,11 +51,11 @@ export const HomeHeader = ({ light = false }) => {
         <nav className="hidden md:flex items-center gap-9">
           <Link to="/about" className={cls('/about')}>About</Link>
 
-          {/* Services with a dropdown on hover or keyboard focus */}
+          {/* Services only opens the dropdown (on hover, tap, or keyboard focus); it has no page of its own */}
           <div className="relative group">
-            <Link to="/services" className={`${cls('/services')} inline-flex items-center gap-1.5`}>
-              Services <ChevronDown size={15} className="transition-transform group-hover:rotate-180" />
-            </Link>
+            <button type="button" aria-haspopup="true" className={`${cls('/services')} inline-flex items-center gap-1.5 cursor-default`}>
+              Services <ChevronDown size={15} className="transition-transform group-hover:rotate-180 group-focus-within:rotate-180" />
+            </button>
             <div className="absolute left-0 top-full pt-5 opacity-0 invisible translate-y-1 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 transition-all duration-200">
               <div className={`w-64 backdrop-blur-xl border py-2 shadow-2xl ${light ? 'bg-white/95 border-[#4B1E73]/10' : 'bg-[#1A0C2E]/95 border-white/10'}`}>
                 {serviceLinks.map((s) => (
@@ -104,7 +103,7 @@ export const HomeHeader = ({ light = false }) => {
         <nav className={`md:hidden h-[calc(100vh-5rem)] overflow-y-auto px-6 pt-8 pb-10 flex flex-col gap-6 backdrop-blur-xl ${light ? 'bg-white/95 text-[#1E1230]' : 'bg-[#160A28]/95 text-white'}`}>
           <Link to="/about" className="font-display text-2xl font-semibold">About</Link>
           <div>
-            <Link to="/services" className="font-display text-2xl font-semibold">Services</Link>
+            <p className="font-display text-2xl font-semibold">Services</p>
             <div className={`mt-3 pl-4 border-l flex flex-col gap-3 ${light ? 'border-[#4B1E73]/15' : 'border-white/15'}`}>
               {serviceLinks.map((s) => (
                 <Link key={s.to} to={s.to} className="text-lg opacity-75">{s.label}</Link>
