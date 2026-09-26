@@ -56,7 +56,7 @@ export const ServiceTemplate = ({ slug }) => {
 
       <CTABand
         title="Let's talk about your next study."
-        text="Tell us what you need to find out. We will come back within [one working day]."
+        text="Tell us what you need to find out. We will come back within 24 hours."
       />
     </SiteLayout>
   );
