@@ -4,7 +4,7 @@ export const company = {
   email: 'sales@surveydive.com',
   phone: '[+91 00000 00000]',
   address: '540, Tower -3, Golden I, Techzone IV, Greater Noida West U.P. (201318)',
-  hours: '[Monday to Friday, 9:30 am to 6:30 pm]',
+  hours: 'Monday to Friday, 1:30 pm to 6:00 am IST',
   careersEmail: '[careers@surveydive.in]',
   panelEmail: '[panel@surveydive.in]',
   linkedin: 'https://www.linkedin.com/company/survey-dive',

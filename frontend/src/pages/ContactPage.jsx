@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'sonner';
-import { Mail, Phone, MapPin, Clock, CheckCircle2, Users, ChevronDown } from 'lucide-react';
+import { Mail, MapPin, Clock, CheckCircle2, ChevronDown } from 'lucide-react';
 import { SiteLayout } from '../components/site/SiteLayout';
 import { PageBanner } from '../components/site/PageBanner';
 import { wrap, Reveal, Label, btnPrimary, fieldClass, labelClass } from '../components/site/ui';
@@ -48,7 +48,6 @@ export const ContactPage = () => {
 
   const details = [
     { icon: Mail, label: 'Email', value: company.email, href: isReal(company.email) ? `mailto:${company.email}` : null },
-    { icon: Phone, label: 'Phone', value: company.phone, href: isReal(company.phone) ? `tel:${company.phone.replace(/\s/g, '')}` : null },
     { icon: MapPin, label: 'Office', value: company.address },
     { icon: Clock, label: 'Hours', value: company.hours },
   ];
@@ -57,9 +56,9 @@ export const ContactPage = () => {
     <SiteLayout>
       <PageBanner
         label="Contact"
-        title="Tell us what you need"
-        highlight="to find out."
-        intro="Share a few details about your project. A researcher will reply within [one working day] with questions, an approach, or a quote."
+        title={<>Still thinking?<br /></>}
+        highlight="Let’s Dive Into Your Research Needs"
+        intro="Share a few details about your project. A researcher will reply within one working day with questions, an approach, or a quote."
       />
 
       <section className={`${wrap} py-20 sm:py-28 grid lg:grid-cols-12 gap-14`}>
@@ -81,11 +80,11 @@ export const ContactPage = () => {
               <div className="grid sm:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="name" className={labelClass}>Your name *</label>
-                  <input id="name" name="name" value={form.name} onChange={onChange} required autoComplete="name" className={`${fieldClass} h-14`} placeholder="Priya Sharma" />
+                  <input id="name" name="name" value={form.name} onChange={onChange} required autoComplete="name" className={`${fieldClass} h-14`} placeholder="Sharon Sharma" />
                 </div>
                 <div>
                   <label htmlFor="email" className={labelClass}>Work email *</label>
-                  <input id="email" name="email" type="email" value={form.email} onChange={onChange} required autoComplete="email" className={`${fieldClass} h-14`} placeholder="priya@company.com" />
+                  <input id="email" name="email" type="email" value={form.email} onChange={onChange} required autoComplete="email" className={`${fieldClass} h-14`} placeholder="sharon@company.com" />
                 </div>
               </div>
               <div className="grid sm:grid-cols-2 gap-6">
@@ -154,14 +153,6 @@ export const ContactPage = () => {
                 </li>
               ))}
             </ul>
-          </div>
-
-          <div className="bg-[#1A0B30] border border-white/10 p-7">
-            <Users size={22} className="text-[#C9A4F0]" />
-            <p className="font-display mt-4 text-lg font-bold">Are you a panel member?</p>
-            <p className="mt-2 text-white/65 leading-relaxed">
-              For rewards, surveys, or account questions, see the <Link to="/panel-faq" className="text-[#E69B57] underline underline-offset-4">Panel FAQ</Link> or email {company.panelEmail}.
-            </p>
           </div>
         </Reveal>
       </section>
