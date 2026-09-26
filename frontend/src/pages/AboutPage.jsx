@@ -187,6 +187,36 @@ export const AboutPage = () => (
     {/* ---------- GLOBAL COVERAGE ---------- */}
     <GlobalCoverage />
 
+    {/* ---------- REACH ---------- */}
+    <section className="bg-[#160A28] py-24 sm:py-32">
+      <div className={`${wrap} grid lg:grid-cols-2 gap-14`}>
+        <Reveal>
+          <Label>Reach</Label>
+          <h2 className="font-display text-3xl sm:text-5xl font-extrabold tracking-[-0.02em] leading-[1.08]">
+            Local understanding, national coverage.
+          </h2>
+          <p className="mt-6 text-lg text-white/70 leading-relaxed">
+            Our interviewers speak the languages your respondents speak, and understand the context behind their
+            answers. That is the difference between data and insight.
+          </p>
+        </Reveal>
+        <Reveal delay={0.1} className="space-y-8">
+          <div>
+            <p className="font-display text-sm font-bold text-white/60 mb-3">Regions</p>
+            <p className="text-xl leading-relaxed">[North India, South India, East India, West India, metros and tier 2 and 3 towns]</p>
+          </div>
+          <div>
+            <p className="font-display text-sm font-bold text-white/60 mb-3">Languages</p>
+            <p className="text-xl leading-relaxed">[Hindi, English, Tamil, Telugu, Kannada, Malayalam, Bengali, Marathi, Gujarati, Punjabi]</p>
+          </div>
+          <div>
+            <p className="font-display text-sm font-bold text-white/60 mb-3">Memberships and certifications</p>
+            <p className="text-xl leading-relaxed">[ESOMAR, MRSI, ISO, or remove this block if none]</p>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+
     <CTABand
       title="Let's talk about your next study."
       text="Tell us what you need to find out. We will come back within [one working day]."
