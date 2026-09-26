@@ -7,7 +7,7 @@ import { PageBanner } from '../components/site/PageBanner';
 export const JoinUsPage = () => (
   <SiteLayout>
     <PageBanner
-      label="Join our panel"
+      label="     "
       title="Under"
       highlight="maintenance."
       intro="We are updating this page. Please check back soon."

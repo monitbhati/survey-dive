@@ -55,7 +55,7 @@ export const ContactPage = () => {
   return (
     <SiteLayout>
       <PageBanner
-        label="Contact"
+        label="   "
         title={<>Still thinking?<br /></>}
         highlight="Let’s Dive Into Your Research Needs"
         intro="Share a few details about your project. A researcher will reply within one working day with questions, an approach, or a quote."
