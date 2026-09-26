@@ -6,9 +6,9 @@ import React, { useEffect, useRef } from 'react';
    settle back. Colours run purple to orange, as in the logo. */
 
 // Headline text. Two short lines work best.
-const LINES = ['Dive Into.', 'What Matters.'];
+const LINES = ['Dive Inn', 'For Better Insights'];
 // On phones the words stack into four lines so the dots stay big enough
-const LINES_MOBILE = ['Dive', 'Into.', 'What', 'Matters.'];
+const LINES_MOBILE = ['Dive','Inn.','For','Better','Insights' ];
 
 // Intro reveal, in milliseconds. SPREAD is how long the reveal takes to travel
 // from the centre to the edges; FADE is how long each dot takes to grow in.

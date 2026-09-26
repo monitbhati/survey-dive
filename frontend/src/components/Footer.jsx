@@ -12,7 +12,7 @@ export const Footer = () => {
           <div>
             <img src="/surveydive-logo.png" alt="Survey Dive" className="h-14 w-auto object-contain" />
             <p className="mt-5 text-white/65 max-w-xs leading-relaxed">
-              Market research and data collection. Real people, real answers.
+              Dive Inn For Better Insights.
             </p>
             <a
               href={company.linkedin}
