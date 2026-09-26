@@ -88,7 +88,7 @@ export const Sample3Page = () => {
       {/* ---------- WHAT WE DO: scrolling strip ---------- */}
       <section className="py-20 sm:py-24">
         <Reveal className={`${wrap} mb-10`}>
-          <h2 className="font-display text-3xl sm:text-4xl font-extrabold tracking-tight">What we do</h2>
+          <h2 className="font-display text-3xl sm:text-4xl font-extrabold tracking-tight">Our core strengths</h2>
         </Reveal>
         <div className="py-10 sm:py-14 border-y border-white/15 overflow-hidden">
           <ul className="sr-only">
