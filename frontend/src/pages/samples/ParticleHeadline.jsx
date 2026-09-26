@@ -1,18 +1,28 @@
 import React, { useEffect, useRef } from 'react';
 
 /* The headline drawn with thousands of dots, like the dot trail in the
-   Survey Dive logo. The dots fly in and assemble into the words.
-   Move the cursor (or a finger) through them and they scatter, then
+   Survey Dive logo. On load the dots appear in place, spreading slowly
+   outward from the middle of the headline. Move the cursor (or a finger) through them and they scatter, then
    settle back. Colours run purple to orange, as in the logo. */
 
 // Headline text. Two short lines work best.
-const LINES = ['Real people.', 'Real answers.'];
+const LINES = ['Dive Into.', 'What Matters.'];
 // On phones the words stack into four lines so the dots stay big enough
-const LINES_MOBILE = ['Real', 'people.', 'Real', 'answers.'];
+const LINES_MOBILE = ['Dive', 'Into.', 'What', 'Matters.'];
+
+// Intro reveal, in milliseconds. SPREAD is how long the reveal takes to travel
+// from the centre to the edges; FADE is how long each dot takes to grow in.
+// Set both to 0 to show the headline instantly with no intro.
+const INTRO_SPREAD = 2000;
+const INTRO_FADE = 900;
 
 const COLORS = ['#A56DE0', '#B477DA', '#C381CF', '#D18BBF', '#DC94A8', '#E59C8C', '#EBA372', '#F0A45E'];
+// Deeper shades of the same gradient, for light backgrounds
+const COLORS_LIGHT = ['#4B1E73', '#5E2590', '#7A2F98', '#963C92', '#B04D82', '#C3616A', '#D27449', '#D9822B'];
 
-export const ParticleHeadline = ({ className = '' }) => {
+export const ParticleHeadline = ({ className = '', light = false }) => {
+  const paletteRef = useRef(light ? COLORS_LIGHT : COLORS);
+  paletteRef.current = light ? COLORS_LIGHT : COLORS;
   const wrapRef = useRef(null);
   const canvasRef = useRef(null);
 
@@ -29,6 +39,8 @@ export const ParticleHeadline = ({ className = '' }) => {
     let running = false;
     let visible = true;
     const mouse = { x: -9999, y: -9999 };
+    let introStart = null;
+    let introDone = reduce || INTRO_SPREAD + INTRO_FADE === 0;
 
     const build = () => {
       const rect = wrap.getBoundingClientRect();
@@ -71,12 +83,16 @@ export const ParticleHeadline = ({ className = '' }) => {
             // a little jitter so the dots look organic rather than a grid
             const jx = x + (Math.random() - 0.5) * gap * 0.7;
             const jy = y + (Math.random() - 0.5) * gap * 0.7;
+            // distance from the centre (0 = middle, 1 = far edge), with a little
+            // randomness so the reveal edge looks soft rather than a hard circle
+            const dist = Math.min(1, Math.hypot((jx - w / 2) / (w / 2), ((jy - h / 2) / (h / 2)) * 0.5));
             next.push({
               tx: jx,
               ty: jy,
-              // first build: dots start scattered to the right, like the logo's trail
-              x: old ? old.x : reduce ? jx : w * 0.6 + Math.random() * w * 0.6,
-              y: old ? old.y : reduce ? jy : Math.random() * h,
+              // dots start in their final place; the intro only reveals them
+              x: old ? old.x : jx,
+              y: old ? old.y : jy,
+              delay: (dist * 0.85 + Math.random() * 0.15) * INTRO_SPREAD,
               vx: 0,
               vy: 0,
               r: radius * (0.75 + Math.random() * 0.5),
@@ -90,15 +106,29 @@ export const ParticleHeadline = ({ className = '' }) => {
 
     const draw = () => {
       ctx.clearRect(0, 0, w, h);
+      let t = 0;
+      if (!introDone) {
+        const now = performance.now();
+        if (introStart === null) introStart = now;
+        t = now - introStart;
+        if (t >= INTRO_SPREAD + INTRO_FADE) introDone = true;
+      }
       // one path per colour keeps drawing fast even with thousands of dots
-      for (let c = 0; c < COLORS.length; c++) {
+      const palette = paletteRef.current;
+      for (let c = 0; c < palette.length; c++) {
         ctx.beginPath();
         for (const p of particles) {
           if (p.c !== c) continue;
-          ctx.moveTo(p.x + p.r, p.y);
-          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          let r = p.r;
+          if (!introDone) {
+            const k = Math.min(1, (t - p.delay) / INTRO_FADE);
+            if (k <= 0) continue;
+            r = p.r * (1 - (1 - k) ** 3); // ease-out: grows in gently
+          }
+          ctx.moveTo(p.x + r, p.y);
+          ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
         }
-        ctx.fillStyle = COLORS[c];
+        ctx.fillStyle = palette[c];
         ctx.fill();
       }
     };
