@@ -49,6 +49,7 @@ export const HomeHeader = ({ light = false }) => {
         </Link>
 
         <nav className="hidden md:flex items-center gap-9">
+          <Link to="/" className={cls('/')}>Home</Link>
           <Link to="/about" className={cls('/about')}>About</Link>
 
           {/* Services only opens the dropdown (on hover, tap, or keyboard focus); it has no page of its own */}
@@ -100,6 +101,7 @@ export const HomeHeader = ({ light = false }) => {
 
       {open && (
         <nav className={`md:hidden h-[calc(100vh-5rem)] overflow-y-auto px-6 pt-8 pb-10 flex flex-col gap-6 backdrop-blur-xl ${light ? 'bg-white/95 text-[#1E1230]' : 'bg-[#160A28]/95 text-white'}`}>
+          <Link to="/" className="font-display text-2xl font-semibold">Home</Link>
           <Link to="/about" className="font-display text-2xl font-semibold">About</Link>
           <div>
             <p className="font-display text-2xl font-semibold">Services</p>
