@@ -69,7 +69,7 @@ export const ContactPage = () => {
               <CheckCircle2 size={44} className="text-[#E69B57]" />
               <h2 className="font-display mt-6 text-3xl sm:text-4xl font-extrabold tracking-tight">Thank you. Your message is with us.</h2>
               <p className="mt-4 text-lg text-white/70 leading-relaxed">
-                A member of our research team will reply within [one working day].
+                A member of our research team will reply within one working day.
               </p>
               <button onClick={() => setSent(false)} className="mt-8 font-semibold text-[#E69B57] underline underline-offset-4">
                 Send another message

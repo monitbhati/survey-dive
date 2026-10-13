@@ -7,7 +7,7 @@ export const company = {
   hours: 'Monday to Friday, 1:30 pm to 6:00 am IST',
   careersEmail: '[careers@surveydive.in]',
   panelEmail: '[panel@surveydive.in]',
-  linkedin: 'https://www.linkedin.com/company/survey-dive',
+  linkedin: 'https://www.linkedin.com/company/surveydive/',
 };
 
 // true only when the value above has been filled in (no brackets left)

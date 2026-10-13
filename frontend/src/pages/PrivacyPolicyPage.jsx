@@ -138,7 +138,7 @@ const sections = [
 export const PrivacyPolicyPage = () => (
   <LegalLayout
     title="Privacy policy"
-    updated="[Month Year]"
+    updated="October 2026"
     intro="How Survey Dive collects, uses, and protects your personal information."
     sections={sections}
     note="This privacy policy is part of our commitment to transparency. By using our services, you acknowledge that you have read and understood this policy."

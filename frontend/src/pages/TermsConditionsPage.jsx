@@ -103,7 +103,7 @@ const sections = [
     content: (
       <p>
         These Terms and Conditions are governed by the laws of India. Any disputes shall be subject to the exclusive
-        jurisdiction of courts in [City, State].
+        jurisdiction of courts in Greater Noida, Uttar Pradesh.
       </p>
     ),
   },
@@ -112,7 +112,7 @@ const sections = [
 export const TermsConditionsPage = () => (
   <LegalLayout
     title="Terms and conditions"
-    updated="[Month Year]"
+    updated="October 2026"
     intro="The terms that apply when you join and take part in the Survey Dive panel."
     sections={sections}
     note='By clicking "Join the panel", you acknowledge that you have read, understood, and agree to be bound by these Terms and Conditions.'
