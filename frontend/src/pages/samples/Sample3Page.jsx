@@ -1,5 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { motion, useReducedMotion } from 'framer-motion';
+import { ArrowRight } from 'lucide-react';
 import { BackgroundVideo } from '../../components/home/BackgroundVideo';
 import { HomeHeader } from '../../components/home/HomeHeader';
 import { Footer } from '../../components/Footer';
@@ -131,6 +133,14 @@ export const Sample3Page = () => {
           <h2 className="font-display text-5xl sm:text-7xl lg:text-8xl font-extrabold tracking-[-0.03em] leading-[1]">
             Dive In &amp; <span className="text-brand-gradient">Be Heard</span>
           </h2>
+          <div className="mt-10">
+            <Link
+              to="/join-us"
+              className="font-display inline-flex items-center justify-center gap-3 h-14 px-10 bg-white text-[#140A22] font-bold hover:bg-[#E69B57] transition-colors"
+            >
+              Join the panel <ArrowRight size={18} />
+            </Link>
+          </div>
         </Reveal>
       </section>
 

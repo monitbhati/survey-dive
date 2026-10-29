@@ -2,7 +2,7 @@ import "./App.css";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";;
 import { AboutPage } from "./pages/AboutPage";
 import { ContactPage } from "./pages/ContactPage";
-// import { JoinUsPage } from "./pages/JoinUsPage"; // Join Us hidden for now
+import { JoinUsPage } from "./pages/JoinUsPage";
 import { AdminLoginPage } from "./pages/AdminLoginPage";
 import { AdminDashboardPage } from "./pages/AdminDashboardPage";
 import { QuantitativeResearchPage } from "./pages/services/QuantitativeResearchPage";
@@ -37,7 +37,7 @@ function App() {
           <Route path="/services/cati-excellence" element={<CATIPage />} />
           <Route path="/services/qualitative-deep-dives" element={<QualitativePage />} />
           <Route path="/services/survey-designing" element={<Navigate to="/" replace />} />
-          <Route path="/join-us" element={<Navigate to="/" replace />} />
+          <Route path="/join-us" element={<JoinUsPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/dashboard" element={<UserDashboardPage />} />
           <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />

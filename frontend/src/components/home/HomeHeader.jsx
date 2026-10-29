@@ -74,6 +74,7 @@ export const HomeHeader = ({ light = false }) => {
             </div>
           </div>
 
+          <Link to="/join-us" className={cls('/join-us')}>Join Our Panel</Link>
         </nav>
 
         <Link
@@ -111,6 +112,7 @@ export const HomeHeader = ({ light = false }) => {
               ))}
             </div>
           </div>
+          <Link to="/join-us" className="font-display text-2xl font-semibold">Join Our Panel</Link>
           <Link to="/contact" className="font-display text-2xl font-semibold text-[#E69B57]">Contact</Link>
         </nav>
       )}
